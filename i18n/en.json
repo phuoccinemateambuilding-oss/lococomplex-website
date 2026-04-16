@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "title": "LOCO Complex — Entertainment & Music Venue · District 1, Saigon",
+    "description": "LOCO Complex — NEWTRO entertainment complex at 11 Nam Quoc Cang, District 1, Saigon. 2-floor club + F&B. Tue – Sun, 6 PM. Book: 0866 433 745.",
+    "keywords": ["LOCO Complex", "LOCO Heatroom", "LOCO District 1", "LOCO Saigon", "entertainment complex District 1", "nightclub Saigon", "EDM club District 1"]
+  },
+  "nav": {
+    "home": "Home",
+    "gallery": "Gallery",
+    "menu": "Menu",
+    "contact": "Contact",
+    "bookTable": "Book a Table"
+  },
+  "hero": {
+    "eyebrow": "NEWTRO ENTERTAINMENT COMPLEX · DISTRICT 1, SAIGON",
+    "heading": "LOCO",
+    "subheading": "Complex",
+    "tagline": "make impossible",
+    "desc": "An upscale entertainment destination in the heart of District 1. Two floors, two music worlds — one limitless experience.",
+    "cta": "Book a Table",
+    "hours": "Tue – Sun · 6:00 PM"
+  },
+  "about": {
+    "eyebrow": "01 — About",
+    "heading": "Where style meets energy",
+    "description": "LOCO Complex is a NEWTRO entertainment complex — where elegance blends with youthful energy. Outdoor terrace, game zone, massage chairs, personal lockers — every detail crafted for the perfect experience.",
+    "capacity": "300 guests",
+    "dressCode": "Youthful / Smart Casual",
+    "floors": "2 club floors",
+    "services": ["Outdoor terrace", "Game zone", "Massage chairs", "Phone charging", "Personal lockers", "Overnight parking", "Pet-friendly"]
+  },
+  "music": {
+    "eyebrow": "02 — Two floors, two worlds",
+    "heading": "Each floor, each vibe",
+    "floor1": "Floor 1 — Hip-hop Club",
+    "floor1Desc": "A dynamic hip-hop space with professional DJs. B Tables, Standing, L-Zone Sofa, VIP and SVIP — from small groups to big parties.",
+    "floor1Tables": "B Table (1-4 guests) · Standing · L-Zone Sofa (1-8) · VIP (1-10) · SVIP (1-12)",
+    "floor1Price": "From 3.5M – 30M VND",
+    "floor2": "Floor 2 — Heatroom",
+    "floor2Desc": "Mini nightclub with top-tier sound & lighting. Top 40, EDM, House — where the night never ends.",
+    "floor2Tables": "Standing (1-4 guests) · Premium Sofa (1-8) · VIP Sofa (1-15)",
+    "floor2Price": "From 3.55M – 21.3M VND",
+    "genres": ["Top 40", "EDM", "House", "Hip-hop", "R&B"]
+  },
+  "gallery": {
+    "eyebrow": "03 — Gallery",
+    "heading": "Moments at LOCO",
+    "viewAll": "View all"
+  },
+  "contact": {
+    "eyebrow": "04 — Contact",
+    "heading": "Book a Table",
+    "callNow": "Call Now",
+    "orCall": "Or call directly",
+    "formName": "Full name",
+    "formPhone": "Phone number",
+    "formDate": "Date",
+    "formGuests": "Number of guests",
+    "formMessage": "Notes",
+    "formSubmit": "Send request",
+    "address": "Address",
+    "openHours": "Opening hours",
+    "houseRules": "House Rules",
+    "rule1": "Dress code: Youthful / Smart Casual",
+    "rule2": "For guests aged 18 and over",
+    "rule3": "No outside food & refreshments",
+    "note": "Prices exclude 10% VAT and 10% service charge"
+  },
+  "footer": {
+    "disclaimer": "For guests aged 18 and over.",
+    "copyright": "LOCO Complex. All rights reserved."
+  },
+  "menuPage": {
+    "eyebrow": "Our Menu",
+    "heading": "Menu",
+    "bites": "BITES — Dining",
+    "bitesDesc": "Diverse menu served all night long.",
+    "vip": "VIP Tables",
+    "vipDesc": "From 3.5 – 30 million VND depending on location and party size. Excludes 10% VAT and 10% service charge.",
+    "vipCta": "Book VIP"
+  }
+}

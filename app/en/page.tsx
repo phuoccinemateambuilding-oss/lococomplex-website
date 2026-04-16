@@ -5,12 +5,12 @@ import Footer from "@/components/Footer";
 import FloatingContacts from "@/components/FloatingContacts";
 
 export default function Page() {
-  const locale = "vi";
+  const locale = "en";
   const t = getDict(locale);
 
   return (
     <>
-      <Navbar locale={locale} t={t.nav} currentPath="/" />
+      <Navbar locale={locale} t={t.nav} currentPath="/en" />
       <main className="flex-1">
         <HomePage locale={locale} t={t} />
       </main>

@@ -1,0 +1,82 @@
+{
+  "meta": {
+    "title": "LOCO Complex — Khu Giải Trí & Âm Nhạc · Quận 1, Sài Gòn",
+    "description": "LOCO Complex — khu phức hợp giải trí phong cách NEWTRO tại 11 Nam Quốc Cang, Quận 1, Sài Gòn. 2 tầng club + F&B. Thứ Ba – Chủ Nhật, 18:00. Đặt bàn: 0866 433 745.",
+    "keywords": ["LOCO Complex", "LOCO Heatroom", "LOCO Quận 1", "LOCO Sài Gòn", "khu giải trí Quận 1", "club Nam Quốc Cang", "club EDM Quận 1"]
+  },
+  "nav": {
+    "home": "Trang chủ",
+    "gallery": "Hình ảnh",
+    "menu": "Menu",
+    "contact": "Liên hệ",
+    "bookTable": "Đặt bàn"
+  },
+  "hero": {
+    "eyebrow": "NEWTRO ENTERTAINMENT COMPLEX · QUẬN 1, SÀI GÒN",
+    "heading": "LOCO",
+    "subheading": "Complex",
+    "tagline": "make impossible",
+    "desc": "Không gian giải trí sang trọng & sôi động tại trung tâm Quận 1. Hai tầng, hai thế giới âm nhạc — một trải nghiệm không giới hạn.",
+    "cta": "Đặt bàn ngay",
+    "hours": "Thứ Ba – Chủ Nhật · 18:00"
+  },
+  "about": {
+    "eyebrow": "01 — Giới thiệu",
+    "heading": "Nơi phong cách gặp gỡ năng lượng",
+    "description": "LOCO Complex là tổ hợp giải trí phong cách NEWTRO — nơi sự sang trọng hòa quyện với năng lượng trẻ trung. Sân thượng ngoài trời, khu game, ghế massage, tủ đồ cá nhân — mỗi chi tiết đều được chăm chút cho trải nghiệm hoàn hảo.",
+    "capacity": "300 khách",
+    "dressCode": "Trẻ trung / Thanh lịch",
+    "floors": "2 tầng club",
+    "services": ["Sân thượng ngoài trời", "Khu game", "Ghế massage", "Sạc điện thoại", "Tủ đồ cá nhân", "Gửi xe qua đêm", "Thân thiện thú cưng"]
+  },
+  "music": {
+    "eyebrow": "02 — Hai tầng, hai thế giới",
+    "heading": "Mỗi tầng, mỗi vibe",
+    "floor1": "Tầng 1 — Hip-hop Club",
+    "floor1Desc": "Không gian Hip-hop sôi động với DJ chuyên nghiệp. Bàn B, Standing, L-Zone Sofa, VIP và SVIP — từ nhóm nhỏ đến tiệc lớn.",
+    "floor1Tables": "Bàn B (1-4 khách) · Standing · L-Zone Sofa (1-8) · VIP (1-10) · SVIP (1-12)",
+    "floor1Price": "Từ 3.5tr – 30tr VND",
+    "floor2": "Tầng 2 — Heatroom",
+    "floor2Desc": "Mini nightclub với hệ thống âm thanh & ánh sáng đỉnh cao. Top 40, EDM, House — nơi đêm không bao giờ kết thúc.",
+    "floor2Tables": "Standing (1-4 khách) · Premium Sofa (1-8) · VIP Sofa (1-15)",
+    "floor2Price": "Từ 3.55tr – 21.3tr VND",
+    "genres": ["Top 40", "EDM", "House", "Hip-hop", "R&B"]
+  },
+  "gallery": {
+    "eyebrow": "03 — Hình ảnh",
+    "heading": "Khoảnh khắc tại LOCO",
+    "viewAll": "Xem tất cả"
+  },
+  "contact": {
+    "eyebrow": "04 — Liên hệ",
+    "heading": "Đặt bàn ngay",
+    "callNow": "Gọi ngay",
+    "orCall": "Hoặc gọi trực tiếp",
+    "formName": "Họ tên",
+    "formPhone": "Số điện thoại",
+    "formDate": "Ngày",
+    "formGuests": "Số khách",
+    "formMessage": "Ghi chú",
+    "formSubmit": "Gửi yêu cầu",
+    "address": "Địa chỉ",
+    "openHours": "Giờ mở cửa",
+    "houseRules": "Quy định",
+    "rule1": "Dress code: Trẻ trung / Thanh lịch",
+    "rule2": "Dành cho khách từ 18 tuổi trở lên",
+    "rule3": "Không mang thức ăn & thức uống từ bên ngoài",
+    "note": "Giá chưa bao gồm 10% VAT và 10% phí dịch vụ"
+  },
+  "footer": {
+    "disclaimer": "Dành cho khách từ 18 tuổi trở lên.",
+    "copyright": "LOCO Complex. All rights reserved."
+  },
+  "menuPage": {
+    "eyebrow": "Thực đơn",
+    "heading": "Menu",
+    "bites": "BITES — Ẩm thực",
+    "bitesDesc": "Thực đơn đa dạng phục vụ suốt đêm.",
+    "vip": "Bàn VIP",
+    "vipDesc": "Từ 3.5 – 30 triệu VND tuỳ vị trí và số khách. Chưa bao gồm 10% VAT và 10% phí dịch vụ.",
+    "vipCta": "Đặt bàn VIP"
+  }
+}
