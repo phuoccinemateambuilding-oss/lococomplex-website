@@ -135,7 +135,7 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
             <button
               type="button"
               onClick={() => scrollTo("gallery")}
-              className="inline-flex h-14 items-center gap-2 rounded-full px-6 font-display text-sm uppercase tracking-wider text-white/60 underline-offset-4 transition hover:text-white hover:underline"
+              className="inline-flex h-14 items-center gap-2 rounded-full px-6 text-sm font-bold uppercase tracking-wider text-white/60 underline-offset-4 transition hover:text-white hover:underline"
             >
               {dict.ctaGallery}
               <ArrowDown className="h-4 w-4" />

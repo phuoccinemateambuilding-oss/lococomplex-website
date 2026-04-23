@@ -320,7 +320,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                     <button
                       type="submit"
                       disabled={status === "submitting"}
-                      className="flex h-14 w-full items-center justify-center gap-2 rounded-full bg-loco-red font-display text-sm uppercase tracking-wider text-white transition hover:bg-loco-red/85 disabled:opacity-60"
+                      className="flex h-14 w-full items-center justify-center gap-2 rounded-full bg-loco-red text-sm font-bold uppercase tracking-wider text-white transition hover:bg-loco-red/85 disabled:opacity-60"
                     >
                       {status === "submitting" ? (
                         <>
@@ -366,7 +366,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => track("zalo_click", { cta_location: "landing_trust_aside" })}
-                className="inline-flex items-center gap-2 rounded-full bg-[#0068FF] px-6 py-2.5 font-display text-xs uppercase tracking-wider text-white transition hover:bg-[#0068FF]/85"
+                className="inline-flex items-center gap-2 rounded-full bg-[#0068FF] px-6 py-2.5 text-sm font-bold uppercase tracking-wider text-white transition hover:bg-[#0068FF]/85"
               >
                 <ZaloIcon size={16} />
                 Zalo
