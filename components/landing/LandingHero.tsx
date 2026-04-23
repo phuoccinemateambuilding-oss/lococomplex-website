@@ -32,12 +32,12 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
       {/* Hero background image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/assets/loco/space/space-01.jpg"
+          src="/assets/loco/space/hero-main.jpg"
           alt="LOCO Complex interior"
           fill
           priority
           sizes="100vw"
-          className="object-cover opacity-50"
+          className="object-cover opacity-55"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-midnight-deep/80 via-midnight-deep/40 to-midnight-deep/90" />
       </div>
@@ -70,8 +70,8 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.08 }}
-            className="mb-3 font-display leading-none tracking-tight text-white drop-shadow-[0_2px_16px_rgba(0,0,0,0.8)]"
-            style={{ fontSize: "clamp(4.5rem, 20vw, 10rem)" }}
+            className="mb-4 font-display leading-none tracking-tight text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.9)]"
+            style={{ fontSize: "clamp(5rem, 22vw, 11rem)" }}
           >
             <span className="text-loco-red">LOCO</span>
             <br />
@@ -86,7 +86,7 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.14 }}
-            className="mb-3 font-display-vn text-4xl uppercase tracking-wider text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] md:text-5xl lg:text-6xl"
+            className="mb-3 hidden font-display-vn text-4xl uppercase tracking-wider text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] lg:block lg:text-5xl xl:text-6xl"
           >
             {dict.h2}
           </motion.h2>

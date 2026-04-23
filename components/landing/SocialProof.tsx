@@ -27,7 +27,7 @@ export function SocialProof({ dict }: { dict: Dsocial }) {
           transition={{ duration: 0.5 }}
           className="mb-12 text-center"
         >
-          <h2 className="font-display text-2xl leading-[1.15] pb-[0.08em] heading-uppercase text-cream whitespace-nowrap md:text-3xl lg:text-4xl">
+          <h2 className="font-display-vn text-3xl leading-[1.15] pb-[0.08em] heading-uppercase text-cream md:text-4xl lg:text-5xl">
             <HighlightBrand text={dict.h2} />
           </h2>
           <p className="mt-3 text-sm text-white/50 md:text-base">{dict.sub}</p>

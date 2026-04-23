@@ -127,7 +127,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                   className="flex flex-col items-center py-6 text-center"
                 >
                   <CheckCircle weight="fill" className="mb-4 h-14 w-14 text-loco-yellow" />
-                  <h3 className="mb-2 font-display text-2xl uppercase tracking-wider text-cream">
+                  <h3 className="mb-2 font-display-vn text-2xl uppercase tracking-wider text-cream">
                     {dict.successTitle}
                   </h3>
                   <p className="mb-8 text-sm text-white/60">{dict.successSub}</p>
@@ -159,7 +159,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                       href={calendarUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-loco-yellow/15 font-display text-xs uppercase tracking-wider text-loco-yellow transition hover:bg-loco-yellow/25"
+                      className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-loco-yellow/15 text-sm font-bold uppercase tracking-wider text-loco-yellow transition hover:bg-loco-yellow/25"
                     >
                       <CalendarCheck weight="fill" className="h-4 w-4" />
                       {dict.successCalendar}
@@ -168,7 +168,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                       href={BRAND.zaloUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#0068FF]/15 font-display text-xs uppercase tracking-wider text-[#4CA6FF] transition hover:bg-[#0068FF]/25"
+                      className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#0068FF]/15 text-sm font-bold uppercase tracking-wider text-[#4CA6FF] transition hover:bg-[#0068FF]/25"
                     >
                       <ZaloIcon size={16} />
                       {dict.successZalo}
@@ -176,7 +176,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                     <button
                       type="button"
                       onClick={resetForm}
-                      className="flex h-12 w-full items-center justify-center rounded-full border border-white/20 font-display text-xs uppercase tracking-wider text-white/60 transition hover:border-white/40 hover:text-white/80"
+                      className="flex h-12 w-full items-center justify-center rounded-full border border-white/20 text-sm font-bold uppercase tracking-wider text-white/60 transition hover:border-white/40 hover:text-white/80"
                     >
                       {dict.successReset}
                     </button>
