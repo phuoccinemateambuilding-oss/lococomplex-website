@@ -19,6 +19,7 @@ export const routeMap: Record<string, Record<Locale, string>> = {
   menu: { vi: "/menu", en: "/en/menu" },
   contact: { vi: "/lien-he", en: "/en/contact" },
   faq: { vi: "/faq", en: "/en/faq" },
+  book: { vi: "/dat-ban", en: "/en/book" },
 };
 
 export function getAlternateRoute(currentPath: string, targetLocale: Locale): string {

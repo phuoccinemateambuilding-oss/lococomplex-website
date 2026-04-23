@@ -2,7 +2,15 @@
   "meta": {
     "title": "LOCO Complex — Khu Giải Trí & Âm Nhạc · Quận 1, Sài Gòn",
     "description": "LOCO Complex — khu phức hợp giải trí phong cách NEWTRO tại 11 Nam Quốc Cang, Quận 1, Sài Gòn. 2 tầng club + F&B. Thứ Ba – Chủ Nhật, 18:00. Đặt bàn: 0866 433 754.",
-    "keywords": ["LOCO Complex", "LOCO Heatroom", "LOCO Quận 1", "LOCO Sài Gòn", "khu giải trí Quận 1", "club Nam Quốc Cang", "club EDM Quận 1"]
+    "keywords": [
+      "LOCO Complex",
+      "LOCO Heatroom",
+      "LOCO Quận 1",
+      "LOCO Sài Gòn",
+      "khu giải trí Quận 1",
+      "club Nam Quốc Cang",
+      "club EDM Quận 1"
+    ]
   },
   "nav": {
     "home": "Trang chủ",
@@ -27,7 +35,15 @@
     "capacity": "300 khách",
     "dressCode": "Trẻ trung / Thanh lịch",
     "floors": "2 tầng club",
-    "services": ["Sân thượng ngoài trời", "Khu game", "Ghế massage", "Sạc điện thoại", "Tủ đồ cá nhân", "Gửi xe qua đêm", "Thân thiện thú cưng"]
+    "services": [
+      "Sân thượng ngoài trời",
+      "Khu game",
+      "Ghế massage",
+      "Sạc điện thoại",
+      "Tủ đồ cá nhân",
+      "Gửi xe qua đêm",
+      "Thân thiện thú cưng"
+    ]
   },
   "music": {
     "eyebrow": "02 — Hai tầng, hai thế giới",
@@ -40,7 +56,13 @@
     "floor2Desc": "Mini nightclub với hệ thống âm thanh & ánh sáng đỉnh cao. Top 40, EDM, House — nơi đêm không bao giờ kết thúc.",
     "floor2Tables": "Standing (1-4 khách) · Premium Sofa (1-8) · VIP Sofa (1-15)",
     "floor2Price": "Từ 3.55tr – 21.3tr VND",
-    "genres": ["Top 40", "EDM", "House", "Hip-hop", "R&B"]
+    "genres": [
+      "Top 40",
+      "EDM",
+      "House",
+      "Hip-hop",
+      "R&B"
+    ]
   },
   "gallery": {
     "eyebrow": "03 — Hình ảnh",
@@ -64,7 +86,10 @@
     "rule1": "Dress code: Trẻ trung / Thanh lịch",
     "rule2": "Dành cho khách từ 18 tuổi trở lên",
     "rule3": "Không mang thức ăn & thức uống từ bên ngoài",
-    "note": "Giá chưa bao gồm 10% VAT và 10% phí dịch vụ"
+    "note": "Giá chưa bao gồm 10% VAT và 10% phí dịch vụ",
+    "formTime": "Giờ đến",
+    "formSuccess": "Đã ghi nhận!",
+    "formError": "Gửi thất bại."
   },
   "footer": {
     "disclaimer": "Dành cho khách từ 18 tuổi trở lên.",
@@ -78,5 +103,121 @@
     "vip": "Bàn VIP",
     "vipDesc": "Từ 3.5 – 30 triệu VND tuỳ vị trí và số khách. Chưa bao gồm 10% VAT và 10% phí dịch vụ.",
     "vipCta": "Đặt bàn VIP"
+  },
+  "datban": {
+    "metaTitle": "Đặt Bàn LOCO Complex — Giữ Chỗ Ngay · Quận 1, Sài Gòn",
+    "metaDescription": "Đặt bàn LOCO Complex tại 11 Nam Quốc Cang, Quận 1, Sài Gòn. Miễn phí đặt trước, xác nhận qua Zalo 15 phút. Hotline 24/7: 0866 433 754.",
+    "header": {
+      "home": "Trang chủ",
+      "about": "Giới thiệu",
+      "gallery": "Hình ảnh",
+      "form": "Đặt bàn",
+      "faq": "FAQ",
+      "menuLabel": "Mở menu",
+      "close": "Đóng"
+    },
+    "hero": {
+      "eyebrow": "ENTERTAINMENT COMPLEX · QUẬN 1, SÀI GÒN",
+      "wordmarkAlt": "Không gian LOCO Complex",
+      "h2": "ĐẶT BÀN NGAY",
+      "tagline": "make impossible",
+      "intro": "Khu phức hợp giải trí NEWTRO tại trung tâm Quận 1. 2 tầng club — Hip-hop & Heatroom (EDM, Top 40, House). F&B by BITES. Sức chứa 300 khách.",
+      "ctaBook": "Giữ bàn ngay",
+      "ctaCall": "Gọi ngay",
+      "ctaGallery": "Xem không gian",
+      "trust": "4.8 / 5 · 500+ đặt bàn thành công",
+      "hoursLabel": "Giờ mở cửa",
+      "addressLabel": "Địa chỉ"
+    },
+    "social": {
+      "h2": "Review LOCO Complex",
+      "sub": "Khách hàng nói gì về đêm tại LOCO",
+      "reviews": [
+        {
+          "text": "Không gian cực xịn, DJ chơi hay, bàn VIP thoải mái và nhân viên phục vụ rất nhiệt tình. Sẽ quay lại!",
+          "author": "Minh Khoa",
+          "source": "Google · Quận 1, Sài Gòn"
+        },
+        {
+          "text": "LOCO Heatroom là tầng 2 chill nhất mình từng đến ở Sài Gòn. EDM + House cực đỉnh, ánh sáng sân khấu đẹp mắt.",
+          "author": "Thanh Linh",
+          "source": "Google · Saigon"
+        },
+        {
+          "text": "Đặt bàn qua form, nhận confirm Zalo trong 10 phút. Tối đến vào luôn, không cần chờ. Rất tiện!",
+          "author": "Duc Anh",
+          "source": "Google · LOCO Complex"
+        }
+      ]
+    },
+    "gallery": {
+      "h2": "Hình ảnh LOCO",
+      "sub": "Không gian & khoảnh khắc tại LOCO Complex",
+      "swipeHint": "← Lướt để xem thêm →"
+    },
+    "banner": {
+      "h2": "ĐÊM NAY LÀ CỦA BẠN — GIỮ BÀN LOCO NGAY",
+      "sub": "Miễn phí đặt bàn · Xác nhận qua Zalo trong 15 phút · Hotline 24/7"
+    },
+    "form": {
+      "h2": "Đặt bàn",
+      "formTitle": "Thông tin đặt bàn",
+      "formSub": "Điền thông tin bên dưới, chúng tôi xác nhận qua Zalo trong 15 phút.",
+      "fieldName": "Họ tên",
+      "fieldPhone": "Số điện thoại",
+      "fieldDate": "Ngày",
+      "fieldTime": "Giờ đến",
+      "fieldGuests": "Số khách",
+      "fieldNote": "Ghi chú (sinh nhật, yêu cầu đặc biệt...)",
+      "submitBtn": "Đặt bàn — Xác nhận qua Zalo",
+      "submittingBtn": "Đang gửi...",
+      "successTitle": "Đã ghi nhận!",
+      "successSub": "Chúng tôi sẽ xác nhận qua Zalo trong 15 phút.",
+      "successCalendar": "Thêm vào Google Calendar",
+      "successZalo": "Nhắn tin Zalo",
+      "successReset": "Đặt bàn khác",
+      "errorTitle": "Gửi thất bại.",
+      "errorSub": "Vui lòng gọi trực tiếp:",
+      "trustTitle": "Vì sao đặt qua form?",
+      "trust1": "Miễn phí đặt trước — không cọc",
+      "trust2": "Xác nhận qua Zalo trong 15 phút",
+      "trust3": "Ghi chú sinh nhật & yêu cầu đặc biệt",
+      "fallbackTitle": "Hoặc gọi trực tiếp",
+      "recapDate": "Ngày",
+      "recapTime": "Giờ",
+      "recapGuests": "Số khách",
+      "recapNote": "Ghi chú"
+    },
+    "faq": {
+      "h2": "Câu hỏi thường gặp",
+      "items": [
+        {
+          "q": "Đặt bàn có mất phí không?",
+          "a": "Không. Đặt bàn tại LOCO Complex hoàn toàn miễn phí — không cọc, không phí đặt trước. Bạn chỉ thanh toán khi đến thực tế."
+        },
+        {
+          "q": "Bàn được giữ trong bao lâu?",
+          "a": "Chúng tôi giữ bàn trong vòng 30 phút sau giờ đặt. Nếu trễ hơn, vui lòng liên hệ hotline để thông báo trước."
+        },
+        {
+          "q": "Có thể huỷ hoặc đổi lịch không?",
+          "a": "Được. Liên hệ hotline 0866 433 754 hoặc nhắn Zalo ít nhất 2 giờ trước giờ đặt để đổi lịch miễn phí."
+        },
+        {
+          "q": "Dress code là gì?",
+          "a": "Trẻ trung và thanh lịch. Không chấp nhận dép lê, quần short, hoặc áo thể thao. LOCO Complex phục vụ khách từ 18 tuổi trở lên."
+        },
+        {
+          "q": "Có chỗ đậu xe không?",
+          "a": "Có bãi giữ xe gần đó và dịch vụ gửi xe qua đêm. Đến trực tiếp nhân viên sẽ hướng dẫn chỗ đậu xe gần nhất."
+        }
+      ]
+    },
+    "sticky": {
+      "call": "Gọi",
+      "zalo": "Zalo",
+      "book": "Đặt bàn"
+    },
+    "footer": "11 Đường Nam Quốc Cang, P. Phạm Ngũ Lão, Quận 1, TP.HCM · © 2025 LOCO Complex · Dành cho khách từ 18 tuổi trở lên."
   }
 }

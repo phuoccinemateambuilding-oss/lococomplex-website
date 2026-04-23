@@ -8,6 +8,20 @@
   --color-teal: #2DB89A;
   --color-electric-blue: #4A90D9;
   --color-ink: #0A0A0A;
+
+  /* Landing page design tokens */
+  --color-midnight-deep: #050508;
+  --color-midnight: #0f0f15;
+  --color-cream: #F5F0EB;
+  --color-gold: #F5C330;
+  --color-amber: #D9960A;
+  --color-burgundy: #2D0508;
+  --color-crimson: #E23A2C;
+
+  /* Font utilities for landing components */
+  --font-display: var(--font-bebas-neue), 'Bebas Neue', sans-serif;
+  --font-wordmark: var(--font-bebas-neue), 'Bebas Neue', sans-serif;
+  --font-script: var(--font-caveat), 'Caveat', cursive;
   --color-ink-light: #1A1A1A;
   --color-paper: #FAFAFA;
 }
@@ -33,4 +47,14 @@ body::before {
 ::selection {
   background: var(--color-loco-red);
   color: white;
+}
+
+/* Landing page helpers */
+.hero-warm-glow {
+  background: radial-gradient(ellipse 80% 60% at 50% 80%, rgba(226,58,44,0.12) 0%, #050508 70%);
+}
+
+.heading-uppercase {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }

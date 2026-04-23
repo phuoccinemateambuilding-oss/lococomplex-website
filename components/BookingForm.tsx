@@ -1,91 +1,208 @@
 "use client";
 
 import { useState } from "react";
+import { CheckCircle, Warning } from "@phosphor-icons/react/dist/ssr";
+import { site } from "@/lib/site";
 
 interface BookingFormProps {
+  locale?: "vi" | "en";
   t: {
     formName: string;
     formPhone: string;
     formDate: string;
+    formTime: string;
     formGuests: string;
     formMessage: string;
     formSubmit: string;
+    formSuccess?: string;
+    formError?: string;
   };
 }
 
-export default function BookingForm({ t }: BookingFormProps) {
-  const [submitted, setSubmitted] = useState(false);
+type Status = "idle" | "submitting" | "success" | "error";
 
-  function handleSubmit(e: React.FormEvent) {
+const TIME_SLOTS = ["18:00", "19:00", "20:00", "21:00", "22:00", "23:00"];
+
+const today = new Date().toISOString().split("T")[0];
+
+export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
+  const [status, setStatus] = useState<Status>("idle");
+  const [values, setValues] = useState({
+    name: "",
+    phone: "",
+    date: "",
+    time: "",
+    party: "2",
+    note: "",
+    bot_field: "",
+  });
+
+  const set = (field: keyof typeof values) => (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => setValues((v) => ({ ...v, [field]: e.target.value }));
+
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setSubmitted(true);
+    if (status === "submitting") return;
+    setStatus("submitting");
+    try {
+      const res = await fetch("/api/reserve", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...values, locale }),
+      });
+      const data = await res.json().catch(() => ({ ok: false }));
+      setStatus(res.ok && data.ok ? "success" : "error");
+    } catch {
+      setStatus("error");
+    }
   }
 
-  if (submitted) {
+  const inputClass =
+    "w-full px-4 py-3 rounded-xl border-2 border-ink/10 bg-white focus:border-loco-red focus:outline-none transition-colors text-base min-h-[48px]";
+
+  if (status === "success") {
     return (
-      <div className="bg-teal/10 border-2 border-teal rounded-2xl p-8 text-center">
-        <p className="font-bold text-2xl text-teal mb-2">
-          {/* Success state */}
-          OK!
+      <div className="bg-teal/10 border-2 border-teal rounded-2xl p-8 text-center space-y-3">
+        <CheckCircle size={48} weight="fill" className="text-teal mx-auto" />
+        <p className="font-bold text-xl text-teal">
+          {t.formSuccess ?? (locale === "vi" ? "Đã ghi nhận!" : "Booking received!")}
         </p>
         <p className="text-ink/70">
-          {/* Will be replaced with proper message */}
-          We will contact you shortly.
+          {locale === "vi"
+            ? "Chúng tôi sẽ xác nhận qua Zalo trong 15 phút."
+            : "We'll confirm via Zalo within 15 minutes."}
         </p>
+        <button
+          onClick={() => {
+            setStatus("idle");
+            setValues({ name: "", phone: "", date: "", time: "", party: "2", note: "", bot_field: "" });
+          }}
+          className="text-sm underline text-ink/50 hover:text-ink transition-colors"
+        >
+          {locale === "vi" ? "Đặt bàn khác" : "Book another table"}
+        </button>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+      {/* Honeypot — ẩn với user, bot sẽ tự điền */}
+      <input
+        type="text"
+        name="bot_field"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        value={values.bot_field}
+        onChange={set("bot_field")}
+        style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0 }}
+      />
+
       <div>
-        <label className="block text-sm font-medium text-ink mb-1.5">{t.formName}</label>
+        <label className="block text-sm font-medium text-ink mb-1.5">{t.formName} *</label>
         <input
           type="text"
           required
-          className="w-full px-4 py-3 rounded-xl border-2 border-ink/10 bg-white focus:border-loco-red focus:outline-none transition-colors text-base min-h-[48px]"
+          autoComplete="name"
+          value={values.name}
+          onChange={set("name")}
+          className={inputClass}
         />
       </div>
+
       <div>
-        <label className="block text-sm font-medium text-ink mb-1.5">{t.formPhone}</label>
+        <label className="block text-sm font-medium text-ink mb-1.5">{t.formPhone} *</label>
         <input
           type="tel"
           required
-          className="w-full px-4 py-3 rounded-xl border-2 border-ink/10 bg-white focus:border-loco-red focus:outline-none transition-colors text-base min-h-[48px]"
+          autoComplete="tel"
+          inputMode="tel"
+          pattern="[0-9+\s]{9,}"
+          value={values.phone}
+          onChange={set("phone")}
+          className={inputClass}
         />
       </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-ink mb-1.5">{t.formDate}</label>
+          <label className="block text-sm font-medium text-ink mb-1.5">{t.formDate} *</label>
           <input
             type="date"
             required
-            className="w-full px-4 py-3 rounded-xl border-2 border-ink/10 bg-white focus:border-loco-red focus:outline-none transition-colors text-base min-h-[48px]"
+            min={today}
+            value={values.date}
+            onChange={set("date")}
+            className={inputClass}
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-ink mb-1.5">{t.formGuests}</label>
-          <input
-            type="number"
-            min={1}
-            max={50}
+          <label className="block text-sm font-medium text-ink mb-1.5">{t.formTime} *</label>
+          <select
             required
-            className="w-full px-4 py-3 rounded-xl border-2 border-ink/10 bg-white focus:border-loco-red focus:outline-none transition-colors text-base min-h-[48px]"
-          />
+            value={values.time}
+            onChange={set("time")}
+            className={inputClass}
+          >
+            <option value="">{locale === "vi" ? "Chọn giờ" : "Select time"}</option>
+            {TIME_SLOTS.map((s) => (
+              <option key={s} value={s}>{s}</option>
+            ))}
+          </select>
         </div>
       </div>
+
+      <div>
+        <label className="block text-sm font-medium text-ink mb-1.5">{t.formGuests} *</label>
+        <input
+          type="number"
+          required
+          min={1}
+          max={50}
+          inputMode="numeric"
+          value={values.party}
+          onChange={set("party")}
+          className={inputClass}
+        />
+      </div>
+
       <div>
         <label className="block text-sm font-medium text-ink mb-1.5">{t.formMessage}</label>
         <textarea
           rows={3}
+          value={values.note}
+          onChange={set("note")}
           className="w-full px-4 py-3 rounded-xl border-2 border-ink/10 bg-white focus:border-loco-red focus:outline-none transition-colors resize-none text-base"
         />
       </div>
+
+      {status === "error" && (
+        <div className="flex items-start gap-3 bg-red-50 border-2 border-loco-red/40 rounded-xl p-4 text-sm">
+          <Warning size={20} weight="fill" className="text-loco-red mt-0.5 shrink-0" />
+          <div>
+            <p className="font-semibold text-loco-red">
+              {t.formError ?? (locale === "vi" ? "Gửi thất bại." : "Submission failed.")}
+            </p>
+            <p className="text-ink/70 mt-0.5">
+              {locale === "vi" ? "Vui lòng gọi " : "Please call "}
+              <a href={site.phoneTel} className="font-bold text-loco-red hover:underline">
+                {site.phone}
+              </a>
+            </p>
+          </div>
+        </div>
+      )}
+
       <button
         type="submit"
-        className="w-full bg-loco-red text-white font-semibold py-4 rounded-full text-lg hover:bg-loco-red/90 active:scale-[0.98] transition-all min-h-[48px]"
+        disabled={status === "submitting"}
+        className="w-full bg-loco-red text-white font-semibold py-4 rounded-full text-lg hover:bg-loco-red/90 active:scale-[0.98] transition-all min-h-[48px] disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        {t.formSubmit}
+        {status === "submitting"
+          ? (locale === "vi" ? "Đang gửi…" : "Sending…")
+          : t.formSubmit}
       </button>
     </form>
   );

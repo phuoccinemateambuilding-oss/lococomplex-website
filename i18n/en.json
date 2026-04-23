@@ -2,7 +2,15 @@
   "meta": {
     "title": "LOCO Complex — Entertainment & Music Venue · District 1, Saigon",
     "description": "LOCO Complex — NEWTRO entertainment complex at 11 Nam Quoc Cang, District 1, Saigon. 2-floor club + F&B. Tue – Sun, 6 PM. Book: 0866 433 754.",
-    "keywords": ["LOCO Complex", "LOCO Heatroom", "LOCO District 1", "LOCO Saigon", "entertainment complex District 1", "nightclub Saigon", "EDM club District 1"]
+    "keywords": [
+      "LOCO Complex",
+      "LOCO Heatroom",
+      "LOCO District 1",
+      "LOCO Saigon",
+      "entertainment complex District 1",
+      "nightclub Saigon",
+      "EDM club District 1"
+    ]
   },
   "nav": {
     "home": "Home",
@@ -27,7 +35,15 @@
     "capacity": "300 guests",
     "dressCode": "Youthful / Smart Casual",
     "floors": "2 club floors",
-    "services": ["Outdoor terrace", "Game zone", "Massage chairs", "Phone charging", "Personal lockers", "Overnight parking", "Pet-friendly"]
+    "services": [
+      "Outdoor terrace",
+      "Game zone",
+      "Massage chairs",
+      "Phone charging",
+      "Personal lockers",
+      "Overnight parking",
+      "Pet-friendly"
+    ]
   },
   "music": {
     "eyebrow": "02 — Two floors, two worlds",
@@ -40,7 +56,13 @@
     "floor2Desc": "Mini nightclub with top-tier sound & lighting. Top 40, EDM, House — where the night never ends.",
     "floor2Tables": "Standing (1-4 guests) · Premium Sofa (1-8) · VIP Sofa (1-15)",
     "floor2Price": "From 3.55M – 21.3M VND",
-    "genres": ["Top 40", "EDM", "House", "Hip-hop", "R&B"]
+    "genres": [
+      "Top 40",
+      "EDM",
+      "House",
+      "Hip-hop",
+      "R&B"
+    ]
   },
   "gallery": {
     "eyebrow": "03 — Gallery",
@@ -64,7 +86,10 @@
     "rule1": "Dress code: Youthful / Smart Casual",
     "rule2": "For guests aged 18 and over",
     "rule3": "No outside food & refreshments",
-    "note": "Prices exclude 10% VAT and 10% service charge"
+    "note": "Prices exclude 10% VAT and 10% service charge",
+    "formTime": "Arrival time",
+    "formSuccess": "Booking received!",
+    "formError": "Submission failed."
   },
   "footer": {
     "disclaimer": "For guests aged 18 and over.",
@@ -78,5 +103,121 @@
     "vip": "VIP Tables",
     "vipDesc": "From 3.5 – 30 million VND depending on location and party size. Excludes 10% VAT and 10% service charge.",
     "vipCta": "Book VIP"
+  },
+  "datban": {
+    "metaTitle": "Book a Table at LOCO Complex — Reserve Now · District 1, Saigon",
+    "metaDescription": "Book a table at LOCO Complex, 11 Nam Quoc Cang, District 1, Saigon. Free reservations, Zalo confirmation in 15 min. Hotline: 0866 433 754.",
+    "header": {
+      "home": "Home",
+      "about": "About",
+      "gallery": "Gallery",
+      "form": "Book Now",
+      "faq": "FAQ",
+      "menuLabel": "Open menu",
+      "close": "Close"
+    },
+    "hero": {
+      "eyebrow": "ENTERTAINMENT COMPLEX · DISTRICT 1, SAIGON",
+      "wordmarkAlt": "LOCO Complex interior",
+      "h2": "BOOK YOUR TABLE",
+      "tagline": "make impossible",
+      "intro": "NEWTRO entertainment complex in the heart of District 1. 2 club floors — Hip-hop & Heatroom (EDM, Top 40, House). Dining by BITES. Up to 300 guests.",
+      "ctaBook": "Reserve Now",
+      "ctaCall": "Call Now",
+      "ctaGallery": "View Venue",
+      "trust": "4.8 / 5 · 500+ successful bookings",
+      "hoursLabel": "Opening hours",
+      "addressLabel": "Address"
+    },
+    "social": {
+      "h2": "Reviews — LOCO Complex",
+      "sub": "What guests say about their night at LOCO",
+      "reviews": [
+        {
+          "text": "Incredible vibe, top-tier DJ sets, comfortable VIP tables and attentive staff. Will definitely be back!",
+          "author": "Minh Khoa",
+          "source": "Google · District 1, Saigon"
+        },
+        {
+          "text": "LOCO Heatroom on Floor 2 is the most chill spot I've been to in Saigon. EDM + House is outstanding, stunning stage lighting.",
+          "author": "Thanh Linh",
+          "source": "Google · Saigon"
+        },
+        {
+          "text": "Booked through the form, got Zalo confirmation in 10 minutes. Walked straight in, no waiting. Super convenient!",
+          "author": "Duc Anh",
+          "source": "Google · LOCO Complex"
+        }
+      ]
+    },
+    "gallery": {
+      "h2": "LOCO Gallery",
+      "sub": "Spaces & moments at LOCO Complex",
+      "swipeHint": "← Swipe for more →"
+    },
+    "banner": {
+      "h2": "TONIGHT IS YOURS — RESERVE AT LOCO NOW",
+      "sub": "Free booking · Zalo confirmation in 15 minutes · 24/7 hotline"
+    },
+    "form": {
+      "h2": "Book a Table",
+      "formTitle": "Reservation details",
+      "formSub": "Fill in the form below. We'll confirm via Zalo within 15 minutes.",
+      "fieldName": "Full name",
+      "fieldPhone": "Phone number",
+      "fieldDate": "Date",
+      "fieldTime": "Arrival time",
+      "fieldGuests": "Party size",
+      "fieldNote": "Notes (birthday, special requests...)",
+      "submitBtn": "Book — Confirm via Zalo",
+      "submittingBtn": "Sending...",
+      "successTitle": "Booking received!",
+      "successSub": "We'll confirm your reservation via Zalo within 15 minutes.",
+      "successCalendar": "Add to Google Calendar",
+      "successZalo": "Message us on Zalo",
+      "successReset": "Make another booking",
+      "errorTitle": "Submission failed.",
+      "errorSub": "Please call us directly:",
+      "trustTitle": "Why book through this form?",
+      "trust1": "Free reservation — no deposit required",
+      "trust2": "Zalo confirmation within 15 minutes",
+      "trust3": "Note birthdays & special requests",
+      "fallbackTitle": "Or call directly",
+      "recapDate": "Date",
+      "recapTime": "Time",
+      "recapGuests": "Guests",
+      "recapNote": "Note"
+    },
+    "faq": {
+      "h2": "Common Questions",
+      "items": [
+        {
+          "q": "Is there a booking fee?",
+          "a": "No. Reservations at LOCO Complex are completely free — no deposit, no booking fee. You only pay when you arrive."
+        },
+        {
+          "q": "How long is my table held?",
+          "a": "We hold your table for 30 minutes past the reserved time. If you're running late, please call the hotline to let us know."
+        },
+        {
+          "q": "Can I cancel or reschedule?",
+          "a": "Yes. Contact hotline 0866 433 754 or message us on Zalo at least 2 hours before your reservation to reschedule for free."
+        },
+        {
+          "q": "What is the dress code?",
+          "a": "Youthful and smart casual. No flip-flops, shorts, or sportswear. LOCO Complex is for guests aged 18 and over."
+        },
+        {
+          "q": "Is there parking available?",
+          "a": "Yes, there is nearby parking and overnight vehicle storage. Staff will guide you to the nearest parking upon arrival."
+        }
+      ]
+    },
+    "sticky": {
+      "call": "Call",
+      "zalo": "Zalo",
+      "book": "Book"
+    },
+    "footer": "11 Nam Quoc Cang Street, Pham Ngu Lao Ward, District 1, HCMC · © 2025 LOCO Complex · For guests aged 18 and over."
   }
 }

@@ -49,7 +49,7 @@ export default function ContactPage() {
               <Reveal>
                 <div className="bg-white rounded-3xl p-8 md:p-10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)]">
                   <h2 className="font-bold text-2xl text-ink mb-6">{t.contact.heading}</h2>
-                  <BookingForm t={t.contact} />
+                  <BookingForm locale="vi" t={t.contact} />
                 </div>
               </Reveal>
 
