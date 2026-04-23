@@ -9,6 +9,7 @@ interface FooterTranslations {
     gallery: string;
     menu: string;
     contact: string;
+    faq?: string;
   };
   footer: {
     disclaimer: string;
@@ -29,6 +30,7 @@ export default function Footer({ locale, t }: FooterProps) {
     { label: t.nav.gallery, href: routeMap.gallery[locale] },
     { label: t.nav.menu, href: routeMap.menu[locale] },
     { label: t.nav.contact, href: routeMap.contact[locale] },
+    { label: t.nav.faq ?? (locale === "vi" ? "FAQ" : "FAQ"), href: routeMap.faq[locale] },
   ];
 
   return (
