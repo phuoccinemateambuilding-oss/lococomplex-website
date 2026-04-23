@@ -161,7 +161,7 @@ export default function Navbar({ locale, t, currentPath }: NavbarProps) {
                   onClick={() => setMobileOpen(false)}
                   className="mt-2 text-center text-sm font-bold uppercase tracking-wider text-[#0A0A0A]/60"
                 >
-                  {alternateLang === "en" ? "English" : "Tieng Viet"}
+                  {alternateLang === "en" ? "English" : "Tiếng Việt"}
                 </Link>
               </nav>
             </motion.div>

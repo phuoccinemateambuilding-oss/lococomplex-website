@@ -127,7 +127,7 @@ function AboutSection({ t }: { t: any }) {
   ];
 
   return (
-    <section className="bg-white py-24 md:py-32">
+    <section className="bg-white py-16 md:py-24">
       <div className="mx-auto max-w-[1400px] px-6 md:px-10">
         <Reveal>
           <span className="mb-8 block font-[family-name:var(--font-space-mono)] text-xs uppercase tracking-[0.2em] text-ink/50">
@@ -209,7 +209,7 @@ function MusicSection({ t }: { t: any }) {
   ];
 
   return (
-    <section className="bg-ink py-24 md:py-32">
+    <section className="bg-ink py-16 md:py-24">
       <div className="mx-auto max-w-[1400px] px-6 md:px-10">
         <Reveal>
           <span className="mb-8 block font-[family-name:var(--font-space-mono)] text-xs uppercase tracking-[0.2em] text-baby-blue">
@@ -256,7 +256,7 @@ function MenuTeaser({ locale, t }: HomePageProps) {
   const preview = menuImages.slice(0, 4);
 
   return (
-    <section className="relative py-24 md:py-32 overflow-hidden">
+    <section className="relative py-16 md:py-24 overflow-hidden">
       <div className="absolute inset-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={spaceImages[8].src} alt="" className="w-full h-full object-cover opacity-8" aria-hidden="true" />
@@ -296,7 +296,7 @@ function GallerySection({ locale, t }: HomePageProps) {
   const previewImages = galleryImages.slice(0, 12);
 
   return (
-    <section className="bg-white py-24 md:py-32">
+    <section className="bg-white py-16 md:py-24">
       <div className="mx-auto max-w-[1400px] px-6 md:px-10">
         <Reveal>
           <span className="mb-8 block font-[family-name:var(--font-space-mono)] text-xs uppercase tracking-[0.2em] text-ink/50">
@@ -330,7 +330,7 @@ function ContactCTASection({ locale, t }: HomePageProps) {
   const contactHref = routeMap.contact[locale];
 
   return (
-    <section className="relative py-24 md:py-32 overflow-hidden">
+    <section className="relative py-16 md:py-24 overflow-hidden">
       {/* Background: blurred venue photo */}
       <div className="absolute inset-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}

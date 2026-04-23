@@ -43,7 +43,7 @@ export default function BookingForm({ t }: BookingFormProps) {
         <input
           type="text"
           required
-          className="w-full px-4 py-3 rounded-xl border-2 border-ink/10 bg-white focus:border-loco-red focus:outline-none transition-colors"
+          className="w-full px-4 py-3 rounded-xl border-2 border-ink/10 bg-white focus:border-loco-red focus:outline-none transition-colors text-base min-h-[48px]"
         />
       </div>
       <div>
@@ -51,16 +51,16 @@ export default function BookingForm({ t }: BookingFormProps) {
         <input
           type="tel"
           required
-          className="w-full px-4 py-3 rounded-xl border-2 border-ink/10 bg-white focus:border-loco-red focus:outline-none transition-colors"
+          className="w-full px-4 py-3 rounded-xl border-2 border-ink/10 bg-white focus:border-loco-red focus:outline-none transition-colors text-base min-h-[48px]"
         />
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium text-ink mb-1.5">{t.formDate}</label>
           <input
             type="date"
             required
-            className="w-full px-4 py-3 rounded-xl border-2 border-ink/10 bg-white focus:border-loco-red focus:outline-none transition-colors"
+            className="w-full px-4 py-3 rounded-xl border-2 border-ink/10 bg-white focus:border-loco-red focus:outline-none transition-colors text-base min-h-[48px]"
           />
         </div>
         <div>
@@ -70,7 +70,7 @@ export default function BookingForm({ t }: BookingFormProps) {
             min={1}
             max={50}
             required
-            className="w-full px-4 py-3 rounded-xl border-2 border-ink/10 bg-white focus:border-loco-red focus:outline-none transition-colors"
+            className="w-full px-4 py-3 rounded-xl border-2 border-ink/10 bg-white focus:border-loco-red focus:outline-none transition-colors text-base min-h-[48px]"
           />
         </div>
       </div>
@@ -78,12 +78,12 @@ export default function BookingForm({ t }: BookingFormProps) {
         <label className="block text-sm font-medium text-ink mb-1.5">{t.formMessage}</label>
         <textarea
           rows={3}
-          className="w-full px-4 py-3 rounded-xl border-2 border-ink/10 bg-white focus:border-loco-red focus:outline-none transition-colors resize-none"
+          className="w-full px-4 py-3 rounded-xl border-2 border-ink/10 bg-white focus:border-loco-red focus:outline-none transition-colors resize-none text-base"
         />
       </div>
       <button
         type="submit"
-        className="w-full bg-loco-red text-white font-semibold py-4 rounded-full text-lg hover:bg-loco-red/90 active:scale-[0.98] transition-all"
+        className="w-full bg-loco-red text-white font-semibold py-4 rounded-full text-lg hover:bg-loco-red/90 active:scale-[0.98] transition-all min-h-[48px]"
       >
         {t.formSubmit}
       </button>
