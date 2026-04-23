@@ -75,7 +75,7 @@ export function LandingHeader({ dict }: { dict: Dnav }) {
                 key={it.key}
                 type="button"
                 onClick={() => handleNav(it.hash)}
-                className="rounded-full px-4 py-2 font-display text-xs font-bold uppercase tracking-[0.15em] text-white/80 transition hover:bg-loco-red/10 hover:text-loco-red"
+                className="rounded-full px-4 py-2 text-sm font-bold uppercase tracking-[0.1em] text-white/80 transition hover:bg-loco-red/10 hover:text-loco-red"
               >
                 {dict[it.key]}
               </button>
@@ -93,7 +93,7 @@ export function LandingHeader({ dict }: { dict: Dnav }) {
             <button
               type="button"
               onClick={() => handleNav("form")}
-              className="hidden h-11 items-center gap-1.5 rounded-full bg-loco-red px-5 font-display text-xs font-bold uppercase tracking-wider text-white transition hover:bg-loco-red/85 sm:inline-flex"
+              className="hidden h-11 items-center gap-1.5 rounded-full bg-loco-red px-5 text-sm font-bold uppercase tracking-wider text-white transition hover:bg-loco-red/85 sm:inline-flex"
             >
               {dict.form}
             </button>
@@ -142,7 +142,7 @@ export function LandingHeader({ dict }: { dict: Dnav }) {
               key={it.key}
               type="button"
               onClick={() => handleNav(it.hash)}
-              className="flex min-h-[56px] items-center rounded-2xl px-4 text-left font-display text-base font-bold uppercase tracking-wider text-white transition hover:bg-loco-red/10 hover:text-loco-red"
+              className="flex min-h-[56px] items-center rounded-2xl px-4 text-left text-base font-bold uppercase tracking-wider text-white transition hover:bg-loco-red/10 hover:text-loco-red"
             >
               {dict[it.key]}
             </button>
@@ -160,7 +160,7 @@ export function LandingHeader({ dict }: { dict: Dnav }) {
           <button
             type="button"
             onClick={() => handleNav("form")}
-            className="flex h-14 w-full items-center justify-center rounded-full bg-loco-red font-display text-sm font-bold uppercase tracking-wider text-white transition hover:bg-loco-red/85"
+            className="flex h-14 w-full items-center justify-center rounded-full bg-loco-red text-sm font-bold uppercase tracking-wider text-white transition hover:bg-loco-red/85"
           >
             {dict.form}
           </button>

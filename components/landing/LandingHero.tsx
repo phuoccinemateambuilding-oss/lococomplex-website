@@ -37,9 +37,9 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
           fill
           priority
           sizes="100vw"
-          className="object-cover opacity-30 mix-blend-screen"
+          className="object-cover opacity-50"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-midnight-deep/60 via-transparent to-midnight-deep/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-midnight-deep/80 via-midnight-deep/40 to-midnight-deep/90" />
       </div>
 
       {/* Decorative geometric shapes */}
@@ -70,8 +70,8 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.08 }}
-            className="mb-3 font-display leading-none tracking-tight text-white"
-            style={{ fontSize: "clamp(4rem, 14vw, 9rem)" }}
+            className="mb-3 font-display leading-none tracking-tight text-white drop-shadow-[0_2px_16px_rgba(0,0,0,0.8)]"
+            style={{ fontSize: "clamp(4.5rem, 20vw, 10rem)" }}
           >
             <span className="text-loco-red">LOCO</span>
             <br />
@@ -86,7 +86,7 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.14 }}
-            className="mb-3 whitespace-nowrap font-display-vn text-2xl uppercase tracking-wider text-cream md:text-4xl lg:text-5xl"
+            className="mb-3 font-display-vn text-4xl uppercase tracking-wider text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] md:text-5xl lg:text-6xl"
           >
             {dict.h2}
           </motion.h2>
@@ -96,7 +96,7 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mb-5 font-[family-name:var(--font-caveat)] text-xl italic text-white/60 md:text-2xl"
+            className="mb-5 font-[family-name:var(--font-caveat)] text-xl italic text-white/85 md:text-2xl"
           >
             "{dict.tagline}"
           </motion.p>
@@ -108,7 +108,7 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
             transition={{ duration: 0.5, delay: 0.24 }}
             className="mb-8 max-w-[44ch] rounded-2xl border border-white/10 bg-midnight/60 px-5 py-4 backdrop-blur-sm"
           >
-            <p className="text-sm leading-relaxed text-white/70 md:text-base">{dict.intro}</p>
+            <p className="text-sm leading-relaxed text-white/90 md:text-base">{dict.intro}</p>
           </motion.div>
 
           {/* CTAs */}
@@ -121,7 +121,7 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
             <button
               type="button"
               onClick={() => scrollTo("form")}
-              className="inline-flex h-14 items-center gap-2 rounded-full bg-loco-red px-7 font-display text-sm font-bold uppercase tracking-wider text-white transition hover:bg-loco-red/85"
+              className="inline-flex h-14 items-center gap-2 rounded-full bg-loco-red px-7 text-sm font-bold uppercase tracking-wider text-white transition hover:bg-loco-red/85"
             >
               {dict.ctaBook}
             </button>

@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { StickyCtaBarMobile } from "./StickyCtaBarMobile";
+import FloatingContacts from "@/components/FloatingContacts";
 
 type Dsticky = { call: string; zalo: string; book: string };
 
@@ -23,6 +24,7 @@ export function LandingShell({
         </p>
       </footer>
       <StickyCtaBarMobile dict={stickyDict} />
+      <FloatingContacts />
     </>
   );
 }

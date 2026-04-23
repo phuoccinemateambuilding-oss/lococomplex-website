@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Phone, CalendarCheck } from "@phosphor-icons/react/dist/ssr";
+import Image from "next/image";
+import { CalendarCheck } from "@phosphor-icons/react/dist/ssr";
 import { BRAND } from "@/lib/brand";
-import { ZaloIcon } from "./ZaloIcon";
 
 type Dsticky = {
   call: string;
@@ -41,9 +41,15 @@ export function StickyCtaBarMobile({ dict }: { dict: Dsticky }) {
         <a
           href={`tel:${BRAND.phoneTel}`}
           onClick={() => track("tel_click", { cta_location: "sticky_mobile" })}
-          className="flex flex-col items-center justify-center gap-0.5 rounded-xl bg-loco-red/15 py-2 font-display text-[10px] font-bold uppercase tracking-wider text-loco-red"
+          className="flex flex-col items-center justify-center gap-1 rounded-xl bg-loco-red/15 py-2 text-[11px] font-bold uppercase tracking-wider text-loco-red"
         >
-          <Phone weight="fill" className="h-5 w-5" />
+          <Image
+            src="/assets/icons/hotline.png"
+            alt="Gọi điện"
+            width={22}
+            height={22}
+            className="object-contain"
+          />
           {dict.call}
         </a>
         <a
@@ -51,9 +57,15 @@ export function StickyCtaBarMobile({ dict }: { dict: Dsticky }) {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => track("zalo_click", { cta_location: "sticky_mobile" })}
-          className="flex flex-col items-center justify-center gap-0.5 rounded-xl bg-[#0068FF] py-2 font-display text-[10px] font-bold uppercase tracking-wider text-white"
+          className="flex flex-col items-center justify-center gap-1 rounded-xl bg-[#0068FF] py-2 text-[11px] font-bold uppercase tracking-wider text-white"
         >
-          <ZaloIcon size={20} className="h-5 w-5" />
+          <Image
+            src="/assets/icons/zalo.png"
+            alt="Zalo"
+            width={22}
+            height={22}
+            className="object-contain"
+          />
           {dict.zalo}
         </a>
         <button
@@ -62,7 +74,7 @@ export function StickyCtaBarMobile({ dict }: { dict: Dsticky }) {
             track("cta_click", { cta_location: "sticky_mobile_book" });
             document.getElementById("form")?.scrollIntoView({ behavior: "smooth", block: "start" });
           }}
-          className="flex flex-col items-center justify-center gap-0.5 rounded-xl bg-loco-red py-2 font-display text-[10px] font-bold uppercase tracking-wider text-white"
+          className="flex flex-col items-center justify-center gap-1 rounded-xl bg-loco-red py-2 text-[11px] font-bold uppercase tracking-wider text-white"
         >
           <CalendarCheck weight="fill" className="h-5 w-5" />
           {dict.book}
