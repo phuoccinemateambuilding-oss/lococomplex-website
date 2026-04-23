@@ -16,7 +16,7 @@ export function SocialProof({ dict }: { dict: Dsocial }) {
   return (
     <section
       id="about"
-      className="relative scroll-mt-20 py-14 md:scroll-mt-24 md:py-20"
+      className="relative scroll-mt-20 border-t border-white/5 bg-midnight py-14 md:scroll-mt-24 md:py-20"
     >
       <div className="mx-auto max-w-[1200px] px-5 md:px-10">
         {/* Header */}

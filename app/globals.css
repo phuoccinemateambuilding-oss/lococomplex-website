@@ -20,6 +20,7 @@
 
   /* Font utilities for landing components */
   --font-display: var(--font-bebas-neue), 'Bebas Neue', sans-serif;
+  --font-display-vn: var(--font-be-vietnam-pro), 'Be Vietnam Pro', sans-serif;
   --font-wordmark: var(--font-bebas-neue), 'Bebas Neue', sans-serif;
   --font-script: var(--font-caveat), 'Caveat', cursive;
   --color-ink-light: #1A1A1A;
@@ -57,4 +58,10 @@ body::before {
 .heading-uppercase {
   text-transform: uppercase;
   letter-spacing: 0.04em;
+}
+
+/* VN-safe display font — Be Vietnam Pro 800 for headings with diacritics */
+.font-display-vn {
+  font-family: var(--font-display-vn);
+  font-weight: 800;
 }

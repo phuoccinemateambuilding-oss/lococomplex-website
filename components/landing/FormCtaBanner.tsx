@@ -6,7 +6,7 @@ type Dbanner = { h2: string; sub: string };
 
 export function FormCtaBanner({ dict }: { dict: Dbanner }) {
   return (
-    <section className="relative overflow-hidden py-12 md:py-16">
+    <section className="relative overflow-hidden border-t border-white/5 bg-midnight py-12 md:py-16">
       {/* Decorative geometric */}
       <div
         aria-hidden
@@ -27,7 +27,7 @@ export function FormCtaBanner({ dict }: { dict: Dbanner }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-4 font-display text-3xl uppercase leading-[1.4] tracking-wide text-cream md:text-4xl lg:text-5xl md:leading-[1.25]"
+          className="mb-4 font-display-vn text-3xl uppercase leading-[1.4] tracking-wide text-cream md:text-4xl lg:text-5xl md:leading-[1.25]"
         >
           {dict.h2}
         </motion.h2>

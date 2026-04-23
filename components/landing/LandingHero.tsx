@@ -86,7 +86,7 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.14 }}
-            className="mb-3 whitespace-nowrap font-display text-2xl uppercase tracking-wider text-cream md:text-4xl lg:text-5xl"
+            className="mb-3 whitespace-nowrap font-display-vn text-2xl uppercase tracking-wider text-cream md:text-4xl lg:text-5xl"
           >
             {dict.h2}
           </motion.h2>

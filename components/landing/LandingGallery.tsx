@@ -45,7 +45,7 @@ export function LandingGallery({ dict }: { dict: Dgallery }) {
   }, [lightbox, prev, next, close]);
 
   return (
-    <section id="gallery" className="relative scroll-mt-20 py-14 md:scroll-mt-24 md:py-20">
+    <section id="gallery" className="relative scroll-mt-20 border-t border-white/5 bg-midnight-deep py-14 md:scroll-mt-24 md:py-20">
       <div className="mx-auto max-w-[1500px] px-5 md:px-10">
         {/* Header */}
         <motion.div
@@ -55,7 +55,7 @@ export function LandingGallery({ dict }: { dict: Dgallery }) {
           transition={{ duration: 0.5 }}
           className="mb-10 text-center"
         >
-          <h2 className="font-display text-2xl leading-[1.15] pb-[0.08em] heading-uppercase text-cream whitespace-nowrap md:text-3xl lg:text-4xl">
+          <h2 className="font-display-vn text-2xl leading-[1.15] pb-[0.08em] heading-uppercase text-cream whitespace-nowrap md:text-3xl lg:text-4xl">
             <HighlightBrand text={dict.h2} />
           </h2>
           <p className="mt-3 text-sm text-white/50 md:text-base">{dict.sub}</p>

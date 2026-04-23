@@ -8,14 +8,14 @@ type Dfaq = { h2: string; items: FaqItem[] };
 
 export function LandingFaq({ dict }: { dict: Dfaq }) {
   return (
-    <section id="faq" className="relative scroll-mt-20 py-14 md:scroll-mt-24 md:py-20">
+    <section id="faq" className="relative scroll-mt-20 border-t border-white/5 bg-midnight-deep py-14 md:scroll-mt-24 md:py-20">
       <div className="mx-auto max-w-[860px] px-5 md:px-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-10 text-center font-display text-2xl leading-[1.15] pb-[0.08em] heading-uppercase text-cream whitespace-nowrap md:text-3xl lg:text-4xl"
+          className="mb-10 text-center font-display-vn text-2xl leading-[1.15] pb-[0.08em] heading-uppercase text-cream whitespace-nowrap md:text-3xl lg:text-4xl"
         >
           {dict.h2}
         </motion.h2>
@@ -31,7 +31,7 @@ export function LandingFaq({ dict }: { dict: Dfaq }) {
               className="group rounded-2xl border border-white/10 bg-midnight/50 backdrop-blur-sm open:border-loco-red/30 open:bg-midnight/80"
             >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4">
-                <span className="font-display text-sm uppercase tracking-wide text-white/80 group-open:text-cream md:text-base">
+                <span className="font-display-vn text-sm font-bold uppercase tracking-wide text-white/80 group-open:text-cream md:text-base">
                   {item.q}
                 </span>
                 <CaretDown

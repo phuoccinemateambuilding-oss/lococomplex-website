@@ -108,11 +108,11 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
     ? buildCalendarUrl({ name: submitted.name, date: submitted.date, time: submitted.time, tier: "", party: submitted.party, note: submitted.note, locale })
     : "";
 
-  const inputCls = "w-full min-h-[48px] rounded-2xl border border-white/15 bg-midnight/60 px-4 py-3 text-base text-white placeholder:text-white/30 focus:border-loco-red/60 focus:outline-none focus:ring-1 focus:ring-loco-red/40 transition";
+  const inputCls = "block w-full min-w-0 min-h-[48px] appearance-none rounded-2xl border border-white/15 bg-midnight/60 px-4 py-3 text-[16px] text-white placeholder:text-white/30 focus:border-loco-red/60 focus:outline-none focus:ring-1 focus:ring-loco-red/40 transition [color-scheme:dark]";
   const labelCls = "mb-1.5 block font-[family-name:var(--font-space-mono)] text-xs uppercase tracking-widest text-white/50";
 
   return (
-    <section id="form" className="relative scroll-mt-20 py-6 md:scroll-mt-24 md:py-10">
+    <section id="form" className="relative scroll-mt-20 border-t border-white/5 bg-midnight py-10 md:scroll-mt-24 md:py-16">
       <div className="mx-auto max-w-[1200px] px-5 md:px-10">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.3fr_1fr] lg:gap-12">
           {/* Form card */}
@@ -192,7 +192,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                   onSubmit={handleSubmit}
                   noValidate
                 >
-                  <h3 className="mb-1 font-display text-xl uppercase tracking-wider text-cream md:text-2xl">
+                  <h3 className="mb-1 font-display-vn text-xl uppercase tracking-wider text-cream md:text-2xl">
                     {dict.formTitle}
                   </h3>
                   <p className="mb-6 text-sm text-white/50">{dict.formSub}</p>
@@ -241,7 +241,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                     </div>
 
                     {/* Date + Time */}
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                       <div>
                         <label htmlFor={`${formId}-date`} className={labelCls}>{dict.fieldDate}</label>
                         <input
@@ -338,7 +338,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
           {/* Trust aside */}
           <div className="flex flex-col gap-6">
             <div className="rounded-3xl border border-white/10 bg-midnight/50 p-6 backdrop-blur-sm">
-              <h3 className="mb-5 font-display text-lg uppercase tracking-wider text-cream">{dict.trustTitle}</h3>
+              <h3 className="mb-5 font-display-vn text-lg uppercase tracking-wider text-cream">{dict.trustTitle}</h3>
               <ul className="flex flex-col gap-4">
                 {[dict.trust1, dict.trust2, dict.trust3].map((t, i) => (
                   <li key={i} className="flex items-start gap-3 text-sm text-white/70">
