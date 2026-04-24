@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "q9xdUxx4Cxbr17qTB7TG55IuK8HEimhfI9e62P-nYQI",
+    google: "XSlAVKyVYRKQoOwofc_zhBgb88NpSLayI40SzUKsyMI",
   },
   openGraph: {
     type: "website",
