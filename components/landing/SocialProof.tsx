@@ -63,7 +63,7 @@ export function SocialProof({ dict }: { dict: Dsocial }) {
                   <p className="font-display text-sm font-bold text-cream heading-uppercase">
                     {review.author}
                   </p>
-                  <p className="font-[family-name:var(--font-space-mono)] text-xs text-white/40">
+                  <p className="font-[family-name:var(--font-space-mono)] text-xs text-white/65">
                     {review.source}
                   </p>
                 </div>

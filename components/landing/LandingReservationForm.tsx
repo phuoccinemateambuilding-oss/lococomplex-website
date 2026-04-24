@@ -129,20 +129,20 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                   {/* Recap */}
                   <div className="mb-8 grid w-full grid-cols-2 gap-3 rounded-2xl border border-white/10 bg-midnight/60 p-4 text-left">
                     <div>
-                      <p className="font-[family-name:var(--font-space-mono)] text-xs text-white/40 uppercase tracking-widest">{dict.recapDate}</p>
+                      <p className="font-[family-name:var(--font-space-mono)] text-xs text-white/65 uppercase tracking-widest">{dict.recapDate}</p>
                       <p className="font-[family-name:var(--font-space-mono)] text-sm text-white">{submitted.date}</p>
                     </div>
                     <div>
-                      <p className="font-[family-name:var(--font-space-mono)] text-xs text-white/40 uppercase tracking-widest">{dict.recapTime}</p>
+                      <p className="font-[family-name:var(--font-space-mono)] text-xs text-white/65 uppercase tracking-widest">{dict.recapTime}</p>
                       <p className="font-[family-name:var(--font-space-mono)] text-sm text-white">{submitted.time}</p>
                     </div>
                     <div>
-                      <p className="font-[family-name:var(--font-space-mono)] text-xs text-white/40 uppercase tracking-widest">{dict.recapGuests}</p>
+                      <p className="font-[family-name:var(--font-space-mono)] text-xs text-white/65 uppercase tracking-widest">{dict.recapGuests}</p>
                       <p className="font-[family-name:var(--font-space-mono)] text-sm text-white">{submitted.party}</p>
                     </div>
                     {submitted.note && (
                       <div className="col-span-2">
-                        <p className="font-[family-name:var(--font-space-mono)] text-xs text-white/40 uppercase tracking-widest">{dict.recapNote}</p>
+                        <p className="font-[family-name:var(--font-space-mono)] text-xs text-white/65 uppercase tracking-widest">{dict.recapNote}</p>
                         <p className="text-sm text-white/70">{submitted.note}</p>
                       </div>
                     )}

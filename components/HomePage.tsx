@@ -49,7 +49,12 @@ function HeroSection({ locale, t }: HomePageProps) {
             <FadeSlideUp delay={0.2}>
               <PulseText className="inline-block">
                 <h1 className="font-[family-name:var(--font-bebas-neue)] text-[8rem] leading-[0.8] text-white md:text-[14rem] drop-shadow-[0_0_60px_rgba(226,58,44,0.3)]">
-                  {t.hero.heading}
+                  <span className="sr-only">
+                    {locale === "vi"
+                      ? "LOCO Complex — Khu phức hợp giải trí NEWTRO tại 11 Nam Quốc Cang, Quận 1, Sài Gòn"
+                      : "LOCO Complex — NEWTRO entertainment complex at 11 Nam Quoc Cang, District 1, Saigon"}
+                  </span>
+                  <span aria-hidden="true">{t.hero.heading}</span>
                 </h1>
               </PulseText>
               <span className="block font-[family-name:var(--font-caveat)] text-5xl text-hot-pink md:text-6xl mt-1">
@@ -230,7 +235,7 @@ function MusicSection({ t }: { t: any }) {
                   <div className={`mb-4 h-1.5 w-20 rounded-full ${floor.accent}`} />
                   <h3 className="mb-3 font-bold text-2xl text-white">{floor.title}</h3>
                   <p className="mb-4 text-base leading-relaxed text-white/60 max-w-[50ch]">{floor.desc}</p>
-                  <p className="mb-2 text-sm text-white/40 font-[family-name:var(--font-space-mono)]">{floor.tables}</p>
+                  <p className="mb-2 text-sm text-white/65 font-[family-name:var(--font-space-mono)]">{floor.tables}</p>
                   <p className={`mb-6 text-sm font-bold ${floor.accentText}`}>{floor.price}</p>
                   <div className="flex flex-wrap gap-2">
                     {floor.genres.map((g) => (

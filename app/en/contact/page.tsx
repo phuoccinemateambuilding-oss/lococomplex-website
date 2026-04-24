@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getDict } from "@/lib/i18n";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -8,7 +9,39 @@ import StickerTag from "@/components/StickerTag";
 import GeometricShape from "@/components/GeometricShape";
 import { site } from "@/lib/site";
 import { spaceImages, galleryImages } from "@/lib/images";
+
+export const metadata: Metadata = {
+  title: "Contact & Reserve — LOCO Complex · 0866 433 754",
+  description:
+    "Reserve a table at LOCO Complex via form, hotline 0866 433 754, or Zalo. 11 Nam Quoc Cang, Pham Ngu Lao Ward, District 1, HCMC. Open 6 PM – 12 AM.",
+  keywords: [
+    "book LOCO Complex",
+    "LOCO Complex hotline",
+    "LOCO Complex address",
+    "reservation nightclub District 1",
+    "LOCO Complex 11 Nam Quoc Cang",
+  ],
+  alternates: {
+    canonical: "/en/contact",
+    languages: { vi: "/lien-he", en: "/en/contact", "x-default": "/lien-he" },
+  },
+  openGraph: {
+    title: "Contact & Reserve — LOCO Complex",
+    description: "Hotline 0866 433 754 · Zalo · Reservation form. 11 Nam Quoc Cang, D.1.",
+    url: "/en/contact",
+    locale: "en_US",
+    type: "website",
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "LOCO Complex reservation" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact LOCO Complex",
+    description: "Reserve · Hotline 0866 433 754 · Zalo",
+    images: ["/og.jpg"],
+  },
+};
 import { PhoneCall, MapPin, Clock, Warning, WifiHigh, PawPrint, GameController, Lockers } from "@phosphor-icons/react/dist/ssr";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export default function ContactPage() {
   const locale = "en";
@@ -16,6 +49,12 @@ export default function ContactPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/en" },
+          { name: "Contact", path: "/en/contact" },
+        ]}
+      />
       <Navbar locale={locale} t={t.nav} currentPath="/en/contact" />
       <main className="flex-1 pt-20">
         {/* Hero — cinematic */}

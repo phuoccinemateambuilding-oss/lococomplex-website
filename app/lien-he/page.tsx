@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getDict } from "@/lib/i18n";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -8,6 +9,39 @@ import StickerTag from "@/components/StickerTag";
 import GeometricShape from "@/components/GeometricShape";
 import { site } from "@/lib/site";
 import { spaceImages, galleryImages } from "@/lib/images";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+
+export const metadata: Metadata = {
+  title: "Liên hệ & Đặt bàn — LOCO Complex · 0866 433 754",
+  description:
+    "Đặt bàn LOCO Complex qua form, hotline 0866 433 754 hoặc Zalo. Địa chỉ: 11 Nam Quốc Cang, Phạm Ngũ Lão, Quận 1, TP.HCM. Mở cửa 18:00 – 00:00.",
+  keywords: [
+    "đặt bàn LOCO Complex",
+    "hotline LOCO",
+    "LOCO Complex địa chỉ",
+    "LOCO Complex 11 Nam Quốc Cang",
+    "liên hệ LOCO Heatroom",
+    "booking club Quận 1",
+  ],
+  alternates: {
+    canonical: "/lien-he",
+    languages: { vi: "/lien-he", en: "/en/contact", "x-default": "/lien-he" },
+  },
+  openGraph: {
+    title: "Liên hệ & Đặt bàn — LOCO Complex",
+    description: "Hotline 0866 433 754 · Zalo · Form đặt bàn. 11 Nam Quốc Cang, Q.1.",
+    url: "/lien-he",
+    locale: "vi_VN",
+    type: "website",
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "LOCO Complex reservation" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Liên hệ LOCO Complex",
+    description: "Đặt bàn · Hotline 0866 433 754 · Zalo",
+    images: ["/og.jpg"],
+  },
+};
 import { PhoneCall, MapPin, Clock, Warning, WifiHigh, PawPrint, GameController, Lockers } from "@phosphor-icons/react/dist/ssr";
 
 export default function ContactPage() {
@@ -16,6 +50,12 @@ export default function ContactPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Trang chủ", path: "/" },
+          { name: "Liên hệ", path: "/lien-he" },
+        ]}
+      />
       <Navbar locale={locale} t={t.nav} currentPath="/lien-he" />
       <main className="flex-1 pt-20">
         {/* Hero — cinematic */}

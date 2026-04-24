@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useId } from "react";
 import { CheckCircle, Warning } from "@phosphor-icons/react/dist/ssr";
 import { site } from "@/lib/site";
 
@@ -26,6 +26,7 @@ const TIME_SLOTS = ["18:00", "19:00", "20:00", "21:00", "22:00", "23:00"];
 const today = new Date().toISOString().split("T")[0];
 
 export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
+  const fid = useId();
   const [status, setStatus] = useState<Status>("idle");
   const [values, setValues] = useState({
     name: "",
@@ -101,8 +102,9 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
       />
 
       <div>
-        <label className="block text-sm font-medium text-ink mb-1.5">{t.formName} *</label>
+        <label htmlFor={`${fid}-name`} className="block text-sm font-medium text-ink mb-1.5">{t.formName} *</label>
         <input
+          id={`${fid}-name`}
           type="text"
           required
           autoComplete="name"
@@ -113,8 +115,9 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-ink mb-1.5">{t.formPhone} *</label>
+        <label htmlFor={`${fid}-phone`} className="block text-sm font-medium text-ink mb-1.5">{t.formPhone} *</label>
         <input
+          id={`${fid}-phone`}
           type="tel"
           required
           autoComplete="tel"
@@ -128,8 +131,9 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-ink mb-1.5">{t.formDate} *</label>
+          <label htmlFor={`${fid}-date`} className="block text-sm font-medium text-ink mb-1.5">{t.formDate} *</label>
           <input
+            id={`${fid}-date`}
             type="date"
             required
             min={today}
@@ -139,8 +143,9 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-ink mb-1.5">{t.formTime} *</label>
+          <label htmlFor={`${fid}-time`} className="block text-sm font-medium text-ink mb-1.5">{t.formTime} *</label>
           <select
+            id={`${fid}-time`}
             required
             value={values.time}
             onChange={set("time")}
@@ -155,8 +160,9 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-ink mb-1.5">{t.formGuests} *</label>
+        <label htmlFor={`${fid}-party`} className="block text-sm font-medium text-ink mb-1.5">{t.formGuests} *</label>
         <input
+          id={`${fid}-party`}
           type="number"
           required
           min={1}
@@ -169,8 +175,9 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-ink mb-1.5">{t.formMessage}</label>
+        <label htmlFor={`${fid}-note`} className="block text-sm font-medium text-ink mb-1.5">{t.formMessage}</label>
         <textarea
+          id={`${fid}-note`}
           rows={3}
           value={values.note}
           onChange={set("note")}

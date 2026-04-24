@@ -165,7 +165,7 @@ export function LandingGallery({ dict }: { dict: Dgallery }) {
                 priority
               />
             </motion.div>
-            <p className="absolute bottom-4 font-[family-name:var(--font-space-mono)] text-xs text-white/40">
+            <p className="absolute bottom-4 font-[family-name:var(--font-space-mono)] text-xs text-white/65">
               {lightbox + 1} / {GALLERY_IMAGES.length}
             </p>
           </motion.div>

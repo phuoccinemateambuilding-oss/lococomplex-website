@@ -13,7 +13,7 @@ export default function Marquee({ items }: MarqueeProps) {
         {doubled.map((item, i) => (
           <span
             key={`${item}-${i}`}
-            className="mx-6 inline-block font-[family-name:var(--font-space-mono)] text-sm uppercase tracking-widest text-white/40"
+            className="mx-6 inline-block font-[family-name:var(--font-space-mono)] text-sm uppercase tracking-widest text-white/65"
           >
             {item}
             <span className="mx-6 text-loco-red/60" aria-hidden="true">

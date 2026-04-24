@@ -54,7 +54,7 @@ export default function Footer({ locale, t }: FooterProps) {
         <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_1.2fr_1fr_1.3fr]">
           {/* Col 1: nav links */}
           <nav aria-label="Footer navigation">
-            <p className="mb-3 text-xs font-bold uppercase tracking-wider text-white/40">Menu</p>
+            <p className="mb-3 text-xs font-bold uppercase tracking-wider text-white/65">Menu</p>
             <ul className="space-y-3">
               {navLinks.map((link) => (
                 <li key={link.href}>
@@ -69,13 +69,13 @@ export default function Footer({ locale, t }: FooterProps) {
           {/* Col 2: address + hours */}
           <div className="space-y-4">
             <div>
-              <p className="mb-1 text-xs font-bold uppercase tracking-wider text-white/40">
+              <p className="mb-1 text-xs font-bold uppercase tracking-wider text-white/65">
                 {locale === "vi" ? "Địa chỉ" : "Address"}
               </p>
               <p className="text-sm text-white/70">{site.address[locale]}</p>
             </div>
             <div>
-              <p className="mb-1 text-xs font-bold uppercase tracking-wider text-white/40">
+              <p className="mb-1 text-xs font-bold uppercase tracking-wider text-white/65">
                 {locale === "vi" ? "Giờ mở cửa" : "Hours"}
               </p>
               <p className="text-sm text-white/70">{site.hours[locale]}</p>
@@ -87,7 +87,7 @@ export default function Footer({ locale, t }: FooterProps) {
 
           {/* Col 3: social */}
           <div>
-            <p className="mb-3 text-xs font-bold uppercase tracking-wider text-white/40">Social</p>
+            <p className="mb-3 text-xs font-bold uppercase tracking-wider text-white/65">Social</p>
             <div className="flex flex-col gap-2">
               <a href={site.social.facebook} aria-label="Facebook" className="text-sm text-white/50 transition-colors hover:text-white">Facebook</a>
               <a href={site.social.instagram} aria-label="Instagram" className="text-sm text-white/50 transition-colors hover:text-white">Instagram</a>
@@ -97,7 +97,7 @@ export default function Footer({ locale, t }: FooterProps) {
 
           {/* Col 4: Google Maps mini */}
           <div>
-            <p className="mb-3 text-xs font-bold uppercase tracking-wider text-white/40">
+            <p className="mb-3 text-xs font-bold uppercase tracking-wider text-white/65">
               {locale === "vi" ? "Chỉ đường" : "Directions"}
             </p>
             <div className="overflow-hidden rounded-xl border border-white/10">

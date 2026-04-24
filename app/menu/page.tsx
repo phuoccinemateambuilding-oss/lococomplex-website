@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getDict } from "@/lib/i18n";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -10,6 +11,39 @@ import { site } from "@/lib/site";
 import { routeMap } from "@/lib/i18n";
 import { menuImages, spaceImages, galleryImages } from "@/lib/images";
 import Link from "next/link";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+
+export const metadata: Metadata = {
+  title: "Menu & Âm Nhạc — LOCO Complex Quận 1",
+  description:
+    "Menu BITES F&B + thể loại nhạc Top 40, EDM, House (Heatroom) và Hip-hop (Floor 1) tại LOCO Complex — 11 Nam Quốc Cang, Quận 1, Sài Gòn.",
+  keywords: [
+    "menu LOCO Complex",
+    "BITES menu",
+    "thể loại nhạc LOCO",
+    "club EDM Quận 1",
+    "Hip-hop club Sài Gòn",
+    "LOCO Heatroom music",
+  ],
+  alternates: {
+    canonical: "/menu",
+    languages: { vi: "/menu", en: "/en/menu", "x-default": "/menu" },
+  },
+  openGraph: {
+    title: "Menu & Âm Nhạc — LOCO Complex",
+    description: "Menu BITES + Top 40 / EDM / House / Hip-hop tại LOCO Complex Quận 1.",
+    url: "/menu",
+    locale: "vi_VN",
+    type: "website",
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "LOCO Complex menu & music" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Menu & Âm Nhạc LOCO Complex",
+    description: "BITES F&B · Top 40 · EDM · House · Hip-hop",
+    images: ["/og.jpg"],
+  },
+};
 
 export default function MenuPage() {
   const locale = "vi";
@@ -17,6 +51,12 @@ export default function MenuPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Trang chủ", path: "/" },
+          { name: "Menu", path: "/menu" },
+        ]}
+      />
       <Navbar locale={locale} t={t.nav} currentPath="/menu" />
       <main className="flex-1 pt-20">
         {/* Hero — cinematic with venue photo */}
@@ -63,7 +103,7 @@ export default function MenuPage() {
                     <div className="h-1.5 w-20 rounded-full bg-hot-pink mb-6" />
                     <h3 className="font-bold text-3xl md:text-4xl text-white mb-4">{t.music.floor1}</h3>
                     <p className="text-white/60 leading-relaxed mb-4 max-w-[45ch]">{t.music.floor1Desc}</p>
-                    <p className="text-sm text-white/40 font-[family-name:var(--font-space-mono)] mb-2">{t.music.floor1Tables}</p>
+                    <p className="text-sm text-white/65 font-[family-name:var(--font-space-mono)] mb-2">{t.music.floor1Tables}</p>
                     <p className="text-hot-pink font-bold">{t.music.floor1Price}</p>
                     <div className="flex flex-wrap gap-2 mt-6">
                       <MusicTag genre="Hip-hop" className="border-white/20 text-white/70" />
@@ -88,7 +128,7 @@ export default function MenuPage() {
                     <div className="h-1.5 w-20 rounded-full bg-electric-blue mb-6" />
                     <h3 className="font-bold text-3xl md:text-4xl text-white mb-4">{t.music.floor2}</h3>
                     <p className="text-white/60 leading-relaxed mb-4 max-w-[45ch]">{t.music.floor2Desc}</p>
-                    <p className="text-sm text-white/40 font-[family-name:var(--font-space-mono)] mb-2">{t.music.floor2Tables}</p>
+                    <p className="text-sm text-white/65 font-[family-name:var(--font-space-mono)] mb-2">{t.music.floor2Tables}</p>
                     <p className="text-electric-blue font-bold">{t.music.floor2Price}</p>
                     <div className="flex flex-wrap gap-2 mt-6">
                       <MusicTag genre="Top 40" className="border-white/20 text-white/70" />

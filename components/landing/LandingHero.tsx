@@ -129,7 +129,7 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
             <div className="inline-flex items-center gap-2 rounded-2xl border border-loco-yellow/30 bg-midnight/50 px-4 py-3 backdrop-blur-sm">
               <Clock weight="fill" className="h-4 w-4 text-loco-yellow" />
               <div>
-                <p className="font-[family-name:var(--font-space-mono)] text-[10px] uppercase tracking-widest text-white/40">
+                <p className="font-[family-name:var(--font-space-mono)] text-[10px] uppercase tracking-widest text-white/65">
                   {dict.hoursLabel}
                 </p>
                 <p className="font-[family-name:var(--font-space-mono)] text-xs font-bold text-loco-yellow">
@@ -140,7 +140,7 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
             <div className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-midnight/50 px-4 py-3 backdrop-blur-sm">
               <MapPin weight="fill" className="h-4 w-4 text-white/50" />
               <div>
-                <p className="font-[family-name:var(--font-space-mono)] text-[10px] uppercase tracking-widest text-white/40">
+                <p className="font-[family-name:var(--font-space-mono)] text-[10px] uppercase tracking-widest text-white/65">
                   {dict.addressLabel}
                 </p>
                 <p className="font-[family-name:var(--font-space-mono)] text-xs text-white/70">
