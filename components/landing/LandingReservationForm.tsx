@@ -13,6 +13,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { BRAND } from "@/lib/brand";
 import { buildCalendarUrl } from "@/lib/calendarLink";
 import { ZaloIcon } from "./ZaloIcon";
+import { track } from "@/lib/gtag";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -50,13 +51,6 @@ const TIME_SLOTS = ["18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00
 
 function todayStr() {
   return new Date().toISOString().split("T")[0];
-}
-
-function track(event: string, params: Record<string, unknown> = {}) {
-  if (typeof window === "undefined") return;
-  const w = window as unknown as { gtag?: (...a: unknown[]) => void; dataLayer?: unknown[] };
-  w.gtag?.("event", event, params);
-  w.dataLayer?.push({ event, ...params });
 }
 
 export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: "vi" | "en" }) {
@@ -351,7 +345,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
 
             {/* Fallback card */}
             <div className="rounded-3xl border border-white/10 bg-midnight/50 p-6 backdrop-blur-sm text-center">
-              <p className="mb-3 font-[family-name:var(--font-space-mono)] text-xs uppercase tracking-widest text-white/40">
+              <p className="mb-3 font-[family-name:var(--font-space-mono)] text-xs uppercase tracking-widest text-white/60">
                 {dict.fallbackTitle}
               </p>
               <a

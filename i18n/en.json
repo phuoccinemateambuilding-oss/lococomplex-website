@@ -219,5 +219,118 @@
       "book": "Book"
     },
     "footer": "11 Nam Quoc Cang Street, Pham Ngu Lao Ward, District 1, HCMC · © 2025 LOCO Complex · For guests aged 18 and over."
+  },
+  "privacy": {
+    "kicker": "Policy",
+    "title": "Privacy Policy",
+    "updated": "Updated April 23, 2026",
+    "intro": "LOCO Complex is committed to protecting our guests' personal information. This policy describes how we collect, use, and safeguard data when you visit lococomplex.vn or book a table via our website / hotline.",
+    "sections": [
+      {
+        "title": "1. Information We Collect",
+        "body": [
+          "When you book via the website form, we collect: full name, phone number, reservation date and time, party size, table tier, and special notes (if any).",
+          "While browsing, our system records basic technical info such as IP, device, browser, and pages visited via Google Analytics and Vercel Analytics — for website performance analysis."
+        ]
+      },
+      {
+        "title": "2. Purpose of Use",
+        "body": [
+          "Reservation info is used to confirm your booking via hotline 0866 433 754 or Zalo, prepare your table, and send pre-arrival reminders if needed.",
+          "Website analytics helps us improve user experience, optimize content, and measure Google Ads / Facebook campaign performance."
+        ]
+      },
+      {
+        "title": "3. Data Sharing",
+        "body": [
+          "LOCO Complex does NOT sell, rent, or trade personal information for commercial purposes.",
+          "Data may be shared with: (a) technical partners providing hosting (Vercel) and analytics (Google) under their privacy terms; (b) authorities upon legitimate request."
+        ]
+      },
+      {
+        "title": "4. Storage and Security",
+        "body": [
+          "Reservation info is stored in LOCO Complex's internal system, with restricted access for booking management staff only.",
+          "We apply technical measures including HTTPS, security headers, and access authentication to protect data from unauthorized access."
+        ]
+      },
+      {
+        "title": "5. Customer Rights",
+        "body": [
+          "You have the right to access, modify, or request deletion of personal information by contacting hotline 0866 433 754 or Zalo.",
+          "You can opt out of reminders or promotional notifications at any time."
+        ]
+      },
+      {
+        "title": "6. Cookies and Similar Technologies",
+        "body": [
+          "lococomplex.vn uses cookies and similar technologies (Google Analytics, Vercel Analytics, Google Ads conversion tracking) for measurement and experience improvement.",
+          "You can disable cookies via browser settings — some functionality may be affected."
+        ]
+      },
+      {
+        "title": "7. Contact",
+        "body": [
+          "For privacy-related questions, contact LOCO Complex via hotline 0866 433 754 or Zalo https://zalo.me/0866433754.",
+          "Address: 11 Nam Quoc Cang Street, Pham Ngu Lao Ward, District 1, HCMC."
+        ]
+      }
+    ]
+  },
+  "terms": {
+    "kicker": "Terms",
+    "title": "Terms of Use",
+    "updated": "Updated April 23, 2026",
+    "intro": "By using lococomplex.vn or LOCO Complex's reservation service, you agree to comply with the following terms.",
+    "sections": [
+      {
+        "title": "1. Eligibility",
+        "body": [
+          "LOCO Complex is an entertainment venue for guests aged 18 and above. By booking or visiting, you confirm you meet the age requirement and agree to present valid ID upon request."
+        ]
+      },
+      {
+        "title": "2. Reservations and Confirmation",
+        "body": [
+          "The online booking form is a request to hold a table — officially confirmed once LOCO Complex contacts you via hotline 0866 433 754 or Zalo within 15 minutes.",
+          "Tables are held up to 30 minutes past the reserved time. Beyond that without notice, LOCO Complex may seat other guests."
+        ]
+      },
+      {
+        "title": "3. Cancellation or Rescheduling",
+        "body": [
+          "Free cancellation or rescheduling at least 2 hours before the reserved time via hotline / Zalo.",
+          "For VIP tables or private events with deposit, refund policy will be specified at the deposit stage."
+        ]
+      },
+      {
+        "title": "4. Venue Rules",
+        "body": [
+          "Dress code: Smart Casual, Newtro, Streetwear encouraged. LOCO Complex reserves the right to refuse service for non-compliant attire.",
+          "Prohibited items: drugs, weapons, or anything violating Vietnamese law.",
+          "Guests must follow staff guidance on security, fire safety, and house rules."
+        ]
+      },
+      {
+        "title": "5. Liability",
+        "body": [
+          "LOCO Complex is not responsible for personal belongings lost in unmonitored areas.",
+          "Guests are responsible for their own health while using services. Notify staff in advance of any health conditions."
+        ]
+      },
+      {
+        "title": "6. Intellectual Property",
+        "body": [
+          "All content on lococomplex.vn (logo, images, text, video) is property of LOCO Complex. Copying or commercial use without written consent is copyright infringement."
+        ]
+      },
+      {
+        "title": "7. Changes to Terms",
+        "body": [
+          "LOCO Complex may update these terms at any time. New versions take effect upon publication at lococomplex.vn/en/terms with the updated date.",
+          "Questions: contact hotline 0866 433 754 or Zalo https://zalo.me/0866433754."
+        ]
+      }
+    ]
   }
 }

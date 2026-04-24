@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Phone, ArrowDown, MapPin, Clock } from "@phosphor-icons/react/dist/ssr";
 import { motion } from "framer-motion";
 import { BRAND } from "@/lib/brand";
+import { track } from "@/lib/gtag";
 
 type Dhero = {
   eyebrow: string;
@@ -56,77 +57,55 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
         {/* Left — content */}
         <div className="flex flex-col">
           {/* Eyebrow chip */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-5 inline-flex items-center self-start rounded-full border border-loco-yellow/40 bg-loco-yellow/10 px-4 py-1.5 font-[family-name:var(--font-space-mono)] text-xs text-loco-yellow"
-          >
+          <div className="mb-5 inline-flex items-center self-start rounded-full border border-loco-yellow/40 bg-loco-yellow/10 px-4 py-1.5 font-[family-name:var(--font-space-mono)] text-xs text-loco-yellow">
             {dict.eyebrow}
-          </motion.div>
+          </div>
 
           {/* Wordmark H1 */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.08 }}
-            className="mb-4 font-display leading-none tracking-tight text-white drop-shadow-[0_2px_20px_rgba(0,0,0,0.9)]"
-            style={{ fontSize: "clamp(5rem, 22vw, 11rem)" }}
-          >
-            <span className="text-loco-red">LOCO</span>
-            <br />
-            <span className="text-white/90">COMPLEX</span>
-          </motion.h1>
-          <span className="sr-only">
-            LOCO Complex — Entertainment complex tại 11 Nam Quốc Cang, Quận 1, TP.HCM
-          </span>
+          <h1 className="mb-6 leading-[1]">
+            <span className="sr-only">LOCO Complex — Entertainment complex tại 11 Nam Quốc Cang, Quận 1, TP.HCM</span>
+            <Image
+              src="/assets/loco/logo.png"
+              alt="LOCO Complex — neon wordmark"
+              width={600}
+              height={600}
+              priority
+              fetchPriority="high"
+              sizes="(min-width: 1024px) 320px, 70vw"
+              className="h-auto w-[70vw] max-w-[280px] md:max-w-[320px] lg:max-w-[360px] drop-shadow-[0_0_24px_rgba(255,45,149,0.55)]"
+            />
+          </h1>
 
           {/* H2 CTA headline — P3: max text-5xl */}
-          <motion.h2
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.14 }}
-            className="mb-3 hidden font-display-vn text-4xl uppercase tracking-wider text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] lg:block lg:text-5xl xl:text-6xl"
-          >
+          <h2 className="mb-3 hidden font-display-vn text-4xl uppercase tracking-wider text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)] lg:block lg:text-5xl xl:text-6xl">
             {dict.h2}
-          </motion.h2>
+          </h2>
 
           {/* Tagline */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mb-5 font-[family-name:var(--font-caveat)] text-xl italic text-white/85 md:text-2xl"
-          >
+          <p className="mb-5 font-[family-name:var(--font-caveat)] text-xl italic text-white/85 md:text-2xl">
             "{dict.tagline}"
-          </motion.p>
+          </p>
 
           {/* Intro card */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.24 }}
-            className="mb-8 max-w-[44ch] rounded-2xl border border-white/10 bg-midnight/60 px-5 py-4 backdrop-blur-sm"
-          >
+          <div className="mb-8 max-w-[44ch] rounded-2xl border border-white/10 bg-midnight/60 px-5 py-4 backdrop-blur-sm">
             <p className="text-sm leading-relaxed text-white/90 md:text-base">{dict.intro}</p>
-          </motion.div>
+          </div>
 
           {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mb-8 flex flex-wrap gap-3"
-          >
+          <div className="mb-8 flex flex-wrap gap-3">
             <button
               type="button"
-              onClick={() => scrollTo("form")}
+              onClick={() => {
+                scrollTo("form");
+                track("cta_click", { cta_name: "hero_book", cta_location: "hero" });
+              }}
               className="inline-flex h-14 items-center gap-2 rounded-full bg-loco-red px-7 text-sm font-bold uppercase tracking-wider text-white transition hover:bg-loco-red/85"
             >
               {dict.ctaBook}
             </button>
             <a
               href={`tel:${BRAND.phoneTel}`}
+              onClick={() => track("tel_click", { cta_location: "hero" })}
               className="inline-flex h-14 items-center gap-2 rounded-full border border-white/30 bg-midnight/50 px-6 font-[family-name:var(--font-space-mono)] text-sm font-bold text-white/80 backdrop-blur transition hover:border-white/60 hover:text-white"
             >
               <Phone weight="fill" className="h-4 w-4" />
@@ -134,21 +113,19 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
             </a>
             <button
               type="button"
-              onClick={() => scrollTo("gallery")}
+              onClick={() => {
+                scrollTo("gallery");
+                track("cta_click", { cta_name: "hero_gallery", cta_location: "hero" });
+              }}
               className="inline-flex h-14 items-center gap-2 rounded-full px-6 text-sm font-bold uppercase tracking-wider text-white/60 underline-offset-4 transition hover:text-white hover:underline"
             >
               {dict.ctaGallery}
               <ArrowDown className="h-4 w-4" />
             </button>
-          </motion.div>
+          </div>
 
           {/* Info cards */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.38 }}
-            className="mb-6 flex flex-wrap gap-3"
-          >
+          <div className="mb-6 flex flex-wrap gap-3">
             <div className="inline-flex items-center gap-2 rounded-2xl border border-loco-yellow/30 bg-midnight/50 px-4 py-3 backdrop-blur-sm">
               <Clock weight="fill" className="h-4 w-4 text-loco-yellow" />
               <div>
@@ -171,29 +148,19 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Trust badge */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.44 }}
-            className="inline-flex items-center gap-2 self-start rounded-full border border-loco-yellow/20 bg-loco-yellow/5 px-4 py-2"
-          >
+          <div className="inline-flex items-center gap-2 self-start rounded-full border border-loco-yellow/20 bg-loco-yellow/5 px-4 py-2">
             <span className="text-base">⭐</span>
             <span className="font-[family-name:var(--font-space-mono)] text-xs text-loco-yellow/80">
               {dict.trust}
             </span>
-          </motion.div>
+          </div>
         </div>
 
         {/* Right — hero image (desktop) */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="relative hidden aspect-[4/5] w-full overflow-hidden rounded-3xl border border-white/10 shadow-2xl lg:block"
-        >
+        <div className="relative hidden aspect-[4/5] w-full overflow-hidden rounded-3xl border border-white/10 shadow-2xl lg:block">
           <Image
             src="/assets/loco/space/space-01.jpg"
             alt={dict.wordmarkAlt}
@@ -209,7 +176,7 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
               {BRAND.address[locale]}
             </p>
           </div>
-        </motion.div>
+        </div>
       </div>
 
       {/* Scroll indicator */}

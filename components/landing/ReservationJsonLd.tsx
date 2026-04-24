@@ -31,6 +31,22 @@ export function ReservationJsonLd({ locale }: { locale: "vi" | "en" }) {
     ],
     hasMap: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(BRAND.mapQuery)}`,
     priceRange: "$$$",
+    potentialAction: {
+      "@type": "ReserveAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: locale === "vi" ? `${SITE_URL}/dat-ban` : `${SITE_URL}/en/book`,
+        inLanguage: locale,
+        actionPlatform: [
+          "http://schema.org/DesktopWebPlatform",
+          "http://schema.org/MobileWebPlatform",
+        ],
+      },
+      result: {
+        "@type": "Reservation",
+        name: "Table Reservation",
+      },
+    },
   };
 
   return (

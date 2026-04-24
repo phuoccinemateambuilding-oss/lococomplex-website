@@ -7,7 +7,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: t.datban.metaTitle,
     description: t.datban.metaDescription,
-    robots: { index: false, follow: true },
+    robots: { index: true, follow: true },
     alternates: {
       canonical: `${SITE_URL}/dat-ban`,
       languages: {

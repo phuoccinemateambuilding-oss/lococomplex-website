@@ -2,12 +2,14 @@ import { getDict } from "@/lib/i18n";
 import { LandingHeader } from "@/components/landing/LandingHeader";
 import { LandingShell } from "@/components/landing/LandingShell";
 import { LandingHero } from "@/components/landing/LandingHero";
-import { SocialProof } from "@/components/landing/SocialProof";
-import { LandingGallery } from "@/components/landing/LandingGallery";
-import { FormCtaBanner } from "@/components/landing/FormCtaBanner";
-import { LandingReservationForm } from "@/components/landing/LandingReservationForm";
-import { LandingFaq } from "@/components/landing/LandingFaq";
-import { ReservationJsonLd } from "@/components/landing/ReservationJsonLd";
+import dynamic from "next/dynamic";
+
+const SocialProof = dynamic(() => import("@/components/landing/SocialProof").then(m => m.SocialProof));
+const LandingGallery = dynamic(() => import("@/components/landing/LandingGallery").then(m => m.LandingGallery));
+const FormCtaBanner = dynamic(() => import("@/components/landing/FormCtaBanner").then(m => m.FormCtaBanner));
+const LandingReservationForm = dynamic(() => import("@/components/landing/LandingReservationForm").then(m => m.LandingReservationForm));
+const LandingFaq = dynamic(() => import("@/components/landing/LandingFaq").then(m => m.LandingFaq));
+const ReservationJsonLd = dynamic(() => import("@/components/landing/ReservationJsonLd").then(m => m.ReservationJsonLd));
 
 export default function BookPage() {
   const locale = "en";
@@ -18,7 +20,7 @@ export default function BookPage() {
     <>
       <ReservationJsonLd locale={locale} />
       <LandingHeader dict={d.header} />
-      <LandingShell stickyDict={d.sticky} footerText={d.footer}>
+      <LandingShell stickyDict={d.sticky} footerText={d.footer} locale={locale}>
         <LandingHero dict={d.hero} locale={locale} />
         <SocialProof dict={d.social} />
         <LandingGallery dict={d.gallery} />

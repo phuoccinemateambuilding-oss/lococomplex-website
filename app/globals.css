@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-loco-red: #E23A2C;
+  --color-loco-red: #D63427;
   --color-hot-pink: #E91E8C;
   --color-baby-blue: #A8D8EA;
   --color-loco-yellow: #F5C330;
@@ -16,7 +16,7 @@
   --color-gold: #F5C330;
   --color-amber: #D9960A;
   --color-burgundy: #2D0508;
-  --color-crimson: #E23A2C;
+  --color-crimson: #D63427;
 
   /* Font utilities for landing components */
   --font-display: var(--font-bebas-neue), 'Bebas Neue', sans-serif;

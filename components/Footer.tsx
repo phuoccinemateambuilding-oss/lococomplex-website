@@ -117,9 +117,17 @@ export default function Footer({ locale, t }: FooterProps) {
 
       {/* Bottom bar */}
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-[1400px] flex-col items-start justify-between gap-2 px-6 py-6 text-xs text-white/40 md:flex-row md:items-center md:px-10">
+        <div className="mx-auto flex max-w-[1400px] flex-col items-start justify-between gap-4 px-6 py-6 text-[10px] text-white/60 uppercase tracking-widest md:flex-row md:items-center md:px-10">
           <p>{t.footer.disclaimer}</p>
-          <p>&copy; {year} {site.name}</p>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <Link href={routeMap.privacy[locale]} className="hover:text-white transition-colors">
+              {locale === "vi" ? "Chính sách bảo mật" : "Privacy Policy"}
+            </Link>
+            <Link href={routeMap.terms[locale]} className="hover:text-white transition-colors">
+              {locale === "vi" ? "Điều khoản sử dụng" : "Terms of Use"}
+            </Link>
+            <p>&copy; {year} {site.name}</p>
+          </div>
         </div>
       </div>
     </footer>

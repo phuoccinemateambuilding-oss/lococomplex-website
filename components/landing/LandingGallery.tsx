@@ -58,7 +58,7 @@ export function LandingGallery({ dict }: { dict: Dgallery }) {
           <h2 className="font-display-vn text-3xl leading-[1.15] pb-[0.08em] heading-uppercase text-cream md:text-4xl lg:text-5xl">
             <HighlightBrand text={dict.h2} />
           </h2>
-          <p className="mt-3 text-sm text-white/50 md:text-base">{dict.sub}</p>
+          <p className="mt-3 text-sm text-white/70 md:text-base">{dict.sub}</p>
         </motion.div>
 
         {/* Desktop grid */}
@@ -107,7 +107,7 @@ export function LandingGallery({ dict }: { dict: Dgallery }) {
               </button>
             ))}
           </div>
-          <p className="mt-3 text-center font-[family-name:var(--font-space-mono)] text-xs text-white/30">
+          <p className="mt-3 text-center font-[family-name:var(--font-space-mono)] text-xs text-white/60">
             {dict.swipeHint}
           </p>
         </div>

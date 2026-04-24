@@ -219,5 +219,118 @@
       "book": "Đặt bàn"
     },
     "footer": "11 Đường Nam Quốc Cang, P. Phạm Ngũ Lão, Quận 1, TP.HCM · © 2025 LOCO Complex · Dành cho khách từ 18 tuổi trở lên."
+  },
+  "privacy": {
+    "kicker": "Chính sách",
+    "title": "Chính sách bảo mật",
+    "updated": "Cập nhật ngày 23/04/2026",
+    "intro": "LOCO Complex cam kết bảo vệ thông tin cá nhân của khách. Chính sách dưới đây mô tả cách chúng tôi thu thập, sử dụng và bảo vệ dữ liệu khi bạn truy cập lococomplex.vn hoặc đặt bàn qua website / hotline.",
+    "sections": [
+      {
+        "title": "1. Thông tin chúng tôi thu thập",
+        "body": [
+          "Khi bạn đặt bàn qua form trên website, chúng tôi thu thập: họ tên, số điện thoại, ngày và giờ đặt, số khách, hạng bàn và ghi chú đặc biệt (nếu có).",
+          "Khi bạn duyệt website, hệ thống ghi nhận thông tin kỹ thuật cơ bản như IP, thiết bị, trình duyệt, trang đã xem qua công cụ Google Analytics và Vercel Analytics — phục vụ phân tích hiệu quả website."
+        ]
+      },
+      {
+        "title": "2. Mục đích sử dụng",
+        "body": [
+          "Thông tin đặt bàn được dùng để liên hệ xác nhận giữ chỗ qua hotline 0866 433 754 hoặc Zalo, chuẩn bị bàn theo yêu cầu, và gửi nhắc nhở trước giờ đặt nếu cần.",
+          "Thông tin phân tích website giúp chúng tôi cải thiện trải nghiệm người dùng, tối ưu nội dung, và đo lường hiệu quả chiến dịch quảng cáo Google Ads / Facebook."
+        ]
+      },
+      {
+        "title": "3. Chia sẻ dữ liệu",
+        "body": [
+          "LOCO Complex KHÔNG bán, cho thuê hoặc trao đổi thông tin cá nhân của khách cho bên thứ ba vì mục đích thương mại.",
+          "Dữ liệu có thể được chia sẻ với: (a) đối tác kỹ thuật cung cấp dịch vụ hosting (Vercel) và analytics (Google) theo điều khoản bảo mật của họ; (b) cơ quan chức năng khi có yêu cầu hợp pháp."
+        ]
+      },
+      {
+        "title": "4. Lưu trữ và bảo mật",
+        "body": [
+          "Thông tin đặt bàn được lưu trong hệ thống nội bộ của LOCO Complex, giới hạn truy cập chỉ cho nhân viên quản lý đặt bàn.",
+          "Chúng tôi áp dụng các biện pháp kỹ thuật như HTTPS, security headers, và xác thực truy cập để bảo vệ dữ liệu khỏi truy cập trái phép."
+        ]
+      },
+      {
+        "title": "5. Quyền của khách hàng",
+        "body": [
+          "Bạn có quyền yêu cầu truy cập, chỉnh sửa hoặc xóa thông tin cá nhân đã cung cấp bằng cách liên hệ hotline 0866 433 754 hoặc Zalo.",
+          "Bạn có quyền từ chối nhận thông báo nhắc lịch hoặc khuyến mãi bất cứ lúc nào."
+        ]
+      },
+      {
+        "title": "6. Cookie và công nghệ tương tự",
+        "body": [
+          "Website lococomplex.vn sử dụng cookie và công nghệ tương tự (Google Analytics, Vercel Analytics, Google Ads conversion tracking) để đo lường hiệu quả và cải thiện trải nghiệm.",
+          "Bạn có thể tắt cookie qua cài đặt trình duyệt — một số chức năng có thể bị ảnh hưởng."
+        ]
+      },
+      {
+        "title": "7. Liên hệ",
+        "body": [
+          "Mọi thắc mắc về chính sách bảo mật, vui lòng liên hệ LOCO Complex qua hotline 0866 433 754 hoặc Zalo https://zalo.me/0866433754.",
+          "Địa chỉ: 11 Đường Nam Quốc Cang, P. Phạm Ngũ Lão, Quận 1, TP.HCM."
+        ]
+      }
+    ]
+  },
+  "terms": {
+    "kicker": "Điều khoản",
+    "title": "Điều khoản sử dụng",
+    "updated": "Cập nhật ngày 23/04/2026",
+    "intro": "Khi sử dụng website lococomplex.vn hoặc dịch vụ đặt bàn của LOCO Complex, bạn đồng ý tuân thủ các điều khoản dưới đây.",
+    "sections": [
+      {
+        "title": "1. Đối tượng sử dụng",
+        "body": [
+          "LOCO Complex là không gian giải trí dành cho người trên 18 tuổi. Khi đặt bàn hoặc đến địa điểm, bạn xác nhận đã đủ tuổi theo quy định và đồng ý xuất trình giấy tờ tùy thân khi được yêu cầu."
+        ]
+      },
+      {
+        "title": "2. Đặt bàn và xác nhận",
+        "body": [
+          "Form đặt bàn online là yêu cầu giữ chỗ — chính thức xác nhận sau khi LOCO Complex liên hệ qua hotline 0866 433 754 hoặc Zalo trong vòng 15 phút.",
+          "Bàn được giữ tối đa 30 phút sau giờ hẹn. Quá giờ không thông báo, LOCO Complex có quyền sắp xếp cho khách khác."
+        ]
+      },
+      {
+        "title": "3. Hủy hoặc đổi lịch",
+        "body": [
+          "Khách có thể hủy hoặc đổi lịch miễn phí ít nhất 2 giờ trước giờ đặt qua hotline / Zalo.",
+          "Đối với bàn VIP hoặc sự kiện riêng đã đặt cọc, chính sách hoàn tiền sẽ được thông báo cụ thể tại thời điểm đặt cọc."
+        ]
+      },
+      {
+        "title": "4. Quy định trong khu vực",
+        "body": [
+          "Dress code: Lịch sự, khuyến khích phong cách Newtro / Streetwear / Smart Casual. LOCO Complex có quyền từ chối phục vụ khách không tuân thủ dress code.",
+          "Cấm mang vào: chất gây nghiện, vũ khí, hoặc bất kỳ vật dụng vi phạm pháp luật.",
+          "Khách phải tuân thủ hướng dẫn của nhân viên về an ninh, PCCC và quy định nội bộ."
+        ]
+      },
+      {
+        "title": "5. Trách nhiệm và miễn trừ",
+        "body": [
+          "LOCO Complex không chịu trách nhiệm về tài sản cá nhân của khách bị mất, thất lạc trong khu vực không có gửi giữ.",
+          "Khách tự chịu trách nhiệm về sức khỏe khi sử dụng dịch vụ. Khách có vấn đề sức khỏe cần báo trước cho nhân viên."
+        ]
+      },
+      {
+        "title": "6. Sở hữu trí tuệ",
+        "body": [
+          "Toàn bộ nội dung trên lococomplex.vn (logo, hình ảnh, văn bản, video) thuộc sở hữu của LOCO Complex. Việc sao chép, sử dụng cho mục đích thương mại mà không có sự đồng ý bằng văn bản là vi phạm bản quyền."
+        ]
+      },
+      {
+        "title": "7. Thay đổi điều khoản",
+        "body": [
+          "LOCO Complex có quyền điều chỉnh điều khoản này bất kỳ lúc nào. Phiên bản mới sẽ có hiệu lực ngay khi đăng tải tại lococomplex.vn/dieu-khoan với ngày cập nhật.",
+          "Mọi thắc mắc liên hệ hotline 0866 433 754 hoặc Zalo https://zalo.me/0866433754."
+        ]
+      }
+    ]
   }
 }
