@@ -1,4 +1,9 @@
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+const DEFAULT_PROD_URL = "https://lococomplex.com.vn";
+const DEFAULT_DEV_URL = "http://localhost:3000";
+
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.NODE_ENV === "production" ? DEFAULT_PROD_URL : DEFAULT_DEV_URL);
 
 export const site = {
   name: "LOCO Complex",
