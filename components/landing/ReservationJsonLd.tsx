@@ -19,6 +19,7 @@ export function ReservationJsonLd({ locale }: { locale: "vi" | "en" }) {
       streetAddress: "11 Nam Quoc Cang Street",
       addressLocality: "Pham Ngu Lao Ward, District 1",
       addressRegion: "Ho Chi Minh City",
+      postalCode: "700000",
       addressCountry: "VN",
     },
     openingHoursSpecification: [
@@ -31,6 +32,7 @@ export function ReservationJsonLd({ locale }: { locale: "vi" | "en" }) {
     ],
     hasMap: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(BRAND.mapQuery)}`,
     priceRange: "$$$",
+    servesCuisine: ["Asian Fusion", "Snacks", "Finger Food", "International"],
     potentialAction: {
       "@type": "ReserveAction",
       target: {

@@ -7,6 +7,15 @@ const desc = {
   en: "LOCO Complex — NEWTRO-style entertainment complex at 11 Nam Quoc Cang, District 1, Saigon. 2-floor club: Heatroom (EDM, Top 40, House) + Hip-hop. Dining by BITES. Open 6 PM – 12 AM.",
 };
 
+const postalAddress = {
+  "@type": "PostalAddress",
+  streetAddress: "11 Nam Quoc Cang Street",
+  addressLocality: "Pham Ngu Lao Ward, District 1",
+  addressRegion: "Ho Chi Minh City",
+  postalCode: "700000",
+  addressCountry: "VN",
+};
+
 export function JsonLd({ locale }: { locale: Locale }) {
   const urlSelf = locale === "vi" ? SITE_URL : `${SITE_URL}/en`;
   const same = Object.values(site.social).filter((u) => u && u !== "#");
@@ -36,6 +45,7 @@ export function JsonLd({ locale }: { locale: Locale }) {
       },
       image: `${SITE_URL}/og.jpg`,
       telephone: site.phoneE164,
+      address: postalAddress,
       ...(same.length > 0 ? { sameAs: same } : {}),
     },
     {
@@ -53,13 +63,7 @@ export function JsonLd({ locale }: { locale: Locale }) {
         `${SITE_URL}/assets/loco/space/hero-main.jpg`,
       ],
       logo: `${SITE_URL}/assets/loco/logo.png`,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "11 Nam Quoc Cang Street",
-        addressLocality: "Pham Ngu Lao Ward, District 1",
-        addressRegion: "Ho Chi Minh City",
-        addressCountry: "VN",
-      },
+      address: postalAddress,
       hasMap: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("LOCO Complex 11 Nam Quoc Cang District 1 Ho Chi Minh City")}`,
       openingHoursSpecification: [
         {
@@ -70,6 +74,7 @@ export function JsonLd({ locale }: { locale: Locale }) {
         },
       ],
       acceptsReservations: true,
+      servesCuisine: ["Asian Fusion", "Snacks", "Finger Food", "International"],
       paymentAccepted: ["Cash", "Credit Card", "Bank Transfer", "QR Payment"],
       currenciesAccepted: "VND",
       maximumAttendeeCapacity: 300,
