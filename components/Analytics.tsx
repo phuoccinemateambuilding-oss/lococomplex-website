@@ -21,9 +21,9 @@ export function Analytics() {
       <Script id="gtag-init" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          ${ids.map((id) => `gtag('config', '${id}');`).join("\n")}
+          window.gtag = window.gtag || function gtag(){window.dataLayer.push(arguments);};
+          window.gtag('js', new Date());
+          ${ids.map((id) => `window.gtag('config', '${id}');`).join("\n")}
         `}
       </Script>
     </>
