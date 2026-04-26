@@ -15,7 +15,8 @@ type EventName =
   | "form_error"
   | "tel_click"
   | "zalo_click"
-  | "cta_click";
+  | "cta_click"
+  | "tier_select";
 
 export function track(name: EventName, params: Record<string, unknown> = {}) {
   if (typeof window === "undefined") return;

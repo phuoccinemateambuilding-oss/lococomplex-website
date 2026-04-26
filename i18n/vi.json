@@ -155,6 +155,122 @@
       "sub": "Không gian & khoảnh khắc tại LOCO Complex",
       "swipeHint": "← Lướt để xem thêm →"
     },
+    "tiers": {
+      "h2": "Bảng giá bàn",
+      "sub": "8 hạng bàn — 2 tầng club. Chọn hạng phù hợp với nhóm của bạn.",
+      "notePill": "Miễn phí đặt bàn — chi phí thanh toán tại địa điểm",
+      "footnote": "* Mức giá tối thiểu áp dụng cho mỗi bàn. Giá chưa bao gồm 10% VAT + 10% phí phục vụ. Khách tự do chọn set theo mức giá tối thiểu của mỗi bàn.",
+      "highlightBadge": "Phổ biến",
+      "capacityLabel": "Sức chứa",
+      "ctaSelect": "Chọn bàn này",
+      "items": [
+        {
+          "key": "b-standard",
+          "name": "Bàn B Tiêu Chuẩn",
+          "floor": "Tầng 1 · Hip-hop",
+          "capacity": "1–4 khách",
+          "price": "Từ 3.500.000đ · Cuối tuần 5.000.000đ",
+          "features": [
+            "Khu vực chung Tầng 1",
+            "Set chào mừng theo bàn",
+            "View sàn nhảy Hip-hop",
+            "Phù hợp cặp đôi / nhóm nhỏ"
+          ]
+        },
+        {
+          "key": "standing-f1",
+          "name": "Bàn Đứng Tiêu Chuẩn",
+          "floor": "Tầng 1 · Hip-hop",
+          "capacity": "1–4 khách",
+          "price": "Từ 5.000.000đ · Cuối tuần 7.000.000đ",
+          "features": [
+            "Khu đứng năng lượng",
+            "Set thưởng thức theo bàn",
+            "View trực diện sân khấu",
+            "Phù hợp nhóm bạn năng động"
+          ]
+        },
+        {
+          "key": "sofa-l",
+          "name": "Sofa Khu Vực L",
+          "floor": "Tầng 1 · Hip-hop",
+          "capacity": "1–8 khách",
+          "price": "Từ 8.500.000đ · Cuối tuần 12.000.000đ",
+          "features": [
+            "Sofa rộng rãi khu vực L",
+            "Set thưởng thức theo bàn",
+            "Phù hợp nhóm bạn 6–8 người",
+            "Vị trí ưu tiên gần sân khấu"
+          ]
+        },
+        {
+          "key": "vip-sofa",
+          "name": "VIP Sofa",
+          "floor": "Tầng 1 · Hip-hop",
+          "capacity": "1–10 khách",
+          "price": "Từ 10.000.000đ · Cuối tuần 15.000.000đ",
+          "features": [
+            "Khu VIP ưu tiên",
+            "Combo theo bàn cao cấp",
+            "Phù hợp sinh nhật / tiệc",
+            "Staff hỗ trợ riêng"
+          ],
+          "highlight": true
+        },
+        {
+          "key": "svip-sofa",
+          "name": "SVIP Sofa",
+          "floor": "Tầng 1 · Hip-hop",
+          "capacity": "1–12 khách",
+          "price": "Từ 20.000.000đ · Cuối tuần 30.000.000đ",
+          "features": [
+            "Khu SVIP riêng tư bậc nhất",
+            "Combo cao cấp theo bàn",
+            "Phù hợp sự kiện / công ty",
+            "Staff phục vụ chuyên biệt"
+          ]
+        },
+        {
+          "key": "standing-heatroom",
+          "name": "Bàn Đứng Heatroom",
+          "floor": "Tầng 2 · Heatroom",
+          "capacity": "1–4 khách",
+          "price": "Từ 3.550.000đ — 7.100.000đ",
+          "features": [
+            "Mini Nightclub Tầng 2",
+            "EDM / Top 40 / House",
+            "Set chào mừng theo bàn",
+            "Khu đứng view trực diện DJ"
+          ]
+        },
+        {
+          "key": "premium-heatroom",
+          "name": "Premium Sofa Heatroom",
+          "floor": "Tầng 2 · Heatroom",
+          "capacity": "1–8 khách",
+          "price": "Từ 10.650.000đ",
+          "features": [
+            "Sofa Premium Tầng 2",
+            "Combo theo bàn cao cấp",
+            "Vị trí ưu tiên Heatroom",
+            "Phù hợp nhóm bạn / sinh nhật"
+          ]
+        },
+        {
+          "key": "vip-heatroom",
+          "name": "VIP Sofa Heatroom",
+          "floor": "Tầng 2 · Heatroom",
+          "capacity": "1–15 khách",
+          "price": "Từ 21.300.000đ",
+          "features": [
+            "Khu VIP Heatroom riêng tư",
+            "Combo cao cấp theo bàn",
+            "Phù hợp sự kiện / công ty",
+            "Staff phục vụ chuyên biệt"
+          ]
+        }
+      ]
+    },
     "banner": {
       "h2": "ĐÊM NAY LÀ CỦA BẠN — GIỮ BÀN LOCO NGAY",
       "sub": "Miễn phí đặt bàn · Xác nhận qua Zalo trong 15 phút · Hotline 24/7"
@@ -165,6 +281,8 @@
       "formSub": "Điền thông tin bên dưới, chúng tôi xác nhận qua Zalo trong 15 phút.",
       "fieldName": "Họ tên",
       "fieldPhone": "Số điện thoại",
+      "fieldTier": "Hạng bàn (tùy chọn)",
+      "fieldTierPlaceholder": "— Chọn hạng bàn —",
       "fieldDate": "Ngày",
       "fieldTime": "Giờ đến",
       "fieldGuests": "Số khách",
@@ -185,8 +303,19 @@
       "fallbackTitle": "Hoặc gọi trực tiếp",
       "recapDate": "Ngày",
       "recapTime": "Giờ",
+      "recapTier": "Hạng bàn",
       "recapGuests": "Số khách",
-      "recapNote": "Ghi chú"
+      "recapNote": "Ghi chú",
+      "tiers": {
+        "b-standard": "Bàn B Tiêu Chuẩn — Tầng 1",
+        "standing-f1": "Bàn Đứng Tiêu Chuẩn — Tầng 1",
+        "sofa-l": "Sofa Khu Vực L — Tầng 1",
+        "vip-sofa": "VIP Sofa — Tầng 1",
+        "svip-sofa": "SVIP Sofa — Tầng 1",
+        "standing-heatroom": "Bàn Đứng Heatroom — Tầng 2",
+        "premium-heatroom": "Premium Sofa Heatroom — Tầng 2",
+        "vip-heatroom": "VIP Sofa Heatroom — Tầng 2"
+      }
     },
     "faq": {
       "h2": "Câu hỏi thường gặp",

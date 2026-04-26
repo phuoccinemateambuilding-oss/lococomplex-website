@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useId } from "react";
+import { useState, useId, useEffect } from "react";
 import {
   CheckCircle,
   Warning,
@@ -23,6 +23,8 @@ type Dform = {
   formSub: string;
   fieldName: string;
   fieldPhone: string;
+  fieldTier: string;
+  fieldTierPlaceholder: string;
   fieldDate: string;
   fieldTime: string;
   fieldGuests: string;
@@ -43,8 +45,10 @@ type Dform = {
   fallbackTitle: string;
   recapDate: string;
   recapTime: string;
+  recapTier: string;
   recapGuests: string;
   recapNote: string;
+  tiers: Record<string, string>;
 };
 
 const TIME_SLOTS = ["18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00"];
@@ -59,6 +63,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
   const [values, setValues] = useState({
     name: "",
     phone: "",
+    tier: "",
     date: "",
     time: "",
     party: "",
@@ -69,6 +74,23 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
 
   const set = (k: keyof typeof values) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
     setValues((v) => ({ ...v, [k]: e.target.value }));
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    const initial = params.get("tier");
+    if (initial && initial in dict.tiers) {
+      setValues((v) => ({ ...v, tier: initial }));
+    }
+    const onTierChange = (e: Event) => {
+      const detail = (e as CustomEvent<{ tier: string }>).detail;
+      if (detail?.tier && detail.tier in dict.tiers) {
+        setValues((v) => ({ ...v, tier: detail.tier }));
+      }
+    };
+    window.addEventListener("loco-tier-change", onTierChange);
+    return () => window.removeEventListener("loco-tier-change", onTierChange);
+  }, [dict.tiers]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -94,12 +116,12 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
 
   function resetForm() {
     setStatus("idle");
-    setValues({ name: "", phone: "", date: "", time: "", party: "", note: "", bot_field: "" });
+    setValues({ name: "", phone: "", tier: "", date: "", time: "", party: "", note: "", bot_field: "" });
     setSubmitted(null);
   }
 
   const calendarUrl = submitted
-    ? buildCalendarUrl({ name: submitted.name, date: submitted.date, time: submitted.time, tier: "", party: submitted.party, note: submitted.note, locale })
+    ? buildCalendarUrl({ name: submitted.name, date: submitted.date, time: submitted.time, tier: submitted.tier ? dict.tiers[submitted.tier] ?? "" : "", party: submitted.party, note: submitted.note, locale })
     : "";
 
   const inputCls = "block w-full min-w-0 min-h-[48px] appearance-none rounded-2xl border border-white/15 bg-midnight/60 px-4 py-3 text-[16px] text-white placeholder:text-white/30 focus:border-loco-red/60 focus:outline-none focus:ring-1 focus:ring-loco-red/40 transition [color-scheme:dark]";
@@ -140,6 +162,12 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                       <p className="font-[family-name:var(--font-space-mono)] text-xs text-white/65 uppercase tracking-widest">{dict.recapGuests}</p>
                       <p className="font-[family-name:var(--font-space-mono)] text-sm text-white">{submitted.party}</p>
                     </div>
+                    {submitted.tier && dict.tiers[submitted.tier] && (
+                      <div className="col-span-2">
+                        <p className="font-[family-name:var(--font-space-mono)] text-xs text-white/65 uppercase tracking-widest">{dict.recapTier}</p>
+                        <p className="font-[family-name:var(--font-space-mono)] text-sm text-white">{dict.tiers[submitted.tier]}</p>
+                      </div>
+                    )}
                     {submitted.note && (
                       <div className="col-span-2">
                         <p className="font-[family-name:var(--font-space-mono)] text-xs text-white/65 uppercase tracking-widest">{dict.recapNote}</p>
@@ -232,6 +260,22 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                         className={inputCls}
                         placeholder="0866 433 754"
                       />
+                    </div>
+
+                    {/* Tier */}
+                    <div>
+                      <label htmlFor={`${formId}-tier`} className={labelCls}>{dict.fieldTier}</label>
+                      <select
+                        id={`${formId}-tier`}
+                        value={values.tier}
+                        onChange={set("tier")}
+                        className={inputCls}
+                      >
+                        <option value="">{dict.fieldTierPlaceholder}</option>
+                        {Object.entries(dict.tiers).map(([k, label]) => (
+                          <option key={k} value={k}>{label}</option>
+                        ))}
+                      </select>
                     </div>
 
                     {/* Date + Time */}

@@ -155,6 +155,122 @@
       "sub": "Spaces & moments at LOCO Complex",
       "swipeHint": "← Swipe for more →"
     },
+    "tiers": {
+      "h2": "Table Pricing",
+      "sub": "8 table tiers across 2 club floors. Pick the option that matches your group.",
+      "notePill": "Free booking — pay at the venue",
+      "footnote": "* Minimum spend per table. Prices exclude 10% VAT + 10% service fee. Guests freely select sets matching the minimum spend per table.",
+      "highlightBadge": "Popular",
+      "capacityLabel": "Capacity",
+      "ctaSelect": "Select this table",
+      "items": [
+        {
+          "key": "b-standard",
+          "name": "B Standard Table",
+          "floor": "Floor 1 · Hip-hop",
+          "capacity": "1–4 guests",
+          "price": "From 3,500,000₫ · Weekend 5,000,000₫",
+          "features": [
+            "Floor 1 main area",
+            "Welcome set per table",
+            "Hip-hop dance floor view",
+            "Ideal for couples / small groups"
+          ]
+        },
+        {
+          "key": "standing-f1",
+          "name": "Standing Standard",
+          "floor": "Floor 1 · Hip-hop",
+          "capacity": "1–4 guests",
+          "price": "From 5,000,000₫ · Weekend 7,000,000₫",
+          "features": [
+            "High-energy standing area",
+            "Tasting set per table",
+            "Direct stage view",
+            "Ideal for active groups"
+          ]
+        },
+        {
+          "key": "sofa-l",
+          "name": "Sofa Zone L",
+          "floor": "Floor 1 · Hip-hop",
+          "capacity": "1–8 guests",
+          "price": "From 8,500,000₫ · Weekend 12,000,000₫",
+          "features": [
+            "Spacious sofa in Zone L",
+            "Tasting set per table",
+            "Ideal for groups of 6–8",
+            "Priority spot near stage"
+          ]
+        },
+        {
+          "key": "vip-sofa",
+          "name": "VIP Sofa",
+          "floor": "Floor 1 · Hip-hop",
+          "capacity": "1–10 guests",
+          "price": "From 10,000,000₫ · Weekend 15,000,000₫",
+          "features": [
+            "Priority VIP zone",
+            "Premium combo per table",
+            "Ideal for birthdays / parties",
+            "Dedicated staff support"
+          ],
+          "highlight": true
+        },
+        {
+          "key": "svip-sofa",
+          "name": "SVIP Sofa",
+          "floor": "Floor 1 · Hip-hop",
+          "capacity": "1–12 guests",
+          "price": "From 20,000,000₫ · Weekend 30,000,000₫",
+          "features": [
+            "Top-tier private SVIP zone",
+            "Premium combo per table",
+            "Ideal for events / corporate",
+            "Dedicated service team"
+          ]
+        },
+        {
+          "key": "standing-heatroom",
+          "name": "Standing Heatroom",
+          "floor": "Floor 2 · Heatroom",
+          "capacity": "1–4 guests",
+          "price": "From 3,550,000₫ — 7,100,000₫",
+          "features": [
+            "Mini Nightclub Floor 2",
+            "EDM / Top 40 / House",
+            "Welcome set per table",
+            "Standing area facing DJ"
+          ]
+        },
+        {
+          "key": "premium-heatroom",
+          "name": "Premium Sofa Heatroom",
+          "floor": "Floor 2 · Heatroom",
+          "capacity": "1–8 guests",
+          "price": "From 10,650,000₫",
+          "features": [
+            "Premium sofa Floor 2",
+            "Premium combo per table",
+            "Priority spot in Heatroom",
+            "Ideal for groups / birthdays"
+          ]
+        },
+        {
+          "key": "vip-heatroom",
+          "name": "VIP Sofa Heatroom",
+          "floor": "Floor 2 · Heatroom",
+          "capacity": "1–15 guests",
+          "price": "From 21,300,000₫",
+          "features": [
+            "Private VIP zone in Heatroom",
+            "Premium combo per table",
+            "Ideal for events / corporate",
+            "Dedicated service team"
+          ]
+        }
+      ]
+    },
     "banner": {
       "h2": "TONIGHT IS YOURS — RESERVE AT LOCO NOW",
       "sub": "Free booking · Zalo confirmation in 15 minutes · 24/7 hotline"
@@ -165,6 +281,8 @@
       "formSub": "Fill in the form below. We'll confirm via Zalo within 15 minutes.",
       "fieldName": "Full name",
       "fieldPhone": "Phone number",
+      "fieldTier": "Table tier (optional)",
+      "fieldTierPlaceholder": "— Choose a table tier —",
       "fieldDate": "Date",
       "fieldTime": "Arrival time",
       "fieldGuests": "Party size",
@@ -185,8 +303,19 @@
       "fallbackTitle": "Or call directly",
       "recapDate": "Date",
       "recapTime": "Time",
+      "recapTier": "Tier",
       "recapGuests": "Guests",
-      "recapNote": "Note"
+      "recapNote": "Note",
+      "tiers": {
+        "b-standard": "B Standard Table — Floor 1",
+        "standing-f1": "Standing Standard — Floor 1",
+        "sofa-l": "Sofa Zone L — Floor 1",
+        "vip-sofa": "VIP Sofa — Floor 1",
+        "svip-sofa": "SVIP Sofa — Floor 1",
+        "standing-heatroom": "Standing Heatroom — Floor 2",
+        "premium-heatroom": "Premium Sofa Heatroom — Floor 2",
+        "vip-heatroom": "VIP Sofa Heatroom — Floor 2"
+      }
     },
     "faq": {
       "h2": "Common Questions",
