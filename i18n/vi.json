@@ -283,7 +283,10 @@
       "sub": "Miễn phí đặt bàn · Xác nhận qua Zalo trong 15 phút · Hotline 24/7"
     },
     "form": {
-      "h2": "Đặt bàn",
+      "h2": "Đặt bàn ngay đêm nay",
+      "h2Sub": "Miễn phí đặt trước · Xác nhận qua Zalo trong 15 phút · Hotline 24/7",
+      "h2Badge": "FORM ĐẶT BÀN ONLINE",
+      "requiredHint": "* Bắt buộc",
       "formTitle": "Thông tin đặt bàn",
       "formSub": "Điền thông tin bên dưới, chúng tôi xác nhận qua Zalo trong 15 phút.",
       "fieldName": "Họ tên",

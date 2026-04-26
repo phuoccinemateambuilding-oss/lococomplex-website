@@ -19,6 +19,9 @@ type Status = "idle" | "submitting" | "success" | "error";
 
 type Dform = {
   h2: string;
+  h2Sub: string;
+  h2Badge: string;
+  requiredHint: string;
   formTitle: string;
   formSub: string;
   fieldName: string;
@@ -124,15 +127,47 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
     ? buildCalendarUrl({ name: submitted.name, date: submitted.date, time: submitted.time, tier: submitted.tier ? dict.tiers[submitted.tier] ?? "" : "", party: submitted.party, note: submitted.note, locale })
     : "";
 
-  const inputCls = "block w-full min-w-0 min-h-[48px] appearance-none rounded-2xl border border-white/15 bg-midnight/60 px-4 py-3 text-[16px] text-white placeholder:text-white/30 focus:border-loco-red/60 focus:outline-none focus:ring-1 focus:ring-loco-red/40 transition [color-scheme:dark]";
-  const labelCls = "mb-1.5 block font-[family-name:var(--font-space-mono)] text-xs uppercase tracking-widest text-white/50";
+  const inputCls = "block w-full min-w-0 min-h-[54px] appearance-none rounded-2xl border-2 border-white/20 bg-midnight/70 px-5 py-3.5 text-[16px] font-medium text-white placeholder:text-white/35 focus:border-loco-red focus:outline-none focus:ring-2 focus:ring-loco-red/40 hover:border-white/35 transition [color-scheme:dark]";
+  const labelCls = "mb-2 flex items-center gap-1 font-[family-name:var(--font-space-mono)] text-[11px] font-bold uppercase tracking-[0.18em] text-loco-yellow/90";
+  const requiredMark = <span className="text-loco-red" aria-hidden="true">*</span>;
 
   return (
-    <section id="form" className="relative scroll-mt-20 border-t border-white/5 bg-midnight py-10 md:scroll-mt-24 md:py-16">
-      <div className="mx-auto max-w-[1200px] px-5 md:px-10">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.3fr_1fr] lg:gap-12">
+    <section id="form" className="relative scroll-mt-20 overflow-hidden border-t border-loco-red/20 bg-midnight py-14 md:scroll-mt-24 md:py-20">
+      {/* Radial accent backgrounds */}
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-32 -left-20 h-[400px] w-[400px] rounded-full bg-loco-red/10 blur-[120px]" />
+        <div className="absolute -bottom-32 -right-20 h-[400px] w-[400px] rounded-full bg-loco-yellow/10 blur-[120px]" />
+      </div>
+
+      <div className="relative mx-auto max-w-[1200px] px-5 md:px-10">
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-10 text-center md:mb-14"
+        >
+          <span className="inline-block rounded-full border border-loco-red/50 bg-loco-red/10 px-4 py-1.5 font-[family-name:var(--font-space-mono)] text-[11px] font-bold uppercase tracking-[0.2em] text-loco-red">
+            {dict.h2Badge}
+          </span>
+          <h2 className="mt-4 font-display-vn text-3xl leading-[1.1] pb-[0.08em] heading-uppercase text-cream md:text-4xl lg:text-5xl">
+            {dict.h2}
+          </h2>
+          <p className="mx-auto mt-3 max-w-[60ch] text-sm text-white/75 md:text-base">{dict.h2Sub}</p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.3fr_1fr] lg:gap-10">
           {/* Form card */}
-          <div className="rounded-3xl border border-white/15 bg-midnight/70 p-6 backdrop-blur-sm md:p-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="relative overflow-hidden rounded-3xl border-2 border-loco-red/40 bg-midnight/85 p-6 shadow-[0_20px_80px_-20px_rgba(226,58,44,0.4)] backdrop-blur-md md:p-9"
+          >
+            {/* Top accent strip */}
+            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-loco-red via-hot-pink to-loco-yellow" />
             <AnimatePresence mode="wait">
               {status === "success" && submitted ? (
                 <motion.div
@@ -214,10 +249,17 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                   onSubmit={handleSubmit}
                   noValidate
                 >
-                  <h3 className="mb-1 font-display-vn text-xl uppercase tracking-wider text-cream md:text-2xl">
-                    {dict.formTitle}
-                  </h3>
-                  <p className="mb-6 text-sm text-white/50">{dict.formSub}</p>
+                  <div className="mb-6 flex items-end justify-between gap-3">
+                    <div>
+                      <h3 className="mb-1 font-display-vn text-2xl uppercase leading-tight tracking-wider text-cream md:text-3xl">
+                        {dict.formTitle}
+                      </h3>
+                      <p className="text-sm text-white/70 md:text-base">{dict.formSub}</p>
+                    </div>
+                    <span className="hidden shrink-0 font-[family-name:var(--font-space-mono)] text-[10px] uppercase tracking-widest text-loco-red sm:inline">
+                      {dict.requiredHint}
+                    </span>
+                  </div>
 
                   {/* Honeypot */}
                   <input
@@ -232,7 +274,10 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                   <div className="flex flex-col gap-4">
                     {/* Name */}
                     <div>
-                      <label htmlFor={`${formId}-name`} className={labelCls}>{dict.fieldName}</label>
+                      <label htmlFor={`${formId}-name`} className={labelCls}>
+                        {dict.fieldName}
+                        {requiredMark}
+                      </label>
                       <input
                         id={`${formId}-name`}
                         type="text"
@@ -247,7 +292,10 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
 
                     {/* Phone */}
                     <div>
-                      <label htmlFor={`${formId}-phone`} className={labelCls}>{dict.fieldPhone}</label>
+                      <label htmlFor={`${formId}-phone`} className={labelCls}>
+                        {dict.fieldPhone}
+                        {requiredMark}
+                      </label>
                       <input
                         id={`${formId}-phone`}
                         type="tel"
@@ -281,7 +329,10 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                     {/* Date + Time */}
                     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                       <div>
-                        <label htmlFor={`${formId}-date`} className={labelCls}>{dict.fieldDate}</label>
+                        <label htmlFor={`${formId}-date`} className={labelCls}>
+                          {dict.fieldDate}
+                          {requiredMark}
+                        </label>
                         <input
                           id={`${formId}-date`}
                           type="date"
@@ -293,7 +344,10 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                         />
                       </div>
                       <div>
-                        <label htmlFor={`${formId}-time`} className={labelCls}>{dict.fieldTime}</label>
+                        <label htmlFor={`${formId}-time`} className={labelCls}>
+                          {dict.fieldTime}
+                          {requiredMark}
+                        </label>
                         <select
                           id={`${formId}-time`}
                           required
@@ -311,7 +365,10 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
 
                     {/* Guests */}
                     <div>
-                      <label htmlFor={`${formId}-party`} className={labelCls}>{dict.fieldGuests}</label>
+                      <label htmlFor={`${formId}-party`} className={labelCls}>
+                        {dict.fieldGuests}
+                        {requiredMark}
+                      </label>
                       <input
                         id={`${formId}-party`}
                         type="number"
@@ -358,28 +415,39 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                     <button
                       type="submit"
                       disabled={status === "submitting"}
-                      className="flex h-14 w-full items-center justify-center gap-2 rounded-full bg-loco-red text-sm font-bold uppercase tracking-wider text-white transition hover:bg-loco-red/85 disabled:opacity-60"
+                      className="group mt-2 flex h-16 w-full items-center justify-center gap-2 rounded-full bg-loco-red text-base font-bold uppercase tracking-wider text-white shadow-[0_12px_45px_-10px_rgba(226,58,44,0.65)] transition-all hover:-translate-y-0.5 hover:bg-loco-red/90 hover:shadow-[0_18px_55px_-10px_rgba(226,58,44,0.75)] disabled:translate-y-0 disabled:opacity-60 disabled:shadow-none md:text-lg"
                     >
                       {status === "submitting" ? (
                         <>
-                          <SpinnerGap weight="bold" className="h-4 w-4 animate-spin" />
+                          <SpinnerGap weight="bold" className="h-5 w-5 animate-spin" />
                           {dict.submittingBtn}
                         </>
-                      ) : dict.submitBtn}
+                      ) : (
+                        <>
+                          <CalendarCheck weight="fill" className="h-5 w-5" />
+                          {dict.submitBtn}
+                        </>
+                      )}
                     </button>
                   </div>
                 </motion.form>
               )}
             </AnimatePresence>
-          </div>
+          </motion.div>
 
           {/* Trust aside */}
-          <div className="flex flex-col gap-6">
-            <div className="rounded-3xl border border-white/10 bg-midnight/50 p-6 backdrop-blur-sm">
-              <h3 className="mb-5 font-display-vn text-lg uppercase tracking-wider text-cream">{dict.trustTitle}</h3>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="flex flex-col gap-5"
+          >
+            <div className="rounded-3xl border border-loco-yellow/30 bg-loco-yellow/[0.04] p-6 backdrop-blur-sm">
+              <h3 className="mb-5 font-display-vn text-xl uppercase tracking-wider text-loco-yellow md:text-2xl">{dict.trustTitle}</h3>
               <ul className="flex flex-col gap-4">
                 {[dict.trust1, dict.trust2, dict.trust3].map((t, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm text-white/70">
+                  <li key={i} className="flex items-start gap-3 text-sm font-medium text-white/85 md:text-base">
                     <ShieldCheck weight="fill" className="mt-0.5 h-5 w-5 shrink-0 text-loco-yellow" />
                     {t}
                   </li>
@@ -388,14 +456,14 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
             </div>
 
             {/* Fallback card */}
-            <div className="rounded-3xl border border-white/10 bg-midnight/50 p-6 backdrop-blur-sm text-center">
-              <p className="mb-3 font-[family-name:var(--font-space-mono)] text-xs uppercase tracking-widest text-white/60">
+            <div className="rounded-3xl border-2 border-loco-red/40 bg-loco-red/[0.06] p-6 text-center backdrop-blur-sm shadow-[0_10px_40px_-15px_rgba(226,58,44,0.5)]">
+              <p className="mb-3 font-[family-name:var(--font-space-mono)] text-[11px] font-bold uppercase tracking-[0.2em] text-loco-red">
                 {dict.fallbackTitle}
               </p>
               <a
                 href={`tel:${BRAND.phoneTel}`}
                 onClick={() => track("tel_click", { cta_location: "landing_trust_aside" })}
-                className="mb-3 block font-[family-name:var(--font-space-mono)] text-3xl font-bold text-loco-red transition hover:text-loco-red/80 md:text-4xl"
+                className="mb-4 block font-[family-name:var(--font-space-mono)] text-3xl font-bold text-loco-red drop-shadow-[0_0_20px_rgba(226,58,44,0.5)] transition hover:text-loco-red/85 md:text-4xl"
               >
                 {BRAND.phoneDisplay}
               </a>
@@ -404,13 +472,13 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => track("zalo_click", { cta_location: "landing_trust_aside" })}
-                className="inline-flex items-center gap-2 rounded-full bg-[#0068FF] px-6 py-2.5 text-sm font-bold uppercase tracking-wider text-white transition hover:bg-[#0068FF]/85"
+                className="inline-flex items-center gap-2 rounded-full bg-[#0068FF] px-6 py-2.5 text-sm font-bold uppercase tracking-wider text-white shadow-[0_8px_30px_-5px_rgba(0,104,255,0.5)] transition hover:-translate-y-0.5 hover:bg-[#0068FF]/85"
               >
                 <ZaloIcon size={16} />
                 Zalo
               </a>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

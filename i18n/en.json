@@ -283,7 +283,10 @@
       "sub": "Free booking · Zalo confirmation in 15 minutes · 24/7 hotline"
     },
     "form": {
-      "h2": "Book a Table",
+      "h2": "Book your table tonight",
+      "h2Sub": "Free booking · Zalo confirmation in 15 minutes · 24/7 hotline",
+      "h2Badge": "ONLINE RESERVATION FORM",
+      "requiredHint": "* Required",
       "formTitle": "Reservation details",
       "formSub": "Fill in the form below. We'll confirm via Zalo within 15 minutes.",
       "fieldName": "Full name",
