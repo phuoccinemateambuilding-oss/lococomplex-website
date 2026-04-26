@@ -139,6 +139,7 @@ export default function RootLayout({
       className={`${beVietnamPro.variable} ${bebasNeue.variable} ${caveat.variable} ${spaceMono.variable} antialiased`}
     >
       <head>
+        <GoogleAnalytics />
         <link
           rel="preload"
           as="image"
@@ -150,7 +151,6 @@ export default function RootLayout({
       </head>
       <body className={`${beVietnamPro.className} min-h-[100dvh] flex flex-col`}>
         {children}
-        <GoogleAnalytics />
         <VercelAnalytics />
         <SpeedInsights />
       </body>
