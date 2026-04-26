@@ -110,7 +110,12 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
       if (!res.ok) throw new Error(String(res.status));
       setSubmitted(values);
       setStatus("success");
-      track("form_success", { cta_location: "landing_form" });
+      track("form_success", {
+        cta_location: "landing_form",
+        branch: "quan1",
+        guests: Number(values.party) || 0,
+        tier: values.tier || "",
+      });
     } catch {
       setStatus("error");
       track("form_error", { cta_location: "landing_form" });

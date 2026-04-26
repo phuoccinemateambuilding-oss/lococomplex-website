@@ -25,7 +25,12 @@ export function track(name: EventName, params: Record<string, unknown> = {}) {
   if (typeof window.gtag === "function") {
     window.gtag("event", name, params);
     if (name === "form_success" && AW_CONVERSION) {
-      window.gtag("event", "conversion", { send_to: AW_CONVERSION, ...params });
+      window.gtag("event", "conversion", {
+        send_to: AW_CONVERSION,
+        value: 200000,
+        currency: "VND",
+        ...params,
+      });
     }
   }
 }
