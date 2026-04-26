@@ -6,8 +6,9 @@ import { X, ArrowLeft, ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { motion, AnimatePresence } from "framer-motion";
 import { HighlightBrand } from "./HighlightBrand";
 
-const GALLERY_IMAGES = Array.from({ length: 33 }, (_, i) => ({
-  src: `/assets/loco/gallery/gallery-${String(i + 1).padStart(2, "0")}.jpg`,
+const GALLERY_INDEXES = [1, 3, 4, 5, 14, 17, 20, 25, 26, 29, 30, 31, 32, 33];
+const GALLERY_IMAGES = GALLERY_INDEXES.map((n, i) => ({
+  src: `/assets/loco/gallery/gallery-${String(n).padStart(2, "0")}.jpg`,
   alt: `LOCO Complex — ảnh ${i + 1}`,
 }));
 

@@ -33,7 +33,7 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
       {/* Hero background image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/assets/loco/space/hero-main.jpg"
+          src="/assets/loco/gallery/gallery-31.jpg"
           alt="LOCO Complex interior"
           fill
           priority
@@ -162,7 +162,7 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
         {/* Right — hero image (desktop) */}
         <div className="relative hidden aspect-[4/5] w-full overflow-hidden rounded-3xl border border-white/10 shadow-2xl lg:block">
           <Image
-            src="/assets/loco/space/space-01.jpg"
+            src="/assets/loco/space/space-06.jpg"
             alt={dict.wordmarkAlt}
             fill
             priority

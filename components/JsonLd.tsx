@@ -49,7 +49,7 @@ export function JsonLd({ locale }: { locale: Locale }) {
       ...(same.length > 0 ? { sameAs: same } : {}),
     },
     {
-      "@type": ["NightClub", "BarOrPub", "EntertainmentBusiness"],
+      "@type": ["NightClub", "EntertainmentBusiness"],
       "@id": `${SITE_URL}/#business`,
       name: "LOCO Complex",
       alternateName: ["LOCO Heatroom", "LOCO Sài Gòn", "LOCO Quận 1"],
@@ -60,7 +60,7 @@ export function JsonLd({ locale }: { locale: Locale }) {
       priceRange: "$$$",
       image: [
         `${SITE_URL}/og.jpg`,
-        `${SITE_URL}/assets/loco/space/hero-main.jpg`,
+        `${SITE_URL}/assets/loco/gallery/gallery-31.jpg`,
       ],
       logo: `${SITE_URL}/assets/loco/logo.png`,
       address: postalAddress,
