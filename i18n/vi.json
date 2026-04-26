@@ -306,6 +306,8 @@
       "successReset": "Đặt bàn khác",
       "errorTitle": "Gửi thất bại.",
       "errorSub": "Vui lòng gọi trực tiếp:",
+      "errorMissingTitle": "Vui lòng điền đầy đủ thông tin.",
+      "errorMissingSub": "Còn thiếu",
       "trustTitle": "Vì sao đặt qua form?",
       "trust1": "Miễn phí đặt trước — không cọc",
       "trust2": "Xác nhận qua Zalo trong 15 phút",

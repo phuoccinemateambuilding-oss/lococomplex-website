@@ -41,6 +41,8 @@ type Dform = {
   successReset: string;
   errorTitle: string;
   errorSub: string;
+  errorMissingTitle: string;
+  errorMissingSub: string;
   trustTitle: string;
   trust1: string;
   trust2: string;
@@ -74,6 +76,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
     bot_field: "",
   });
   const [submitted, setSubmitted] = useState<typeof values | null>(null);
+  const [missingFields, setMissingFields] = useState<string[]>([]);
 
   const set = (k: keyof typeof values) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
     setValues((v) => ({ ...v, [k]: e.target.value }));
@@ -95,9 +98,36 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
     return () => window.removeEventListener("loco-tier-change", onTierChange);
   }, [dict.tiers]);
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (values.bot_field) return;
+    const fd = new FormData(e.currentTarget);
+    const payload = {
+      name: String(fd.get("name") || "").trim(),
+      phone: String(fd.get("phone") || "").trim(),
+      tier: String(fd.get("tier") || ""),
+      date: String(fd.get("date") || ""),
+      time: String(fd.get("time") || ""),
+      party: String(fd.get("party") || ""),
+      note: String(fd.get("note") || ""),
+      bot_field: String(fd.get("bot_field") || ""),
+    };
+    if (payload.bot_field) return;
+
+    const missing: string[] = [];
+    if (!payload.name) missing.push(dict.fieldName);
+    if (!payload.phone) missing.push(dict.fieldPhone);
+    if (!payload.date) missing.push(dict.fieldDate);
+    if (!payload.time) missing.push(dict.fieldTime);
+    if (!payload.party) missing.push(dict.fieldGuests);
+
+    if (missing.length > 0) {
+      setMissingFields(missing);
+      setStatus("error");
+      return;
+    }
+    setMissingFields([]);
+
+    setValues((v) => ({ ...v, ...payload }));
     setStatus("submitting");
     track("form_submit", { cta_location: "landing_form" });
 
@@ -105,16 +135,19 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
       const res = await fetch("/api/reserve", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values, locale }),
+        body: JSON.stringify({ ...payload, locale }),
       });
-      if (!res.ok) throw new Error(String(res.status));
-      setSubmitted(values);
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.reason || String(res.status));
+      }
+      setSubmitted(payload);
       setStatus("success");
       track("form_success", {
         cta_location: "landing_form",
         branch: "quan1",
-        guests: Number(values.party) || 0,
-        tier: values.tier || "",
+        guests: Number(payload.party) || 0,
+        tier: payload.tier || "",
       });
     } catch {
       setStatus("error");
@@ -125,6 +158,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
   function resetForm() {
     setStatus("idle");
     setValues({ name: "", phone: "", tier: "", date: "", time: "", party: "", note: "", bot_field: "" });
+    setMissingFields([]);
     setSubmitted(null);
   }
 
@@ -285,6 +319,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                       </label>
                       <input
                         id={`${formId}-name`}
+                        name="name"
                         type="text"
                         autoComplete="name"
                         required
@@ -303,6 +338,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                       </label>
                       <input
                         id={`${formId}-phone`}
+                        name="phone"
                         type="tel"
                         inputMode="tel"
                         autoComplete="tel"
@@ -320,6 +356,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                       <label htmlFor={`${formId}-tier`} className={labelCls}>{dict.fieldTier}</label>
                       <select
                         id={`${formId}-tier`}
+                        name="tier"
                         value={values.tier}
                         onChange={set("tier")}
                         className={inputCls}
@@ -340,6 +377,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                         </label>
                         <input
                           id={`${formId}-date`}
+                          name="date"
                           type="date"
                           required
                           min={todayStr()}
@@ -355,6 +393,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                         </label>
                         <select
                           id={`${formId}-time`}
+                          name="time"
                           required
                           value={values.time}
                           onChange={set("time")}
@@ -376,6 +415,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                       </label>
                       <input
                         id={`${formId}-party`}
+                        name="party"
                         type="number"
                         inputMode="numeric"
                         required
@@ -393,6 +433,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                       <label htmlFor={`${formId}-note`} className={labelCls}>{dict.fieldNote}</label>
                       <textarea
                         id={`${formId}-note`}
+                        name="note"
                         rows={3}
                         value={values.note}
                         onChange={set("note")}
@@ -405,13 +446,24 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                     {status === "error" && (
                       <div className="flex items-start gap-3 rounded-2xl border border-crimson/40 bg-crimson/10 p-4">
                         <Warning weight="fill" className="mt-0.5 h-5 w-5 shrink-0 text-crimson" />
-                        <div>
-                          <p className="text-sm font-semibold text-crimson">{dict.errorTitle}</p>
-                          <p className="text-sm text-white/60">{dict.errorSub}</p>
-                          <a href={`tel:${BRAND.phoneTel}`} className="mt-2 inline-flex items-center gap-1 font-[family-name:var(--font-space-mono)] text-sm font-bold text-loco-red">
-                            <Phone weight="fill" className="h-4 w-4" />
-                            {BRAND.phoneDisplay}
-                          </a>
+                        <div className="flex-1">
+                          {missingFields.length > 0 ? (
+                            <>
+                              <p className="text-sm font-semibold text-crimson">{dict.errorMissingTitle}</p>
+                              <p className="mt-0.5 text-sm text-white/85">
+                                {dict.errorMissingSub}: <strong className="text-loco-yellow">{missingFields.join(", ")}</strong>
+                              </p>
+                            </>
+                          ) : (
+                            <>
+                              <p className="text-sm font-semibold text-crimson">{dict.errorTitle}</p>
+                              <p className="text-sm text-white/60">{dict.errorSub}</p>
+                              <a href={`tel:${BRAND.phoneTel}`} className="mt-2 inline-flex items-center gap-1 font-[family-name:var(--font-space-mono)] text-sm font-bold text-loco-red">
+                                <Phone weight="fill" className="h-4 w-4" />
+                                {BRAND.phoneDisplay}
+                              </a>
+                            </>
+                          )}
                         </div>
                       </div>
                     )}

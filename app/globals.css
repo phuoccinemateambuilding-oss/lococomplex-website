@@ -50,6 +50,19 @@ body::before {
   color: white;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: #ffffff !important;
+  -webkit-box-shadow: 0 0 0 1000px rgba(15, 15, 21, 0.95) inset !important;
+  caret-color: #ffffff !important;
+  transition: background-color 600000s ease-in-out 0s;
+  font-weight: 500;
+}
+
 /* Landing page helpers */
 .hero-warm-glow {
   background: radial-gradient(ellipse 80% 60% at 50% 80%, rgba(226,58,44,0.12) 0%, #050508 70%);

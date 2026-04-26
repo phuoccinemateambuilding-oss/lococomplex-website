@@ -306,6 +306,8 @@
       "successReset": "Make another booking",
       "errorTitle": "Submission failed.",
       "errorSub": "Please call us directly:",
+      "errorMissingTitle": "Please fill in all required fields.",
+      "errorMissingSub": "Missing",
       "trustTitle": "Why book through this form?",
       "trust1": "Free reservation — no deposit required",
       "trust2": "Zalo confirmation within 15 minutes",
