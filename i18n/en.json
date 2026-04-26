@@ -117,10 +117,13 @@
       "close": "Close"
     },
     "hero": {
-      "eyebrow": "ENTERTAINMENT COMPLEX · DISTRICT 1, SAIGON",
+      "eyebrow": "NEWTRO ENTERTAINMENT COMPLEX · DISTRICT 1, SAIGON",
       "wordmarkAlt": "LOCO Complex interior",
+      "heading": "LOCO",
+      "subheading": "Complex",
       "h2": "BOOK YOUR TABLE",
       "tagline": "make impossible",
+      "desc": "A vibrant entertainment complex in the heart of District 1. Two floors, two music worlds — one limitless experience.",
       "intro": "NEWTRO entertainment complex in the heart of District 1. 2 club floors — Hip-hop & Heatroom (EDM, Top 40, House). Dining by BITES. Up to 300 guests.",
       "ctaBook": "Reserve Now",
       "ctaCall": "Call Now",
@@ -163,6 +166,10 @@
       "highlightBadge": "Popular",
       "capacityLabel": "Capacity",
       "ctaSelect": "Select this table",
+      "floor1Label": "Floor 1 — Neighborhood Sgn",
+      "floor1Sub": "Hip-hop Club · 5 table tiers",
+      "floor2Label": "Floor 2 — Heatroom",
+      "floor2Sub": "Mini Nightclub · EDM · Top 40 · House",
       "items": [
         {
           "key": "b-standard",

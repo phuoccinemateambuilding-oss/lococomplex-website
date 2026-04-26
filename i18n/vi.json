@@ -117,10 +117,13 @@
       "close": "Đóng"
     },
     "hero": {
-      "eyebrow": "ENTERTAINMENT COMPLEX · QUẬN 1, SÀI GÒN",
+      "eyebrow": "NEWTRO ENTERTAINMENT COMPLEX · QUẬN 1, SÀI GÒN",
       "wordmarkAlt": "Không gian LOCO Complex",
+      "heading": "LOCO",
+      "subheading": "Complex",
       "h2": "ĐẶT BÀN NGAY",
       "tagline": "make impossible",
+      "desc": "Không gian giải trí sang trọng & sôi động tại trung tâm Quận 1. Hai tầng, hai thế giới âm nhạc — một trải nghiệm không giới hạn.",
       "intro": "Khu phức hợp giải trí NEWTRO tại trung tâm Quận 1. 2 tầng club — Hip-hop & Heatroom (EDM, Top 40, House). F&B by BITES. Sức chứa 300 khách.",
       "ctaBook": "Giữ bàn ngay",
       "ctaCall": "Gọi ngay",
@@ -163,6 +166,10 @@
       "highlightBadge": "Phổ biến",
       "capacityLabel": "Sức chứa",
       "ctaSelect": "Chọn bàn này",
+      "floor1Label": "Tầng 1 — Neighborhood Sgn",
+      "floor1Sub": "Hip-hop Club · 5 hạng bàn",
+      "floor2Label": "Tầng 2 — Heatroom",
+      "floor2Sub": "Mini Nightclub · EDM · Top 40 · House",
       "items": [
         {
           "key": "b-standard",
