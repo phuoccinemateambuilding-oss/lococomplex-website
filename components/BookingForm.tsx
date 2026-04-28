@@ -3,6 +3,7 @@
 import { useState, useId } from "react";
 import { CheckCircle, Warning } from "@phosphor-icons/react/dist/ssr";
 import { site } from "@/lib/site";
+import { track } from "@/lib/gtag";
 
 interface BookingFormProps {
   locale?: "vi" | "en";
@@ -46,6 +47,7 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
     e.preventDefault();
     if (status === "submitting") return;
     setStatus("submitting");
+    track("form_submit", { cta_location: "booking_form" });
     try {
       const res = await fetch("/api/reserve", {
         method: "POST",
@@ -53,9 +55,19 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
         body: JSON.stringify({ ...values, locale }),
       });
       const data = await res.json().catch(() => ({ ok: false }));
-      setStatus(res.ok && data.ok ? "success" : "error");
+      const ok = res.ok && data.ok;
+      setStatus(ok ? "success" : "error");
+      if (ok) {
+        track("form_success", {
+          cta_location: "booking_form",
+          guests: Number(values.party) || 0,
+        });
+      } else {
+        track("form_error", { cta_location: "booking_form" });
+      }
     } catch {
       setStatus("error");
+      track("form_error", { cta_location: "booking_form" });
     }
   }
 
