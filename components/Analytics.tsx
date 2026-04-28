@@ -1,5 +1,5 @@
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "";
-const AW_ID = process.env.NEXT_PUBLIC_AW_ID || "";
+const GA_ID = (process.env.NEXT_PUBLIC_GA_ID || "").trim();
+const AW_ID = (process.env.NEXT_PUBLIC_AW_ID || "").trim();
 
 export function Analytics() {
   const ids = [GA_ID, AW_ID].filter(Boolean);
