@@ -14,6 +14,7 @@ import { BRAND } from "@/lib/brand";
 import { buildCalendarUrl } from "@/lib/calendarLink";
 import { ZaloIcon } from "./ZaloIcon";
 import { track } from "@/lib/gtag";
+import { FormSuccessModal } from "../FormSuccessModal";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -77,6 +78,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
   });
   const [submitted, setSubmitted] = useState<typeof values | null>(null);
   const [missingFields, setMissingFields] = useState<string[]>([]);
+  const [modalDismissed, setModalDismissed] = useState(false);
 
   const set = (k: keyof typeof values) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
     setValues((v) => ({ ...v, [k]: e.target.value }));
@@ -160,6 +162,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
     setValues({ name: "", phone: "", tier: "", date: "", time: "", party: "", note: "", bot_field: "" });
     setMissingFields([]);
     setSubmitted(null);
+    setModalDismissed(false);
   }
 
   const calendarUrl = submitted
@@ -171,6 +174,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
   const requiredMark = <span className="text-loco-red" aria-hidden="true">*</span>;
 
   return (
+    <>
     <section id="form" className="relative scroll-mt-20 overflow-hidden border-t border-loco-red/20 bg-midnight py-14 md:scroll-mt-24 md:py-20">
       {/* Radial accent backgrounds */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
@@ -539,5 +543,12 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
         </div>
       </div>
     </section>
+    <FormSuccessModal
+      open={status === "success" && !modalDismissed}
+      onClose={() => setModalDismissed(true)}
+      locale={locale}
+      intent="booking"
+    />
+    </>
   );
 }
