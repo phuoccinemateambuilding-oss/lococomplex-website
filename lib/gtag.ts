@@ -33,9 +33,11 @@ export function track(name: EventName, params: Record<string, unknown> = {}) {
   if (typeof window === "undefined") return;
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ event: name, ...params });
+  console.info("[ads] event", name, params);
   if (typeof window.gtag === "function") {
     window.gtag("event", name, params);
     if (name === "form_success") {
+      console.info("[ads] conversion form fired", { send_to: AW_FORM, value: VAL_FORM });
       window.gtag("event", "conversion", {
         send_to: AW_FORM,
         value: VAL_FORM,
@@ -43,6 +45,8 @@ export function track(name: EventName, params: Record<string, unknown> = {}) {
         ...params,
       });
     }
+  } else {
+    console.warn("[ads] window.gtag NOT a function — gtag.js chưa load hoặc bị block bởi ad-blocker");
   }
 }
 
@@ -68,10 +72,12 @@ export function reportCallConversion(navigateTo?: string) {
       currency: "VND",
       event_callback: callback,
     };
+    console.info("[ads] conversion tel fired", { send_to: AW_TEL, value: VAL_TEL });
     window.gtag("event", "conversion", params);
     window.setTimeout(callback, 1500);
     return false;
   }
+  console.warn("[ads] tel: window.gtag NOT available, fallback navigate");
   return true;
 }
 
@@ -90,9 +96,11 @@ export function reportZaloConversion(navigateTo?: string) {
       currency: "VND",
       event_callback: callback,
     };
+    console.info("[ads] conversion zalo fired", { send_to: AW_ZALO, value: VAL_ZALO });
     window.gtag("event", "conversion", params);
     window.setTimeout(callback, 1500);
     return false;
   }
+  console.warn("[ads] zalo: window.gtag NOT available, fallback navigate");
   return true;
 }
