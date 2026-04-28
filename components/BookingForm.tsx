@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useId } from "react";
-import { CheckCircle, Warning } from "@phosphor-icons/react/dist/ssr";
+import { Warning } from "@phosphor-icons/react/dist/ssr";
 import { site } from "@/lib/site";
 import { track } from "@/lib/gtag";
+import { FormSuccessModal } from "./FormSuccessModal";
 
 interface BookingFormProps {
   locale?: "vi" | "en";
@@ -74,32 +75,13 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
   const inputClass =
     "w-full px-4 py-3 rounded-xl border-2 border-ink/10 bg-white focus:border-loco-red focus:outline-none transition-colors text-base min-h-[48px]";
 
-  if (status === "success") {
-    return (
-      <div className="bg-teal/10 border-2 border-teal rounded-2xl p-8 text-center space-y-3">
-        <CheckCircle size={48} weight="fill" className="text-teal mx-auto" />
-        <p className="font-bold text-xl text-teal">
-          {t.formSuccess ?? (locale === "vi" ? "Đã ghi nhận!" : "Booking received!")}
-        </p>
-        <p className="text-ink/70">
-          {locale === "vi"
-            ? "Chúng tôi sẽ xác nhận qua Zalo trong 15 phút."
-            : "We'll confirm via Zalo within 15 minutes."}
-        </p>
-        <button
-          onClick={() => {
-            setStatus("idle");
-            setValues({ name: "", phone: "", date: "", time: "", party: "2", note: "", bot_field: "" });
-          }}
-          className="text-sm underline text-ink/50 hover:text-ink transition-colors"
-        >
-          {locale === "vi" ? "Đặt bàn khác" : "Book another table"}
-        </button>
-      </div>
-    );
+  function handleClose() {
+    setStatus("idle");
+    setValues({ name: "", phone: "", date: "", time: "", party: "2", note: "", bot_field: "" });
   }
 
   return (
+    <>
     <form onSubmit={handleSubmit} className="space-y-5" noValidate>
       {/* Honeypot — ẩn với user, bot sẽ tự điền */}
       <input
@@ -224,5 +206,12 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
           : t.formSubmit}
       </button>
     </form>
+    <FormSuccessModal
+      open={status === "success"}
+      onClose={handleClose}
+      locale={locale}
+      intent="booking"
+    />
+    </>
   );
 }
