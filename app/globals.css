@@ -78,3 +78,14 @@ select:-webkit-autofill {
   font-family: var(--font-display-vn);
   font-weight: 800;
 }
+
+/* Section heading utilities */
+.gold-divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-loco-yellow), transparent);
+  border-radius: 999px;
+}
+
+.gold-text {
+  color: var(--color-loco-yellow);
+}

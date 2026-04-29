@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import { X, ArrowLeft, ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { motion, AnimatePresence } from "framer-motion";
@@ -26,6 +26,17 @@ export function LandingGallery({ dict }: { dict: Dgallery }) {
   }, []);
 
   const close = useCallback(() => setLightbox(null), []);
+
+  const touchStartX = useRef<number | null>(null);
+  const onTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  }, []);
+  const onTouchEnd = useCallback((e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(dx) > 40) dx < 0 ? next() : prev();
+    touchStartX.current = null;
+  }, [next, prev]);
 
   useEffect(() => {
     if (lightbox == null) {
@@ -56,9 +67,13 @@ export function LandingGallery({ dict }: { dict: Dgallery }) {
           transition={{ duration: 0.5 }}
           className="mb-10 text-center"
         >
+          <span className="font-[family-name:var(--font-space-mono)] text-[10px] uppercase tracking-[0.3em] text-loco-yellow font-semibold block mb-2">
+            LOCO Complex
+          </span>
           <h2 className="font-display-vn text-3xl leading-[1.15] pb-[0.08em] heading-uppercase text-cream md:text-4xl lg:text-5xl">
             <HighlightBrand text={dict.h2} />
           </h2>
+          <div className="gold-divider max-w-[100px] mx-auto mt-4" />
           <p className="mt-3 text-sm text-white/70 md:text-base">{dict.sub}</p>
         </motion.div>
 
@@ -87,30 +102,24 @@ export function LandingGallery({ dict }: { dict: Dgallery }) {
           ))}
         </div>
 
-        {/* Mobile horizontal snap */}
-        <div className="relative -mx-5 md:hidden">
-          <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-4 [scrollbar-width:none]">
-            {GALLERY_IMAGES.map((img, i) => (
-              <button
-                key={img.src}
-                type="button"
-                onClick={() => setLightbox(i)}
-                className="relative min-w-[78%] snap-start overflow-hidden rounded-2xl"
-                style={{ aspectRatio: "4/3" }}
-              >
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  sizes="78vw"
-                  className="object-cover"
-                />
-              </button>
-            ))}
-          </div>
-          <p className="mt-3 text-center font-[family-name:var(--font-space-mono)] text-xs text-white/60">
-            {dict.swipeHint}
-          </p>
+        {/* Mobile 1-col full-width stack */}
+        <div className="flex flex-col gap-3 md:hidden">
+          {GALLERY_IMAGES.map((img, i) => (
+            <motion.button
+              key={img.src}
+              type="button"
+              onClick={() => setLightbox(i)}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-20px" }}
+              transition={{ delay: Math.min(i * 0.04, 0.2), duration: 0.45 }}
+              className="relative w-full overflow-hidden rounded-2xl border border-white/10 bg-midnight-deep/40 active:opacity-85 transition-opacity"
+              style={{ aspectRatio: "4/3" }}
+              aria-label={img.alt}
+            >
+              <Image src={img.src} alt={img.alt} fill sizes="100vw" className="object-cover" />
+            </motion.button>
+          ))}
         </div>
       </div>
 
@@ -123,6 +132,8 @@ export function LandingGallery({ dict }: { dict: Dgallery }) {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[70] flex items-center justify-center bg-midnight-deep/95 backdrop-blur-md"
             onClick={close}
+            onTouchStart={onTouchStart}
+            onTouchEnd={onTouchEnd}
           >
             <button
               type="button"
@@ -136,17 +147,17 @@ export function LandingGallery({ dict }: { dict: Dgallery }) {
               type="button"
               onClick={(e) => { e.stopPropagation(); prev(); }}
               aria-label="Trước"
-              className="absolute left-4 top-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white/70 transition hover:border-white hover:text-white"
+              className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 flex h-9 w-9 md:h-11 md:w-11 items-center justify-center rounded-full border border-white/20 text-white/70 transition hover:border-white hover:text-white p-1.5 md:p-2"
             >
-              <ArrowLeft weight="bold" className="h-5 w-5" />
+              <ArrowLeft weight="bold" className="h-4 w-4 md:h-5 md:w-5" />
             </button>
             <button
               type="button"
               onClick={(e) => { e.stopPropagation(); next(); }}
               aria-label="Tiếp"
-              className="absolute right-4 top-1/2 -translate-y-1/2 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white/70 transition hover:border-white hover:text-white"
+              className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 flex h-9 w-9 md:h-11 md:w-11 items-center justify-center rounded-full border border-white/20 text-white/70 transition hover:border-white hover:text-white p-1.5 md:p-2"
             >
-              <ArrowRight weight="bold" className="h-5 w-5" />
+              <ArrowRight weight="bold" className="h-4 w-4 md:h-5 md:w-5" />
             </button>
             <motion.div
               key={lightbox}

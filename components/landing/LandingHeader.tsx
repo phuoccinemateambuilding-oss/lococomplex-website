@@ -88,7 +88,7 @@ export function LandingHeader({ dict }: { dict: Dnav }) {
               className="hidden h-11 items-center gap-2 rounded-full border border-loco-red/40 bg-midnight/40 px-4 font-[family-name:var(--font-space-mono)] text-xs font-bold text-loco-red backdrop-blur transition hover:border-loco-red hover:bg-loco-red/10 md:inline-flex"
             >
               <Phone weight="fill" className="h-4 w-4" />
-              {BRAND.phoneDisplay}
+              Gọi Hotline
             </a>
             <button
               type="button"
@@ -155,7 +155,7 @@ export function LandingHeader({ dict }: { dict: Dnav }) {
             className="mb-3 flex h-14 w-full items-center justify-center gap-2 rounded-full border border-loco-red/50 bg-midnight/40 font-[family-name:var(--font-space-mono)] text-sm font-bold text-loco-red transition hover:bg-loco-red/10"
           >
             <Phone weight="fill" className="h-5 w-5" />
-            {BRAND.phoneDisplay}
+            Gọi Hotline
           </a>
           <button
             type="button"

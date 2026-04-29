@@ -194,25 +194,6 @@ export default function ContactPage() {
           </div>
         </section>
 
-        {/* Google Maps */}
-        <section className="bg-ink pb-24">
-          <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-            <Reveal>
-              <div className="overflow-hidden rounded-3xl ring-1 ring-white/10">
-                <iframe
-                  src={site.mapsEmbed}
-                  width="100%"
-                  height="350"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="LOCO Complex - Google Maps"
-                />
-              </div>
-            </Reveal>
-          </div>
-        </section>
       </main>
       <Footer locale={locale} t={{ footer: t.footer, nav: t.nav }} />
       <FloatingContacts />
