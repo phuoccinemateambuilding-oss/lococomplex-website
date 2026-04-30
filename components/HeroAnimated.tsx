@@ -19,17 +19,18 @@ export function FadeSlideUp({ children, delay = 0, className = "" }: { children:
 export function FloatingImage({ src, alt, className, delay = 0 }: { src: string; alt: string; className: string; delay?: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.8, rotate: 0 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ type: "spring", stiffness: 60, damping: 15, delay }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6, delay }}
       className={className}
     >
       <motion.div
+        className="w-full h-full"
         animate={{ y: [0, -8, 0] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: delay * 2 }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={src} alt={alt} className="w-full h-full object-cover" />
+        <img src={src} alt={alt} width="360" height="420" className="w-full h-full object-cover" loading="lazy" decoding="async" />
       </motion.div>
     </motion.div>
   );
