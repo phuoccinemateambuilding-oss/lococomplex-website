@@ -68,6 +68,29 @@ function todayStr() {
   return new Date().toISOString().split("T")[0];
 }
 
+function Field({ label, required, helper, icon, children }: {
+  label: string; required?: boolean; helper?: string; icon?: React.ReactNode; children: React.ReactNode;
+}) {
+  return (
+    <label className="block">
+      <div className="mb-2 flex items-center justify-between">
+        <span className="font-[family-name:var(--font-space-mono)] text-[0.65rem] tracking-[0.25em] uppercase text-loco-yellow/90 font-bold">
+          {label}{required && <span className="text-loco-red ml-1">*</span>}
+        </span>
+        {helper && <span className="font-[family-name:var(--font-space-mono)] text-[0.62rem] text-white/55">{helper}</span>}
+      </div>
+      <div className="relative">
+        {icon && (
+          <span className="absolute left-3.5 top-3.5 text-loco-yellow pointer-events-none z-10 drop-shadow-[0_0_4px_rgba(245,195,48,0.35)]">
+            {icon}
+          </span>
+        )}
+        {children}
+      </div>
+    </label>
+  );
+}
+
 export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: "vi" | "en" }) {
   const formId = useId();
   const [status, setStatus] = useState<Status>("idle");
@@ -157,29 +180,6 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
 
   const inputCls = "block w-full min-w-0 min-h-[48px] appearance-none rounded-2xl border-2 border-white/20 bg-midnight/70 px-5 py-3.5 text-[16px] font-medium text-white placeholder:text-white/55 focus:border-loco-red focus:outline-none focus:ring-2 focus:ring-loco-red/40 hover:border-white/35 transition [color-scheme:dark]";
   const inputClsIcon = "block w-full min-w-0 min-h-[48px] appearance-none rounded-2xl border-2 border-white/20 bg-midnight/70 pl-11 pr-4 py-3.5 text-[16px] font-medium text-white placeholder:text-white/55 focus:border-loco-red focus:outline-none focus:ring-2 focus:ring-loco-red/40 hover:border-white/35 transition [color-scheme:dark]";
-
-  function Field({ label, required, helper, icon, children }: {
-    label: string; required?: boolean; helper?: string; icon?: React.ReactNode; children: React.ReactNode;
-  }) {
-    return (
-      <label className="block">
-        <div className="mb-2 flex items-center justify-between">
-          <span className="font-[family-name:var(--font-space-mono)] text-[0.65rem] tracking-[0.25em] uppercase text-loco-yellow/90 font-bold">
-            {label}{required && <span className="text-loco-red ml-1">*</span>}
-          </span>
-          {helper && <span className="font-[family-name:var(--font-space-mono)] text-[0.62rem] text-white/55">{helper}</span>}
-        </div>
-        <div className="relative">
-          {icon && (
-            <span className="absolute left-3.5 top-3.5 text-loco-yellow pointer-events-none z-10 drop-shadow-[0_0_4px_rgba(245,195,48,0.35)]">
-              {icon}
-            </span>
-          )}
-          {children}
-        </div>
-      </label>
-    );
-  }
 
   return (
     <>
