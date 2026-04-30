@@ -9,6 +9,7 @@ type Dnav = {
   home: string;
   about: string;
   gallery: string;
+  menu: string;
   form: string;
   faq: string;
   menuLabel: string;
@@ -21,6 +22,7 @@ const NAV_ITEMS: NavItem[] = [
   { key: "home", hash: "top" },
   { key: "about", hash: "about" },
   { key: "gallery", hash: "gallery" },
+  { key: "menu", hash: "menu" },
   { key: "form", hash: "form" },
   { key: "faq", hash: "faq" },
 ];
