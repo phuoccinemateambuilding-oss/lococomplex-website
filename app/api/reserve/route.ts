@@ -106,16 +106,11 @@ async function appendToSheet(d: Payload) {
   });
   const sheets = google.sheets({ version: "v4", auth });
 
-  const existing = await sheets.spreadsheets.values.get({
+  await sheets.spreadsheets.values.append({
     spreadsheetId: SHEET_ID,
-    range: "Booking!C:C",
-  });
-  const nextRow = (existing.data.values?.length || 1) + 1;
-
-  await sheets.spreadsheets.values.update({
-    spreadsheetId: SHEET_ID,
-    range: `Booking!B${nextRow}:K${nextRow}`,
+    range: "Booking!B:K",
     valueInputOption: "USER_ENTERED",
+    insertDataOption: "INSERT_ROWS",
     requestBody: {
       values: [[
         monthStr,
