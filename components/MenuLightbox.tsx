@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState, useCallback, useRef } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { CaretLeft, CaretRight, X } from "@phosphor-icons/react/dist/ssr";
+import { buildSrcSet, thumbSrc } from "@/lib/srcset";
 
 type Slide = { src: string; alt: string };
 
@@ -127,13 +127,14 @@ export function MenuLightbox({ slides, open, initialIndex = 0, onClose }: Props)
                 transition={{ duration: 0.25, ease: "easeOut" }}
                 className="relative h-full w-full"
               >
-                <Image
-                  src={slides[index].src}
-                  alt={slides[index].alt}
-                  fill
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={thumbSrc(slides[index].src)}
+                  srcSet={buildSrcSet(slides[index].src)}
                   sizes="100vw"
-                  className="object-contain"
-                  priority
+                  alt={slides[index].alt}
+                  decoding="async"
+                  className="absolute inset-0 h-full w-full object-contain"
                 />
               </motion.div>
             </AnimatePresence>

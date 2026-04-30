@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import Image from "next/image";
+import { buildSrcSet, thumbSrc } from "@/lib/srcset";
 import { X, ArrowLeft, ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { motion, AnimatePresence } from "framer-motion";
 import { HighlightBrand } from "./HighlightBrand";
@@ -90,12 +90,15 @@ export function LandingGallery({ dict }: { dict: Dgallery }) {
               transition={{ duration: 0.4, delay: (i % 12) * 0.03 }}
               className="group relative aspect-[4/3] overflow-hidden rounded-2xl"
             >
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={thumbSrc(img.src)}
+                srcSet={buildSrcSet(img.src)}
                 sizes="(min-width: 1024px) 25vw, 33vw"
-                className="object-cover transition duration-500 group-hover:scale-105"
+                alt={img.alt}
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-midnight-deep/0 transition duration-300 group-hover:bg-midnight-deep/30" />
             </motion.button>
@@ -117,7 +120,16 @@ export function LandingGallery({ dict }: { dict: Dgallery }) {
               style={{ aspectRatio: "4/3" }}
               aria-label={img.alt}
             >
-              <Image src={img.src} alt={img.alt} fill sizes="100vw" className="object-cover" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={thumbSrc(img.src)}
+                srcSet={buildSrcSet(img.src)}
+                sizes="100vw"
+                alt={img.alt}
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
             </motion.button>
           ))}
         </div>
@@ -168,13 +180,14 @@ export function LandingGallery({ dict }: { dict: Dgallery }) {
               className="relative h-[80vh] w-[90vw] max-w-5xl overflow-hidden rounded-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={GALLERY_IMAGES[lightbox].src}
-                alt={GALLERY_IMAGES[lightbox].alt}
-                fill
+                srcSet={buildSrcSet(GALLERY_IMAGES[lightbox].src)}
                 sizes="90vw"
-                className="object-contain"
-                priority
+                alt={GALLERY_IMAGES[lightbox].alt}
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-contain"
               />
             </motion.div>
             <p className="absolute bottom-4 font-[family-name:var(--font-space-mono)] text-xs text-white/65">

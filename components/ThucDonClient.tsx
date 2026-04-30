@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowLeft, CalendarPlus, MagnifyingGlassPlus, Sparkle, Gift } from "@phosphor-icons/react/dist/ssr";
 import { MenuLightbox } from "./MenuLightbox";
+import { buildSrcSet, thumbSrc } from "@/lib/srcset";
 
 const COVER_SRC = "/assets/loco/menu/menu-cover.jpg";
 const COVER_W = 1489;
@@ -64,13 +64,15 @@ export function ThucDonClient() {
           className="group relative mt-8 block w-full max-w-[520px] overflow-hidden rounded-[28px] border border-loco-yellow/25 bg-midnight shadow-[0_24px_70px_-20px_rgba(245,195,48,0.35)] transition-transform hover:-translate-y-1 active:translate-y-0"
         >
           <div className="relative w-full" style={{ aspectRatio: `${COVER_W} / ${COVER_H}` }}>
-            <Image
-              src={COVER_SRC}
-              alt="Bìa thực đơn LOCO Complex — make impossible"
-              fill
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={thumbSrc(COVER_SRC, COVER_W)}
+              srcSet={buildSrcSet(COVER_SRC, COVER_W)}
               sizes="(max-width: 768px) 92vw, 520px"
-              className="object-contain"
-              priority
+              alt="Bìa thực đơn LOCO Complex — make impossible"
+              fetchPriority="high"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-contain"
             />
           </div>
           <span className="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-center gap-2 bg-gradient-to-t from-black/85 via-black/40 to-transparent px-4 py-5 text-[11px] font-bold uppercase tracking-[0.32em] text-loco-yellow opacity-90 transition-opacity group-hover:opacity-100 md:text-xs">

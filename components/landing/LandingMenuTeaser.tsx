@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { BookOpen, ArrowRight } from "@phosphor-icons/react/dist/ssr";
+import { buildSrcSet, thumbSrc } from "@/lib/srcset";
 
 export function LandingMenuTeaser() {
   return (
@@ -37,13 +37,15 @@ export function LandingMenuTeaser() {
           className="relative mx-auto max-w-sm md:max-w-md overflow-hidden rounded-3xl border border-loco-yellow/20 bg-midnight-deep shadow-[0_20px_60px_-15px_rgba(245,195,48,0.15)]"
         >
           <div className="relative aspect-[858/922]">
-            <Image
-              src="/assets/loco/menu/menu-01.webp"
-              alt="Thực đơn LOCO Complex — make impossible"
-              fill
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={thumbSrc("/assets/loco/menu/menu-01.webp")}
+              srcSet={buildSrcSet("/assets/loco/menu/menu-01.webp", 858)}
               sizes="(max-width: 768px) 90vw, 480px"
-              className="object-contain"
-              priority
+              alt="Thực đơn LOCO Complex — make impossible"
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-contain"
             />
           </div>
         </motion.div>

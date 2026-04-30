@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
+import { buildSrcSet, thumbSrc } from "@/lib/srcset";
 
 export function FadeSlideUp({ children, delay = 0, className = "" }: { children: ReactNode; delay?: number; className?: string }) {
   return (
@@ -30,7 +31,17 @@ export function FloatingImage({ src, alt, className, delay = 0 }: { src: string;
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: delay * 2 }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={src} alt={alt} width="360" height="420" className="w-full h-full object-cover" loading="lazy" decoding="async" />
+        <img
+          src={thumbSrc(src)}
+          srcSet={buildSrcSet(src)}
+          sizes="(min-width: 1024px) 360px, 0px"
+          alt={alt}
+          width="360"
+          height="420"
+          className="w-full h-full object-cover"
+          loading="lazy"
+          decoding="async"
+        />
       </motion.div>
     </motion.div>
   );
