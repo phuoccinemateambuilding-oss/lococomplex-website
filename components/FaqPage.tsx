@@ -184,6 +184,8 @@ export function FaqPage({ locale }: { locale: Locale }) {
                   </a>
                   <a
                     href={site.zaloUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 font-bold text-sm text-white transition hover:border-[#F5C330] hover:text-[#F5C330]"
                   >
                     Zalo

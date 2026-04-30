@@ -50,57 +50,38 @@ export function track(name: EventName, params: Record<string, unknown> = {}) {
   }
 }
 
-type ConversionCallbackParams = {
+type ConversionParams = {
   send_to: string;
   value: number;
   currency: "VND";
-  event_callback?: () => void;
 };
 
-export function reportCallConversion(navigateTo?: string) {
-  if (typeof window === "undefined") return true;
-  let navigated = false;
-  const callback = () => {
-    if (navigated) return;
-    navigated = true;
-    if (navigateTo) window.location.href = navigateTo;
-  };
-  if (typeof window.gtag === "function") {
-    const params: ConversionCallbackParams = {
-      send_to: AW_TEL,
-      value: VAL_TEL,
-      currency: "VND",
-      event_callback: callback,
-    };
-    console.info("[ads] conversion tel fired", { send_to: AW_TEL, value: VAL_TEL });
-    window.gtag("event", "conversion", params);
-    window.setTimeout(callback, 1500);
-    return false;
+export function reportCallConversion() {
+  if (typeof window === "undefined") return;
+  if (typeof window.gtag !== "function") {
+    console.warn("[ads] tel: window.gtag NOT available — chỉ fire dataLayer");
+    return;
   }
-  console.warn("[ads] tel: window.gtag NOT available, fallback navigate");
-  return true;
+  const params: ConversionParams = {
+    send_to: AW_TEL,
+    value: VAL_TEL,
+    currency: "VND",
+  };
+  console.info("[ads] conversion tel fired", { send_to: AW_TEL, value: VAL_TEL });
+  window.gtag("event", "conversion", params);
 }
 
-export function reportZaloConversion(navigateTo?: string) {
-  if (typeof window === "undefined") return true;
-  let navigated = false;
-  const callback = () => {
-    if (navigated) return;
-    navigated = true;
-    if (navigateTo) window.location.href = navigateTo;
-  };
-  if (typeof window.gtag === "function") {
-    const params: ConversionCallbackParams = {
-      send_to: AW_ZALO,
-      value: VAL_ZALO,
-      currency: "VND",
-      event_callback: callback,
-    };
-    console.info("[ads] conversion zalo fired", { send_to: AW_ZALO, value: VAL_ZALO });
-    window.gtag("event", "conversion", params);
-    window.setTimeout(callback, 1500);
-    return false;
+export function reportZaloConversion() {
+  if (typeof window === "undefined") return;
+  if (typeof window.gtag !== "function") {
+    console.warn("[ads] zalo: window.gtag NOT available — chỉ fire dataLayer");
+    return;
   }
-  console.warn("[ads] zalo: window.gtag NOT available, fallback navigate");
-  return true;
+  const params: ConversionParams = {
+    send_to: AW_ZALO,
+    value: VAL_ZALO,
+    currency: "VND",
+  };
+  console.info("[ads] conversion zalo fired", { send_to: AW_ZALO, value: VAL_ZALO });
+  window.gtag("event", "conversion", params);
 }

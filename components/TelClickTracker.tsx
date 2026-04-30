@@ -19,12 +19,7 @@ export function TelClickTracker() {
         "tel_click";
 
       track("tel_click", { cta_location: ctaLocation, href });
-
-      if (e.defaultPrevented) return;
-      const proceed = reportCallConversion(href);
-      if (!proceed) {
-        e.preventDefault();
-      }
+      reportCallConversion();
     }
 
     document.addEventListener("click", onClick);

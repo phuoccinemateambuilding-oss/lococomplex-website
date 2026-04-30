@@ -21,26 +21,7 @@ export function ZaloClickTracker() {
         "zalo_click";
 
       track("zalo_click", { cta_location: ctaLocation, href });
-
-      if (e.defaultPrevented) return;
-
-      const target_attr = (anchor.getAttribute("target") || "").toLowerCase();
-      const opensNewTab =
-        target_attr === "_blank" ||
-        e.metaKey ||
-        e.ctrlKey ||
-        e.shiftKey ||
-        e.button !== 0;
-
-      if (opensNewTab) {
-        reportZaloConversion();
-        return;
-      }
-
-      const proceed = reportZaloConversion(href);
-      if (!proceed) {
-        e.preventDefault();
-      }
+      reportZaloConversion();
     }
 
     document.addEventListener("click", onClick);
