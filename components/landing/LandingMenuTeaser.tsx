@@ -56,7 +56,7 @@ export function LandingMenuTeaser() {
           className="mt-8 text-center"
         >
           <Link
-            href="/menu"
+            href="/thuc-don"
             className="group inline-flex items-center gap-3 rounded-full bg-loco-yellow px-8 py-3.5 text-xs uppercase tracking-[0.28em] text-midnight font-bold hover:bg-loco-yellow/85 active:translate-y-[1px] transition-all"
           >
             <BookOpen size={16} weight="fill" />
