@@ -96,7 +96,7 @@ export function ThucDonClient() {
             <span className="text-[10px] font-bold uppercase tracking-[0.3em]">·</span>
             <span className="h-px w-10 bg-loco-yellow/40" />
           </div>
-          <p className="font-display-vn text-[12.5px] font-semibold leading-[1.55] text-cream sm:text-base md:text-lg">
+          <p className="font-display-vn text-[12.5px] font-bold leading-[1.55] text-cream sm:text-base md:text-lg">
             <Gift size={14} weight="fill" className="mr-1.5 inline-block align-[-2px] text-hot-pink" />
             <span className="whitespace-nowrap">Để nhận ưu đãi đặt trước trên tổng Bill</span>
           </p>

@@ -1,35 +1,50 @@
 "use client";
 
-import { motion } from "framer-motion";
-import type { ReactNode } from "react";
+import type { ReactNode, CSSProperties } from "react";
 import { buildSrcSet, thumbSrc } from "@/lib/srcset";
 
-export function FadeSlideUp({ children, delay = 0, className = "" }: { children: ReactNode; delay?: number; className?: string }) {
+export function FadeSlideUp({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: ReactNode;
+  delay?: number;
+  className?: string;
+}) {
+  const style: CSSProperties = {
+    animation: "loco-fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both",
+    animationDelay: `${delay}s`,
+  };
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ type: "spring", stiffness: 80, damping: 20, delay }}
-      className={className}
-    >
+    <div className={className} style={style}>
       {children}
-    </motion.div>
+    </div>
   );
 }
 
-export function FloatingImage({ src, alt, className, delay = 0 }: { src: string; alt: string; className: string; delay?: number }) {
+export function FloatingImage({
+  src,
+  alt,
+  className,
+  delay = 0,
+}: {
+  src: string;
+  alt: string;
+  className: string;
+  delay?: number;
+}) {
+  const wrapStyle: CSSProperties = {
+    animation: "loco-fade-in 0.6s ease-out both",
+    animationDelay: `${delay}s`,
+  };
+  const innerStyle: CSSProperties = {
+    animation: "loco-float 4s ease-in-out infinite",
+    animationDelay: `${delay * 2}s`,
+  };
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6, delay }}
-      className={className}
-    >
-      <motion.div
-        className="w-full h-full"
-        animate={{ y: [0, -8, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: delay * 2 }}
-      >
+    <div className={className} style={wrapStyle}>
+      <div className="w-full h-full" style={innerStyle}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={thumbSrc(src)}
@@ -42,19 +57,11 @@ export function FloatingImage({ src, alt, className, delay = 0 }: { src: string;
           loading="lazy"
           decoding="async"
         />
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 
 export function PulseText({ children, className }: { children: ReactNode; className: string }) {
-  return (
-    <motion.div
-      animate={{ scale: [1, 1.02, 1] }}
-      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
+  return <div className={className}>{children}</div>;
 }

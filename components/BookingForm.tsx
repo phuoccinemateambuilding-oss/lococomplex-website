@@ -183,7 +183,7 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
         <div className="flex items-start gap-3 bg-red-50 border-2 border-loco-red/40 rounded-xl p-4 text-sm">
           <Warning size={20} weight="fill" className="text-loco-red mt-0.5 shrink-0" />
           <div>
-            <p className="font-semibold text-loco-red">
+            <p className="font-bold text-loco-red">
               {t.formError ?? (locale === "vi" ? "Gửi thất bại." : "Submission failed.")}
             </p>
             <p className="text-ink/70 mt-0.5">
@@ -199,7 +199,7 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="w-full bg-loco-red text-white font-semibold py-4 rounded-full text-lg hover:bg-loco-red/90 active:scale-[0.98] transition-all min-h-[48px] disabled:opacity-60 disabled:cursor-not-allowed"
+        className="w-full bg-loco-red text-white font-bold py-4 rounded-full text-lg hover:bg-loco-red/90 active:scale-[0.98] transition-all min-h-[48px] disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {status === "submitting"
           ? (locale === "vi" ? "Đang gửi…" : "Sending…")

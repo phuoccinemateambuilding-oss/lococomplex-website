@@ -27,7 +27,7 @@ export function SocialProof({ dict }: { dict: Dsocial }) {
           transition={{ duration: 0.5 }}
           className="mb-12 text-center"
         >
-          <span className="font-[family-name:var(--font-space-mono)] text-[10px] uppercase tracking-[0.3em] text-loco-yellow font-semibold block mb-2">
+          <span className="font-[family-name:var(--font-space-mono)] text-[10px] uppercase tracking-[0.3em] text-loco-yellow font-bold block mb-2">
             Khách nói gì
           </span>
           <h2 className="font-display-vn text-3xl leading-[1.15] pb-[0.08em] heading-uppercase text-cream md:text-4xl lg:text-5xl">

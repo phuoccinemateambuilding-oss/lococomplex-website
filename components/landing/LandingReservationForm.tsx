@@ -206,7 +206,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
           <div className="mt-5 space-y-1">
             <p className="text-base md:text-lg text-cream/90">{dict.h2Sub}</p>
             <p className="text-cream/30 select-none" aria-hidden="true">—</p>
-            <p className="text-base md:text-lg text-loco-yellow font-semibold whitespace-nowrap">
+            <p className="text-base md:text-lg text-loco-yellow font-bold whitespace-nowrap">
               Để nhận ưu đãi giảm giá tổng bill
             </p>
           </div>
@@ -426,14 +426,14 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                         <div className="flex-1">
                           {missingFields.length > 0 ? (
                             <>
-                              <p className="text-sm font-semibold text-crimson">{dict.errorMissingTitle}</p>
+                              <p className="text-sm font-bold text-crimson">{dict.errorMissingTitle}</p>
                               <p className="mt-0.5 text-sm text-white/85">
                                 {dict.errorMissingSub}: <strong className="text-loco-yellow">{missingFields.join(", ")}</strong>
                               </p>
                             </>
                           ) : (
                             <>
-                              <p className="text-sm font-semibold text-crimson">{dict.errorTitle}</p>
+                              <p className="text-sm font-bold text-crimson">{dict.errorTitle}</p>
                               <p className="text-sm text-white/60">{dict.errorSub}</p>
                               <a href={`tel:${BRAND.phoneTel}`} className="mt-2 inline-flex items-center gap-1 font-[family-name:var(--font-space-mono)] text-sm font-bold text-loco-red">
                                 <Phone weight="fill" className="h-4 w-4" />

@@ -55,9 +55,9 @@ export function LandingHeader({ dict }: { dict: Dnav }) {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
           scrolled
-            ? "border-b border-loco-red/20 bg-midnight-deep/90 backdrop-blur-md"
+            ? "border-b border-loco-red/20 bg-midnight-deep/95"
             : "bg-gradient-to-b from-midnight-deep/70 to-transparent"
         }`}
       >

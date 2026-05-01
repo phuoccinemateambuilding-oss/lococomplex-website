@@ -151,7 +151,7 @@ export function FaqPage({ locale }: { locale: Locale }) {
                       className="w-full flex items-center justify-between gap-6 px-6 py-5 text-left"
                       aria-expanded={openIdx === i}
                     >
-                      <h2 className="font-semibold text-white text-base md:text-lg">{item.q}</h2>
+                      <h2 className="font-bold text-white text-base md:text-lg">{item.q}</h2>
                       <span
                         className={`flex-none text-[#E23A2C] transition-transform duration-300 ${openIdx === i ? "rotate-45" : ""}`}
                       >

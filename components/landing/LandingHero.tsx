@@ -1,11 +1,12 @@
 "use client";
 
 import { Phone, ArrowDown, MapPin, Clock } from "@phosphor-icons/react/dist/ssr";
-import { FadeSlideUp, FloatingImage, PulseText } from "@/components/HeroAnimated";
+import { FadeSlideUp, FloatingImage } from "@/components/HeroAnimated";
 import GeometricShape from "@/components/GeometricShape";
 import StickerTag from "@/components/StickerTag";
 import { BRAND } from "@/lib/brand";
 import { track } from "@/lib/gtag";
+import { thumbSrc } from "@/lib/srcset";
 
 type Dhero = {
   eyebrow: string;
@@ -24,18 +25,14 @@ type Dhero = {
   addressLabel: string;
 };
 
-// Background grid uses 10 PASS images only (audited safe — no alcohol brand, no nudity)
+// Desktop-only BG grid (5 cols × 1 row = 5 PASS images, lazy + 800w webp).
+// Mobile dùng CSS gradient + GeometricShape — zero ảnh BG để bảo vệ LCP.
 const BG_GRID = [
   "/assets/loco/gallery/gallery-31.jpg",
-  "/assets/loco/gallery/gallery-30.jpg",
   "/assets/loco/space/space-06.jpg",
-  "/assets/loco/gallery/gallery-04.jpg",
   "/assets/loco/gallery/gallery-25.jpg",
-  "/assets/loco/space/space-03.jpg",
   "/assets/loco/gallery/gallery-32.jpg",
-  "/assets/loco/gallery/gallery-26.jpg",
   "/assets/loco/space/space-05.jpg",
-  "/assets/loco/gallery/gallery-33.jpg",
 ];
 
 const FLOAT_TOP_RIGHT = "/assets/loco/space/space-06.jpg";
@@ -52,12 +49,28 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
       id="top"
       className="relative min-h-[100dvh] overflow-hidden bg-ink scroll-mt-0"
     >
-      {/* Background image grid — faded, only PASS images */}
-      <div className="absolute inset-0 grid grid-cols-3 md:grid-cols-5 gap-1 opacity-15">
+      {/* Mobile BG — pure CSS gradient + geometric blob (zero image, protect LCP) */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 md:hidden bg-[radial-gradient(ellipse_at_top_right,_rgba(233,30,140,0.22)_0%,_transparent_55%),radial-gradient(ellipse_at_bottom_left,_rgba(74,144,217,0.18)_0%,_transparent_60%),linear-gradient(to_bottom,_#0A0A0A_0%,_#1a0a08_100%)]"
+      />
+
+      {/* Desktop BG grid — 5 PASS images, lazy + 800w webp, opacity 0.15 */}
+      <div className="hidden md:grid absolute inset-0 grid-cols-5 gap-1 opacity-15">
         {BG_GRID.map((src, i) => (
           <div key={i} className="overflow-hidden">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={src} alt="" className="w-full h-full object-cover" aria-hidden="true" />
+            <img
+              src={thumbSrc(src, 800)}
+              alt=""
+              className="w-full h-full object-cover"
+              aria-hidden="true"
+              loading="lazy"
+              decoding="async"
+              fetchPriority="low"
+              width="800"
+              height="600"
+            />
           </div>
         ))}
       </div>
@@ -75,16 +88,14 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
             </FadeSlideUp>
 
             <FadeSlideUp delay={0.2}>
-              <PulseText className="inline-block">
-                <h1 className="font-[family-name:var(--font-bebas-neue)] text-[8rem] leading-[0.8] text-white md:text-[14rem] drop-shadow-[0_0_60px_rgba(226,58,44,0.3)]">
-                  <span className="sr-only">
-                    {locale === "vi"
-                      ? "LOCO Complex — Đặt bàn online tại 11 Nam Quốc Cang, Quận 1, Sài Gòn"
-                      : "LOCO Complex — Book online at 11 Nam Quoc Cang, District 1, Saigon"}
-                  </span>
-                  <span aria-hidden="true">{dict.heading}</span>
-                </h1>
-              </PulseText>
+              <h1 className="font-[family-name:var(--font-bebas-neue)] text-[6.5rem] leading-[0.8] text-white md:text-[14rem] md:drop-shadow-[0_0_60px_rgba(226,58,44,0.3)]">
+                <span className="sr-only">
+                  {locale === "vi"
+                    ? "LOCO Complex — Đặt bàn online tại 11 Nam Quốc Cang, Quận 1, Sài Gòn"
+                    : "LOCO Complex — Book online at 11 Nam Quoc Cang, District 1, Saigon"}
+                </span>
+                <span aria-hidden="true">{dict.heading}</span>
+              </h1>
               <span className="block font-[family-name:var(--font-caveat)] text-5xl text-hot-pink md:text-6xl mt-1">
                 {dict.subheading}
               </span>

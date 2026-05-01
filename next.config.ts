@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
+  experimental: {
+    optimizeCss: true,
+    optimizePackageImports: ["@phosphor-icons/react"],
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

@@ -164,7 +164,7 @@ export default function MenuPage() {
                     <p className="text-white/60 text-sm mb-4">{t.menuPage.vipDesc}</p>
                     <Link
                       href={routeMap.contact[locale]}
-                      className="inline-flex items-center gap-2 bg-loco-red text-white font-semibold px-6 py-3 rounded-full hover:bg-loco-red/90 transition-colors"
+                      className="inline-flex items-center gap-2 bg-loco-red text-white font-bold px-6 py-3 rounded-full hover:bg-loco-red/90 transition-colors"
                     >
                       {t.menuPage.vipCta}
                     </Link>

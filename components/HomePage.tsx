@@ -277,7 +277,7 @@ function MenuTeaser({ locale, t }: HomePageProps) {
               <p className="text-ink/50 text-sm mb-8">{t.menuPage.vipDesc}</p>
               <Link
                 href={menuHref}
-                className="inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg"
+                className="inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 font-bold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg"
               >
                 {locale === "vi" ? "Xem menu" : "View menu"} <span aria-hidden="true">&rarr;</span>
               </Link>

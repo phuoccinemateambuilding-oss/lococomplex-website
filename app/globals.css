@@ -89,3 +89,25 @@ select:-webkit-autofill {
 .gold-text {
   color: var(--color-loco-yellow);
 }
+
+/* Hero CSS-only animations (replace framer-motion in critical path) */
+@keyframes loco-fade-up {
+  from { opacity: 0; transform: translate3d(0, 24px, 0); }
+  to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes loco-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes loco-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50%      { transform: translate3d(0, -8px, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [style*="loco-fade-up"], [style*="loco-fade-in"], [style*="loco-float"] {
+    animation: none !important;
+  }
+}

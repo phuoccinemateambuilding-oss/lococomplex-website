@@ -126,12 +126,12 @@ export default function ContactPage() {
                   <div className="grid grid-cols-2 gap-4">
                     <div className="rounded-2xl bg-white/5 border border-white/10 p-5">
                       <MapPin size={24} weight="bold" className="text-electric-blue mb-3" />
-                      <p className="font-semibold text-white text-sm mb-1">{t.contact.address}</p>
+                      <p className="font-bold text-white text-sm mb-1">{t.contact.address}</p>
                       <p className="text-white/50 text-xs leading-relaxed">{site.address[locale]}</p>
                     </div>
                     <div className="rounded-2xl bg-white/5 border border-white/10 p-5">
                       <Clock size={24} weight="bold" className="text-loco-yellow mb-3" />
-                      <p className="font-semibold text-white text-sm mb-1">{t.contact.openHours}</p>
+                      <p className="font-bold text-white text-sm mb-1">{t.contact.openHours}</p>
                       <p className="text-white/50 text-xs">{site.hours[locale]}</p>
                     </div>
                   </div>
@@ -157,7 +157,7 @@ export default function ContactPage() {
                 {/* House rules */}
                 <Reveal delay={0.3}>
                   <div className="rounded-2xl bg-white/5 border border-white/10 p-6">
-                    <p className="font-semibold text-white text-sm mb-3 flex items-center gap-2">
+                    <p className="font-bold text-white text-sm mb-3 flex items-center gap-2">
                       <Warning size={18} weight="bold" className="text-loco-red" />
                       {t.contact.houseRules}
                     </p>
