@@ -9,11 +9,12 @@ import { DeferredVercelInsights } from "@/components/DeferredVercelInsights";
 
 const beVietnamPro = Be_Vietnam_Pro({
   variable: "--font-be-vietnam-pro",
-  subsets: ["vietnamese", "latin"],
-  weight: ["400", "500", "700"],
-  display: "swap",
-  adjustFontFallback: false,
+  subsets: ["vietnamese"],
+  weight: ["400", "700"],
+  display: "optional",
+  adjustFontFallback: true,
   preload: true,
+  fallback: ["-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
 });
 
 const bebasNeue = Bebas_Neue({

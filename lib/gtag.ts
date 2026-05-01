@@ -54,6 +54,7 @@ type ConversionParams = {
   send_to: string;
   value: number;
   currency: "VND";
+  transport_type: "beacon";
 };
 
 export function reportCallConversion() {
@@ -66,6 +67,7 @@ export function reportCallConversion() {
     send_to: AW_TEL,
     value: VAL_TEL,
     currency: "VND",
+    transport_type: "beacon",
   };
   console.info("[ads] conversion tel fired", { send_to: AW_TEL, value: VAL_TEL });
   window.gtag("event", "conversion", params);
@@ -81,6 +83,7 @@ export function reportZaloConversion() {
     send_to: AW_ZALO,
     value: VAL_ZALO,
     currency: "VND",
+    transport_type: "beacon",
   };
   console.info("[ads] conversion zalo fired", { send_to: AW_ZALO, value: VAL_ZALO });
   window.gtag("event", "conversion", params);

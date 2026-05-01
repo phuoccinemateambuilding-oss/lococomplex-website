@@ -57,7 +57,7 @@ export default function Navbar({ locale, t, currentPath }: NavbarProps) {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium transition-colors hover:text-[#E23A2C] ${
+                className={`text-sm font-normal transition-colors hover:text-[#E23A2C] ${
                   currentPath === link.href
                     ? "text-[#E23A2C]"
                     : "text-[#0A0A0A]"
@@ -137,7 +137,7 @@ export default function Navbar({ locale, t, currentPath }: NavbarProps) {
                     key={link.href}
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className={`rounded-lg px-4 py-3 text-base font-medium transition-colors ${
+                    className={`rounded-lg px-4 py-3 text-base font-normal transition-colors ${
                       currentPath === link.href
                         ? "bg-[#E23A2C]/10 text-[#E23A2C]"
                         : "text-[#0A0A0A] hover:bg-[#0A0A0A]/5"

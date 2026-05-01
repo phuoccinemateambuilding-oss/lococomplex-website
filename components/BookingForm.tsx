@@ -96,7 +96,7 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
       />
 
       <div>
-        <label htmlFor={`${fid}-name`} className="block text-sm font-medium text-ink mb-1.5">{t.formName} *</label>
+        <label htmlFor={`${fid}-name`} className="block text-sm font-normal text-ink mb-1.5">{t.formName} *</label>
         <input
           id={`${fid}-name`}
           type="text"
@@ -109,7 +109,7 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
       </div>
 
       <div>
-        <label htmlFor={`${fid}-phone`} className="block text-sm font-medium text-ink mb-1.5">{t.formPhone} *</label>
+        <label htmlFor={`${fid}-phone`} className="block text-sm font-normal text-ink mb-1.5">{t.formPhone} *</label>
         <input
           id={`${fid}-phone`}
           type="tel"
@@ -125,7 +125,7 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label htmlFor={`${fid}-date`} className="block text-sm font-medium text-ink mb-1.5">{t.formDate} *</label>
+          <label htmlFor={`${fid}-date`} className="block text-sm font-normal text-ink mb-1.5">{t.formDate} *</label>
           <input
             id={`${fid}-date`}
             type="date"
@@ -137,7 +137,7 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
           />
         </div>
         <div>
-          <label htmlFor={`${fid}-time`} className="block text-sm font-medium text-ink mb-1.5">{t.formTime} *</label>
+          <label htmlFor={`${fid}-time`} className="block text-sm font-normal text-ink mb-1.5">{t.formTime} *</label>
           <select
             id={`${fid}-time`}
             required
@@ -154,7 +154,7 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
       </div>
 
       <div>
-        <label htmlFor={`${fid}-party`} className="block text-sm font-medium text-ink mb-1.5">{t.formGuests} *</label>
+        <label htmlFor={`${fid}-party`} className="block text-sm font-normal text-ink mb-1.5">{t.formGuests} *</label>
         <input
           id={`${fid}-party`}
           type="number"
@@ -169,7 +169,7 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
       </div>
 
       <div>
-        <label htmlFor={`${fid}-note`} className="block text-sm font-medium text-ink mb-1.5">{t.formMessage}</label>
+        <label htmlFor={`${fid}-note`} className="block text-sm font-normal text-ink mb-1.5">{t.formMessage}</label>
         <textarea
           id={`${fid}-note`}
           rows={3}

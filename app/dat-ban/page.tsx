@@ -3,6 +3,7 @@ import { LandingHeader } from "@/components/landing/LandingHeader";
 import { LandingShell } from "@/components/landing/LandingShell";
 import { LandingHero } from "@/components/landing/LandingHero";
 import { LandingMenuTeaser } from "@/components/landing/LandingMenuTeaser";
+import { LazyMount } from "@/components/LazyMount";
 import dynamic from "next/dynamic";
 
 const LandingGallery = dynamic(() => import("@/components/landing/LandingGallery").then(m => m.LandingGallery));
@@ -24,11 +25,17 @@ export default function DatBanPage() {
       <LandingHeader dict={d.header} />
       <LandingShell stickyDict={d.sticky} footerText={d.footer} locale={locale}>
         <LandingHero dict={d.hero} locale={locale} />
-        <LandingGallery dict={d.gallery} />
+        <LazyMount minHeight="600px" id="gallery-lazy">
+          <LandingGallery dict={d.gallery} />
+        </LazyMount>
         <LandingMenuTeaser />
         <LandingReservationForm dict={d.form} locale={locale} />
-        <SocialProof dict={d.social} />
-        <LandingFaq dict={d.faq} />
+        <LazyMount minHeight="500px" id="social-lazy">
+          <SocialProof dict={d.social} />
+        </LazyMount>
+        <LazyMount minHeight="400px" id="faq-lazy">
+          <LandingFaq dict={d.faq} />
+        </LazyMount>
       </LandingShell>
     </>
   );

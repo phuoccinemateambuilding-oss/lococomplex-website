@@ -151,7 +151,7 @@ function AboutSection({ t }: { t: any }) {
             <Reveal delay={0.1}>
               <div className="flex flex-wrap gap-2 mb-10">
                 {(t.about.services as string[]).map((s: string) => (
-                  <span key={s} className="rounded-full bg-baby-blue/15 px-4 py-1.5 text-sm text-electric-blue font-medium">{s}</span>
+                  <span key={s} className="rounded-full bg-baby-blue/15 px-4 py-1.5 text-sm text-electric-blue font-normal">{s}</span>
                 ))}
               </div>
             </Reveal>

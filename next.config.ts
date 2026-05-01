@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizeCss: true,
-    optimizePackageImports: ["@phosphor-icons/react"],
+    optimizePackageImports: ["@phosphor-icons/react", "framer-motion"],
   },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];

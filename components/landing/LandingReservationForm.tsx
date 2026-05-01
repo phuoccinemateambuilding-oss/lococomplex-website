@@ -178,8 +178,8 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
     ? buildCalendarUrl({ name: submitted.name, date: submitted.date, time: submitted.time, tier: "", party: submitted.party, note: submitted.note, locale })
     : "";
 
-  const inputCls = "block w-full min-w-0 min-h-[48px] appearance-none rounded-2xl border-2 border-white/20 bg-midnight/70 px-5 py-3.5 text-[16px] font-medium text-white placeholder:text-white/55 focus:border-loco-red focus:outline-none focus:ring-2 focus:ring-loco-red/40 hover:border-white/35 transition [color-scheme:dark]";
-  const inputClsIcon = "block w-full min-w-0 min-h-[48px] appearance-none rounded-2xl border-2 border-white/20 bg-midnight/70 pl-11 pr-4 py-3.5 text-[16px] font-medium text-white placeholder:text-white/55 focus:border-loco-red focus:outline-none focus:ring-2 focus:ring-loco-red/40 hover:border-white/35 transition [color-scheme:dark]";
+  const inputCls = "block w-full min-w-0 min-h-[48px] appearance-none rounded-2xl border-2 border-white/20 bg-midnight/70 px-5 py-3.5 text-[16px] font-normal text-white placeholder:text-white/55 focus:border-loco-red focus:outline-none focus:ring-2 focus:ring-loco-red/40 hover:border-white/35 transition [color-scheme:dark]";
+  const inputClsIcon = "block w-full min-w-0 min-h-[48px] appearance-none rounded-2xl border-2 border-white/20 bg-midnight/70 pl-11 pr-4 py-3.5 text-[16px] font-normal text-white placeholder:text-white/55 focus:border-loco-red focus:outline-none focus:ring-2 focus:ring-loco-red/40 hover:border-white/35 transition [color-scheme:dark]";
 
   return (
     <>
@@ -481,7 +481,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
               <h3 className="mb-5 font-display-vn text-xl uppercase tracking-wider text-loco-yellow md:text-2xl">{dict.trustTitle}</h3>
               <ul className="flex flex-col gap-4">
                 {[dict.trust1, dict.trust2, dict.trust3].map((t, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm font-medium text-white/85 md:text-base">
+                  <li key={i} className="flex items-start gap-3 text-sm font-normal text-white/85 md:text-base">
                     <ShieldCheck weight="fill" className="mt-0.5 h-5 w-5 shrink-0 text-loco-yellow" />
                     {t}
                   </li>
