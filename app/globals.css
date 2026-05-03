@@ -111,3 +111,18 @@ select:-webkit-autofill {
     animation: none !important;
   }
 }
+
+/* Floating contact neon glow per brand */
+.neon-box-green {
+  box-shadow:
+    0 0 10px rgba(37, 211, 102, 0.65),
+    0 0 24px rgba(37, 211, 102, 0.4),
+    inset 0 0 10px rgba(37, 211, 102, 0.35);
+}
+
+.neon-box-wechat {
+  box-shadow:
+    0 0 10px rgba(7, 193, 96, 0.65),
+    0 0 24px rgba(7, 193, 96, 0.4),
+    inset 0 0 10px rgba(7, 193, 96, 0.35);
+}

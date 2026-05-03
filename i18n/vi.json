@@ -358,7 +358,9 @@
     "sticky": {
       "call": "Gọi",
       "zalo": "Zalo",
-      "book": "Đặt bàn"
+      "book": "Đặt bàn",
+      "whatsapp": "Chat WhatsApp",
+      "wechat": "Chat WeChat"
     },
     "footer": "11 Đường Nam Quốc Cang, P. Phạm Ngũ Lão, Quận 1, TP.HCM · © 2025 LOCO Complex · Dành cho khách từ 18 tuổi trở lên."
   },

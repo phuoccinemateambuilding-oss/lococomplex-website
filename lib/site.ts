@@ -13,6 +13,8 @@ export const site = {
   phoneE164: "+84866433754",
   phoneTel: "tel:0866433754",
   zaloUrl: "https://zalo.me/0866433754",
+  whatsappUrl: "https://api.whatsapp.com/qr/XB73SS6FX5VJJ1",
+  wechatUrl: "weixin://dl/chat?Thegioibooking",
   address: {
     vi: "11 Đường Nam Quốc Cang, P. Phạm Ngũ Lão, Quận 1, TP.HCM",
     en: "11 Nam Quoc Cang Street, Pham Ngu Lao Ward, District 1, HCMC",

@@ -358,7 +358,9 @@
     "sticky": {
       "call": "Call",
       "zalo": "Zalo",
-      "book": "Book"
+      "book": "Book",
+      "whatsapp": "Chat on WhatsApp",
+      "wechat": "Chat on WeChat"
     },
     "footer": "11 Nam Quoc Cang Street, Pham Ngu Lao Ward, District 1, HCMC · © 2025 LOCO Complex · For guests aged 18 and over."
   },
