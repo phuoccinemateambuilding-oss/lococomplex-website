@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { WhatsappLogo, WechatLogo } from "@phosphor-icons/react/dist/ssr";
 import { site } from "@/lib/site";
 
 export default function FloatingContacts() {
@@ -13,18 +12,30 @@ export default function FloatingContacts() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat WhatsApp"
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] shadow-lg neon-box-green transition-transform hover:scale-110"
+        className="h-14 w-14 overflow-hidden rounded-full shadow-lg neon-box-green transition-transform hover:scale-110"
       >
-        <WhatsappLogo size={30} weight="fill" className="text-white" />
+        <Image
+          src="/assets/icons/whatsapp.png"
+          alt="WhatsApp"
+          width={56}
+          height={56}
+          className="h-full w-full object-cover"
+        />
       </a>
 
       {/* WeChat button */}
       <a
         href={site.wechatUrl}
         aria-label="Chat WeChat"
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-[#07C160] shadow-lg neon-box-wechat transition-transform hover:scale-110"
+        className="h-14 w-14 overflow-hidden rounded-full shadow-lg neon-box-wechat transition-transform hover:scale-110"
       >
-        <WechatLogo size={30} weight="fill" className="text-white" />
+        <Image
+          src="/assets/icons/wechat.png"
+          alt="WeChat"
+          width={56}
+          height={56}
+          className="h-full w-full object-cover"
+        />
       </a>
 
       {/* Zalo button */}

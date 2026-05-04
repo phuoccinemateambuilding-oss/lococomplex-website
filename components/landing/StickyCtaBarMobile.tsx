@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { CalendarCheck, WhatsappLogo, WechatLogo } from "@phosphor-icons/react/dist/ssr";
+import { CalendarCheck } from "@phosphor-icons/react/dist/ssr";
 import { BRAND } from "@/lib/brand";
 
 type Dsticky = {
@@ -47,17 +47,29 @@ export function StickyCtaBarMobile({ dict }: { dict: Dsticky }) {
           rel="noopener noreferrer"
           onClick={() => track("whatsapp_click", { cta_location: "sticky_mobile" })}
           aria-label={dict.whatsapp}
-          className="pointer-events-auto flex h-[54px] w-[54px] items-center justify-center rounded-full bg-[#25D366] shadow-lg neon-box-green transition-transform hover:scale-110"
+          className="pointer-events-auto h-[54px] w-[54px] overflow-hidden rounded-full shadow-lg neon-box-green transition-transform hover:scale-110"
         >
-          <WhatsappLogo size={28} weight="fill" className="text-white" />
+          <Image
+            src="/assets/icons/whatsapp.png"
+            alt="WhatsApp"
+            width={54}
+            height={54}
+            className="h-full w-full object-cover"
+          />
         </a>
         <a
           href={BRAND.wechatUrl}
           onClick={() => track("wechat_click", { cta_location: "sticky_mobile" })}
           aria-label={dict.wechat}
-          className="pointer-events-auto flex h-[54px] w-[54px] items-center justify-center rounded-full bg-[#07C160] shadow-lg neon-box-wechat transition-transform hover:scale-110"
+          className="pointer-events-auto h-[54px] w-[54px] overflow-hidden rounded-full shadow-lg neon-box-wechat transition-transform hover:scale-110"
         >
-          <WechatLogo size={28} weight="fill" className="text-white" />
+          <Image
+            src="/assets/icons/wechat.png"
+            alt="WeChat"
+            width={54}
+            height={54}
+            className="h-full w-full object-cover"
+          />
         </a>
       </div>
 
