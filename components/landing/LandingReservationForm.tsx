@@ -232,6 +232,9 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
               {status === "success" && submitted ? (
                 <motion.div
                   key="success"
+                  role="status"
+                  aria-live="polite"
+                  aria-atomic="true"
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
@@ -421,7 +424,12 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
 
                     {/* Error state */}
                     {status === "error" && (
-                      <div className="flex items-start gap-3 rounded-2xl border border-crimson/40 bg-crimson/10 p-4">
+                      <div
+                        role="alert"
+                        aria-live="polite"
+                        aria-atomic="true"
+                        className="flex items-start gap-3 rounded-2xl border border-crimson/40 bg-crimson/10 p-4"
+                      >
                         <Warning weight="fill" className="mt-0.5 h-5 w-5 shrink-0 text-crimson" />
                         <div className="flex-1">
                           {missingFields.length > 0 ? (

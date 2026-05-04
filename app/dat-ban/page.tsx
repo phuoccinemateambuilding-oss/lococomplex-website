@@ -1,9 +1,11 @@
+import type { Metadata } from "next";
 import { getDict } from "@/lib/i18n";
 import { LandingHeader } from "@/components/landing/LandingHeader";
 import { LandingShell } from "@/components/landing/LandingShell";
 import { LandingHero } from "@/components/landing/LandingHero";
 import { LandingMenuTeaser } from "@/components/landing/LandingMenuTeaser";
 import { LazyMount } from "@/components/LazyMount";
+import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 import dynamic from "next/dynamic";
 
 const LandingGallery = dynamic(() => import("@/components/landing/LandingGallery").then(m => m.LandingGallery));
@@ -14,6 +16,26 @@ const SocialProof = dynamic(() => import("@/components/landing/SocialProof").the
 const LandingFaq = dynamic(() => import("@/components/landing/LandingFaq").then(m => m.LandingFaq));
 const ReservationJsonLd = dynamic(() => import("@/components/landing/ReservationJsonLd").then(m => m.ReservationJsonLd));
 
+export const metadata: Metadata = {
+  title: "Đặt bàn LOCO Complex — Khu Giải Trí NEWTRO · 11 Nam Quốc Cang, Quận 1",
+  description:
+    "Đặt bàn LOCO Complex online — khu phức hợp giải trí NEWTRO tại 11 Nam Quốc Cang, Quận 1, Sài Gòn. 2 tầng club: Heatroom (EDM, Top 40, House) + Hip-hop. Mở cửa 18:00 – 00:00. Hotline 0866 433 754.",
+  alternates: {
+    canonical: "/dat-ban",
+    languages: {
+      vi: "/dat-ban",
+      en: "/en/book",
+      "x-default": "/dat-ban",
+    },
+  },
+  openGraph: {
+    title: "Đặt bàn LOCO Complex — Khu Giải Trí NEWTRO · Quận 1, Sài Gòn",
+    description:
+      "Đặt bàn LOCO Complex — 2 tầng club Heatroom + Hip-hop tại 11 Nam Quốc Cang, Q.1. Mở cửa 18:00 – 00:00. Hotline 0866 433 754.",
+    url: "/dat-ban",
+  },
+};
+
 export default function DatBanPage() {
   const locale = "vi";
   const t = getDict(locale);
@@ -22,6 +44,7 @@ export default function DatBanPage() {
   return (
     <>
       <ReservationJsonLd locale={locale} />
+      <BreadcrumbJsonLd items={[{ name: "Trang chủ", path: "/" }, { name: "Đặt bàn", path: "/dat-ban" }]} />
       <LandingHeader dict={d.header} />
       <LandingShell stickyDict={d.sticky} footerText={d.footer} locale={locale}>
         <LandingHero dict={d.hero} locale={locale} />

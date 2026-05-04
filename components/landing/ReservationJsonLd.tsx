@@ -4,7 +4,7 @@ import { BRAND } from "@/lib/brand";
 export function ReservationJsonLd({ locale }: { locale: "vi" | "en" }) {
   const schema = {
     "@context": "https://schema.org",
-    "@type": "EntertainmentBusiness",
+    "@type": ["EntertainmentBusiness", "NightClub", "LocalBusiness"],
     "@id": `${SITE_URL}/#business`,
     name: "LOCO Complex",
     alternateName: ["LOCO Heatroom", "LOCO Sài Gòn", "LOCO Quận 1"],

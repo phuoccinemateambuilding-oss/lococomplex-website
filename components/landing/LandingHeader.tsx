@@ -103,7 +103,9 @@ export function LandingHeader({ dict }: { dict: Dnav }) {
               type="button"
               onClick={() => setMenuOpen(true)}
               aria-label={dict.menuLabel}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-midnight/50 text-white backdrop-blur transition hover:border-loco-red hover:text-loco-red lg:hidden"
+              aria-expanded={menuOpen}
+              aria-controls="mobile-nav"
+              className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-midnight/50 text-white backdrop-blur transition hover:border-loco-red hover:text-loco-red lg:hidden"
             >
               <List weight="bold" className="h-5 w-5" />
             </button>
@@ -119,6 +121,7 @@ export function LandingHeader({ dict }: { dict: Dnav }) {
         }`}
       />
       <aside
+        id="mobile-nav"
         aria-hidden={!menuOpen}
         aria-label={dict.menuLabel}
         className={`fixed right-0 top-0 z-[60] flex h-full w-[88%] max-w-[360px] flex-col border-l border-loco-red/20 bg-midnight-deep shadow-2xl transition-transform duration-300 lg:hidden ${
@@ -132,7 +135,7 @@ export function LandingHeader({ dict }: { dict: Dnav }) {
             type="button"
             onClick={() => setMenuOpen(false)}
             aria-label={dict.close}
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white transition hover:border-loco-red hover:text-loco-red"
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 text-white transition hover:border-loco-red hover:text-loco-red"
           >
             <X weight="bold" className="h-5 w-5" />
           </button>
