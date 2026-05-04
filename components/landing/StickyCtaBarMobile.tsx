@@ -34,20 +34,20 @@ export function StickyCtaBarMobile({ dict }: { dict: Dsticky }) {
   return (
     <div
       aria-hidden={!visible}
-      className={`fixed inset-x-0 bottom-0 z-40 border-t border-loco-red/30 bg-midnight-deep/95 backdrop-blur-md transition-transform duration-300 md:hidden ${
+      className={`fixed inset-x-0 bottom-0 z-40 transition-transform duration-300 md:hidden ${
         visible ? "translate-y-0" : "translate-y-full"
       }`}
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
-      {/* WhatsApp + WeChat floating above sticky bar */}
-      <div className="flex flex-col items-end gap-3 px-5 pb-3">
+      {/* WhatsApp + WeChat floating above sticky bar — transparent container, only buttons have bg */}
+      <div className="pointer-events-none flex flex-col items-end gap-3 px-5 pb-3">
         <a
           href={BRAND.whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => track("whatsapp_click", { cta_location: "sticky_mobile" })}
           aria-label={dict.whatsapp}
-          className="flex h-[54px] w-[54px] items-center justify-center rounded-full bg-[#25D366] shadow-lg neon-box-green transition-transform hover:scale-110"
+          className="pointer-events-auto flex h-[54px] w-[54px] items-center justify-center rounded-full bg-[#25D366] shadow-lg neon-box-green transition-transform hover:scale-110"
         >
           <WhatsappLogo size={28} weight="fill" className="text-white" />
         </a>
@@ -55,13 +55,13 @@ export function StickyCtaBarMobile({ dict }: { dict: Dsticky }) {
           href={BRAND.wechatUrl}
           onClick={() => track("wechat_click", { cta_location: "sticky_mobile" })}
           aria-label={dict.wechat}
-          className="flex h-[54px] w-[54px] items-center justify-center rounded-full bg-[#07C160] shadow-lg neon-box-wechat transition-transform hover:scale-110"
+          className="pointer-events-auto flex h-[54px] w-[54px] items-center justify-center rounded-full bg-[#07C160] shadow-lg neon-box-wechat transition-transform hover:scale-110"
         >
           <WechatLogo size={28} weight="fill" className="text-white" />
         </a>
       </div>
 
-      <div className="grid grid-cols-3 gap-1 p-2">
+      <div className="grid grid-cols-3 gap-1 border-t border-loco-red/30 bg-midnight-deep/95 p-2 backdrop-blur-md">
         <a
           href={`tel:${BRAND.phoneTel}`}
           onClick={() => track("tel_click", { cta_location: "sticky_mobile" })}
