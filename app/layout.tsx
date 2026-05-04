@@ -145,9 +145,9 @@ export default function RootLayout({
         <link
           rel="preload"
           as="image"
-          href="/assets/loco/logo.png"
+          href="/assets/loco/logo.avif"
           fetchPriority="high"
-          type="image/png"
+          type="image/avif"
         />
       </head>
       <body className={`${beVietnamPro.className} min-h-[100dvh] flex flex-col`}>

@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export function Wordmark({
   width = 110,
   height = 46,
@@ -10,13 +8,19 @@ export function Wordmark({
   className?: string;
 }) {
   return (
-    <Image
-      src="/assets/loco/logo.png"
-      alt="LOCO Complex"
-      width={width}
-      height={height}
-      className={className}
-      priority
-    />
+    <picture>
+      <source type="image/avif" srcSet="/assets/loco/logo.avif" />
+      <source type="image/webp" srcSet="/assets/loco/logo.webp" />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/assets/loco/logo.png"
+        alt="LOCO Complex"
+        width={width}
+        height={height}
+        className={className}
+        decoding="async"
+        fetchPriority="high"
+      />
+    </picture>
   );
 }
