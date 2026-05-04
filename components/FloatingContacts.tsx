@@ -12,7 +12,7 @@ export default function FloatingContacts() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat WhatsApp"
-        className="h-14 w-14 overflow-hidden rounded-full shadow-lg neon-box-green transition-transform hover:scale-110"
+        className="h-14 w-14 overflow-hidden rounded-full shadow-lg transition-transform hover:scale-110"
       >
         <Image
           src="/assets/icons/whatsapp.png"
@@ -27,7 +27,7 @@ export default function FloatingContacts() {
       <a
         href={site.wechatUrl}
         aria-label="Chat WeChat"
-        className="h-14 w-14 overflow-hidden rounded-full shadow-lg neon-box-wechat transition-transform hover:scale-110"
+        className="h-14 w-14 overflow-hidden rounded-full shadow-lg transition-transform hover:scale-110"
       >
         <Image
           src="/assets/icons/wechat.png"

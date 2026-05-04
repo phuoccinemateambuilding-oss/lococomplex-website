@@ -47,7 +47,7 @@ export function StickyCtaBarMobile({ dict }: { dict: Dsticky }) {
           rel="noopener noreferrer"
           onClick={() => track("whatsapp_click", { cta_location: "sticky_mobile" })}
           aria-label={dict.whatsapp}
-          className="pointer-events-auto h-[54px] w-[54px] overflow-hidden rounded-full shadow-lg neon-box-green transition-transform hover:scale-110"
+          className="pointer-events-auto h-[54px] w-[54px] overflow-hidden rounded-full shadow-lg transition-transform hover:scale-110"
         >
           <Image
             src="/assets/icons/whatsapp.png"
@@ -61,7 +61,7 @@ export function StickyCtaBarMobile({ dict }: { dict: Dsticky }) {
           href={BRAND.wechatUrl}
           onClick={() => track("wechat_click", { cta_location: "sticky_mobile" })}
           aria-label={dict.wechat}
-          className="pointer-events-auto h-[54px] w-[54px] overflow-hidden rounded-full shadow-lg neon-box-wechat transition-transform hover:scale-110"
+          className="pointer-events-auto h-[54px] w-[54px] overflow-hidden rounded-full shadow-lg transition-transform hover:scale-110"
         >
           <Image
             src="/assets/icons/wechat.png"
