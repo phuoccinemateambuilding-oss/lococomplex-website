@@ -9,7 +9,7 @@ import { JsonLd } from "@/components/JsonLd";
 export const metadata: Metadata = {
   title: "LOCO Complex — Entertainment & Music Venue · District 1, Saigon",
   description:
-    "LOCO Complex — NEWTRO-style entertainment complex at 11 Nam Quoc Cang, District 1, Saigon. 2-floor club: Heatroom (EDM, Top 40, House) + Hip-hop. Dining by BITES. Open 6 PM – 12 AM. Book a table: 0866 433 754.",
+    "LOCO Complex — NEWTRO-style entertainment complex at 11 Nam Quoc Cang, District 1, Saigon. 2-floor club: Heatroom (EDM, Top 40, House) + Hip-hop. Dining by BITES. Open 10:00 PM – 5:00 AM. Book a table: 0866 433 754.",
   keywords: [
     "LOCO Complex",
     "LOCO Heatroom",

@@ -13,7 +13,7 @@ import { spaceImages, galleryImages } from "@/lib/images";
 export const metadata: Metadata = {
   title: "Contact & Reserve — LOCO Complex · 0866 433 754",
   description:
-    "Reserve a table at LOCO Complex via form, hotline 0866 433 754, or Zalo. 11 Nam Quoc Cang, Pham Ngu Lao Ward, District 1, HCMC. Open 6 PM – 12 AM.",
+    "Reserve a table at LOCO Complex via form, hotline 0866 433 754, or Zalo. 11 Nam Quoc Cang, Pham Ngu Lao Ward, District 1, HCMC. Open 10:00 PM – 5:00 AM.",
   keywords: [
     "book LOCO Complex",
     "LOCO Complex hotline",

@@ -7,7 +7,7 @@ import FloatingContacts from "@/components/FloatingContacts";
 
 const title = "FAQ — LOCO Complex | Opening Hours, Prices, Reservations";
 const description =
-  "Top 10 questions about LOCO Complex: opening hours 6 PM – Midnight, address 11 Nam Quoc Cang District 1, VIP table prices, dress code, reservations, private events. Hotline +84 866 433 754.";
+  "Top 10 questions about LOCO Complex: opening hours 10:00 PM – 5:00 AM, address 11 Nam Quoc Cang District 1, VIP table prices, dress code, reservations, private events. Hotline +84 866 433 754.";
 
 export const metadata: Metadata = {
   title,

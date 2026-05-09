@@ -39,7 +39,7 @@ export function LandingAbout() {
               </div>
               <div>
                 <dt className="text-[10px] uppercase tracking-[0.22em] text-ink/55">Mở cửa</dt>
-                <dd className="font-display-vn font-extrabold mt-2 text-3xl uppercase text-loco-red md:text-4xl">18:00</dd>
+                <dd className="font-display-vn font-extrabold mt-2 text-3xl uppercase text-loco-red md:text-4xl">22:00</dd>
               </div>
               <div>
                 <dt className="text-[10px] uppercase tracking-[0.22em] text-ink/55">Loại Bàn</dt>

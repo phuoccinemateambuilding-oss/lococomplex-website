@@ -62,7 +62,7 @@ type Dform = {
   tiers: Record<string, string>;
 };
 
-const TIME_SLOTS = ["18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00"];
+const TIME_SLOTS = ["22:00", "22:30", "23:00", "23:30", "00:00", "00:30", "01:00", "01:30", "02:00", "03:00"];
 
 function todayStr() {
   return new Date().toISOString().split("T")[0];

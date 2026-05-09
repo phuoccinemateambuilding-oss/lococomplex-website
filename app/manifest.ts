@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "LOCO Complex — Entertainment · District 1 Saigon",
     short_name: "LOCO",
     description:
-      "LOCO Complex — khu phức hợp giải trí NEWTRO tại 11 Nam Quốc Cang, Quận 1, Sài Gòn. 2 tầng club (Heatroom · Hip-hop) + BITES. Mở 18:00 – 00:00.",
+      "LOCO Complex — khu phức hợp giải trí NEWTRO tại 11 Nam Quốc Cang, Quận 1, Sài Gòn. 2 tầng club (Heatroom · Hip-hop) + BITES. Mở 22:00 – 05:00.",
     start_url: "/",
     scope: "/",
     display: "standalone",

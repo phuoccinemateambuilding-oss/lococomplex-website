@@ -12,7 +12,7 @@ type Qa = { q: string; a: string };
 const faqVi: Qa[] = [
   {
     q: "LOCO Complex mở cửa giờ nào?",
-    a: "LOCO Complex mở cửa 18:00 – 00:00, từ Thứ Ba đến Chủ Nhật.",
+    a: "LOCO Complex mở cửa 22:00 – 05:00, từ Thứ Ba đến Chủ Nhật.",
   },
   {
     q: "LOCO Complex ở đâu?",
@@ -44,7 +44,7 @@ const faqVi: Qa[] = [
   },
   {
     q: "LOCO Heatroom là gì?",
-    a: "LOCO Heatroom là mini nightclub ở Tầng 2 của LOCO Complex — không gian âm nhạc điện tử với hệ thống âm thanh & ánh sáng đỉnh cao. Phát Top 40, EDM, House mỗi đêm từ 18:00.",
+    a: "LOCO Heatroom là mini nightclub ở Tầng 2 của LOCO Complex — không gian âm nhạc điện tử với hệ thống âm thanh & ánh sáng đỉnh cao. Phát Top 40, EDM, House mỗi đêm từ 22:00.",
   },
   {
     q: "Khách hàng cần bao nhiêu tuổi để vào LOCO Complex?",
@@ -55,7 +55,7 @@ const faqVi: Qa[] = [
 const faqEn: Qa[] = [
   {
     q: "What are LOCO Complex's opening hours?",
-    a: "LOCO Complex is open 6:00 PM – 12:00 AM (Midnight), Tuesday through Sunday.",
+    a: "LOCO Complex is open 10:00 PM – 5:00 AM, Tuesday through Sunday.",
   },
   {
     q: "Where is LOCO Complex located?",
@@ -87,7 +87,7 @@ const faqEn: Qa[] = [
   },
   {
     q: "What is LOCO Heatroom?",
-    a: "LOCO Heatroom is the mini nightclub on Floor 2 of LOCO Complex — an electronic music space with top-tier sound & lighting. Top 40, EDM, House spun every night from 6 PM.",
+    a: "LOCO Heatroom is the mini nightclub on Floor 2 of LOCO Complex — an electronic music space with top-tier sound & lighting. Top 40, EDM, House spun every night from 10:00 PM.",
   },
   {
     q: "What is the minimum age to enter LOCO Complex?",

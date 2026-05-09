@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     template: "%s | LOCO Complex",
   },
   description:
-    "LOCO Complex — khu phức hợp giải trí phong cách NEWTRO tại 11 Nam Quốc Cang, Quận 1, Sài Gòn. 2 tầng club: Heatroom (EDM, Top 40, House) + Hip-hop. F&B by BITES. Mở cửa 18:00 – 00:00. Đặt bàn: 0866 433 754.",
+    "LOCO Complex — khu phức hợp giải trí phong cách NEWTRO tại 11 Nam Quốc Cang, Quận 1, Sài Gòn. 2 tầng club: Heatroom (EDM, Top 40, House) + Hip-hop. F&B by BITES. Mở cửa 22:00 – 05:00. Đặt bàn: 0866 433 754.",
   keywords: [
     "LOCO Complex",
     "LOCO Heatroom",

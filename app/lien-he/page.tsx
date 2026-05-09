@@ -14,7 +14,7 @@ import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 export const metadata: Metadata = {
   title: "Liên hệ & Đặt bàn — LOCO Complex · 0866 433 754",
   description:
-    "Đặt bàn LOCO Complex qua form, hotline 0866 433 754 hoặc Zalo. Địa chỉ: 11 Nam Quốc Cang, Phạm Ngũ Lão, Quận 1, TP.HCM. Mở cửa 18:00 – 00:00.",
+    "Đặt bàn LOCO Complex qua form, hotline 0866 433 754 hoặc Zalo. Địa chỉ: 11 Nam Quốc Cang, Phạm Ngũ Lão, Quận 1, TP.HCM. Mở cửa 22:00 – 05:00.",
   keywords: [
     "đặt bàn LOCO Complex",
     "hotline LOCO",

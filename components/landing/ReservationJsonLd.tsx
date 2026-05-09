@@ -10,8 +10,8 @@ export function ReservationJsonLd({ locale }: { locale: "vi" | "en" }) {
     alternateName: ["LOCO Heatroom", "LOCO Sài Gòn", "LOCO Quận 1"],
     description:
       locale === "vi"
-        ? "LOCO Complex — khu phức hợp giải trí phong cách NEWTRO tại 11 Nam Quốc Cang, Quận 1, Sài Gòn. 2 tầng club: Heatroom (EDM, Top 40, House) + Hip-hop. Mở cửa 18:00 – 00:00."
-        : "LOCO Complex — NEWTRO-style entertainment complex at 11 Nam Quoc Cang, District 1, Saigon. 2-floor club: Heatroom (EDM, Top 40, House) + Hip-hop. Open 6 PM – 12 AM.",
+        ? "LOCO Complex — khu phức hợp giải trí phong cách NEWTRO tại 11 Nam Quốc Cang, Quận 1, Sài Gòn. 2 tầng club: Heatroom (EDM, Top 40, House) + Hip-hop. Mở cửa 22:00 – 05:00."
+        : "LOCO Complex — NEWTRO-style entertainment complex at 11 Nam Quoc Cang, District 1, Saigon. 2-floor club: Heatroom (EDM, Top 40, House) + Hip-hop. Open 10:00 PM – 5:00 AM.",
     url: locale === "vi" ? `${SITE_URL}/dat-ban` : `${SITE_URL}/en/book`,
     telephone: "+84866433754",
     address: {
@@ -26,8 +26,8 @@ export function ReservationJsonLd({ locale }: { locale: "vi" | "en" }) {
       {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-        opens: "18:00",
-        closes: "00:00",
+        opens: "22:00",
+        closes: "05:00",
       },
     ],
     hasMap: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(BRAND.mapQuery)}`,
