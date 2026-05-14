@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { BookOpen, ArrowRight } from "@phosphor-icons/react/dist/ssr";
-import { buildSrcSet, thumbSrc } from "@/lib/srcset";
 
 export function LandingMenuTeaser() {
   return (
@@ -24,13 +23,15 @@ export function LandingMenuTeaser() {
           <div className="relative aspect-[858/922]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={thumbSrc("/assets/loco/menu/menu-01.webp")}
-              srcSet={buildSrcSet("/assets/loco/menu/menu-01.webp", 858)}
+              src="/assets/loco/menu/menu-01-400.webp"
+              srcSet="/assets/loco/menu/menu-01-400.webp 400w, /assets/loco/menu/menu-01-800.webp 800w, /assets/loco/menu/menu-01.webp 858w"
               sizes="(max-width: 768px) 90vw, 480px"
               alt="Thực đơn LOCO Complex — make impossible"
               loading="eager"
               fetchPriority="high"
               decoding="sync"
+              width="858"
+              height="922"
               className="absolute inset-0 h-full w-full object-contain"
             />
           </div>
