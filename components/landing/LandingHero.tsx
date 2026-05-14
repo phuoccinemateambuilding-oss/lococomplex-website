@@ -1,7 +1,7 @@
 "use client";
 
 import { Phone, ArrowDown, MapPin, Clock } from "@phosphor-icons/react/dist/ssr";
-import { FadeSlideUp, FloatingImage } from "@/components/HeroAnimated";
+import { FloatingImage } from "@/components/HeroAnimated";
 import GeometricShape from "@/components/GeometricShape";
 import StickerTag from "@/components/StickerTag";
 import { BRAND } from "@/lib/brand";
@@ -79,15 +79,12 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
 
       <div className="relative mx-auto max-w-[1400px] px-6 md:px-10 flex flex-col justify-center min-h-[100dvh] py-28 md:py-32">
         <div className="grid md:grid-cols-[1.1fr_1fr] gap-10 items-center">
-          {/* LEFT — text content */}
+          {/* LEFT — text content — NO animation wrappers to avoid LCP delay */}
           <div className="flex flex-col gap-5">
-            <FadeSlideUp delay={0.1}>
-              <span className="font-[family-name:var(--font-space-mono)] text-xs uppercase tracking-[0.25em] text-baby-blue">
-                {dict.eyebrow}
-              </span>
-            </FadeSlideUp>
+            <span className="font-[family-name:var(--font-space-mono)] text-xs uppercase tracking-[0.25em] text-baby-blue">
+              {dict.eyebrow}
+            </span>
 
-            {/* H1 không wrap FadeSlideUp để tránh animation delay ảnh hưởng LCP */}
             <h1 className="font-[family-name:var(--font-bebas-neue)] text-[6.5rem] leading-[0.8] text-white md:text-[14rem] md:drop-shadow-[0_0_60px_rgba(226,58,44,0.3)]">
               <span className="sr-only">
                 {locale === "vi"
@@ -100,14 +97,12 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
               {dict.subheading}
             </span>
 
-            <FadeSlideUp delay={0.35}>
-              <p className="text-base md:text-lg text-white/70 max-w-[48ch] leading-relaxed">
-                {dict.desc}
-              </p>
-            </FadeSlideUp>
+            <p className="text-base md:text-lg text-white/70 max-w-[48ch] leading-relaxed">
+              {dict.desc}
+            </p>
 
             {/* CTAs */}
-            <FadeSlideUp delay={0.45} className="flex flex-wrap items-center gap-3 mt-2">
+            <div className="flex flex-wrap items-center gap-3 mt-2">
               <button
                 type="button"
                 onClick={() => {
@@ -137,10 +132,10 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
                 {dict.ctaGallery}
                 <ArrowDown className="h-4 w-4" />
               </button>
-            </FadeSlideUp>
+            </div>
 
             {/* Info cards — Hours + Address */}
-            <FadeSlideUp delay={0.55} className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-[560px]">
+            <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-[560px]">
               <div className="flex items-start gap-3 rounded-2xl border border-loco-yellow/30 bg-ink/60 px-4 py-3 backdrop-blur-sm">
                 <Clock weight="fill" className="mt-0.5 h-5 w-5 shrink-0 text-loco-yellow" />
                 <div>
@@ -163,17 +158,15 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
                   </p>
                 </div>
               </div>
-            </FadeSlideUp>
+            </div>
 
             {/* Trust badge */}
-            <FadeSlideUp delay={0.65}>
-              <div className="inline-flex items-center gap-2 self-start rounded-full border border-loco-yellow/20 bg-loco-yellow/5 px-4 py-2">
-                <span className="text-base">⭐</span>
-                <span className="font-[family-name:var(--font-space-mono)] text-xs text-loco-yellow/80">
-                  {dict.trust}
-                </span>
-              </div>
-            </FadeSlideUp>
+            <div className="inline-flex items-center gap-2 self-start rounded-full border border-loco-yellow/20 bg-loco-yellow/5 px-4 py-2">
+              <span className="text-base">⭐</span>
+              <span className="font-[family-name:var(--font-space-mono)] text-xs text-loco-yellow/80">
+                {dict.trust}
+              </span>
+            </div>
           </div>
 
           {/* RIGHT — floating venue photos (desktop only) */}
