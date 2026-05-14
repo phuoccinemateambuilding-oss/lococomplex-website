@@ -68,7 +68,7 @@ export function LandingHeader({ dict }: { dict: Dnav }) {
             aria-label="LOCO Complex"
             className="flex items-center"
           >
-            <Wordmark width={90} height={38} className="h-auto w-[72px] md:w-[96px]" />
+            <Wordmark width={90} className="h-auto w-[72px] md:w-[96px]" />
           </button>
 
           <nav className="hidden items-center gap-1 lg:flex">
@@ -130,7 +130,7 @@ export function LandingHeader({ dict }: { dict: Dnav }) {
         style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
       >
         <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
-          <Wordmark width={80} height={34} className="h-auto w-[70px]" />
+          <Wordmark width={80} className="h-auto w-[70px]" />
           <button
             type="button"
             onClick={() => setMenuOpen(false)}

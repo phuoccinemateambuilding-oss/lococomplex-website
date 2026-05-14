@@ -1,12 +1,11 @@
 export function Wordmark({
   width = 110,
-  height = 46,
   className = "",
 }: {
   width?: number;
-  height?: number;
   className?: string;
 }) {
+  // Logo is 1:1 ratio (800x800px natural dimensions)
   return (
     <picture>
       <source type="image/avif" srcSet="/assets/loco/logo.avif" />
@@ -16,7 +15,7 @@ export function Wordmark({
         src="/assets/loco/logo.png"
         alt="LOCO Complex"
         width={width}
-        height={height}
+        height={width}
         className={className}
         decoding="async"
         fetchPriority="high"
