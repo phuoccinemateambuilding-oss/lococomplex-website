@@ -146,7 +146,6 @@ export default function RootLayout({
           rel="preload"
           as="image"
           href="/assets/loco/logo.avif"
-          fetchPriority="high"
           type="image/avif"
         />
       </head>

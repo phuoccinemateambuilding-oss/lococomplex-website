@@ -29,7 +29,7 @@ export function LandingMenuTeaser() {
               alt="Thực đơn LOCO Complex — make impossible"
               loading="eager"
               fetchPriority="high"
-              decoding="sync"
+              decoding="async"
               width="858"
               height="922"
               className="absolute inset-0 h-full w-full object-contain"
