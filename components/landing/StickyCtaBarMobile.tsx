@@ -50,7 +50,7 @@ export function StickyCtaBarMobile({ dict }: { dict: Dsticky }) {
           className="pointer-events-auto h-[54px] w-[54px] overflow-hidden rounded-full shadow-lg transition-transform hover:scale-110"
         >
           <Image
-            src="/assets/icons/whatsapp.png"
+            src="/assets/icons/whatsapp.webp"
             alt="WhatsApp"
             width={54}
             height={54}
@@ -65,7 +65,7 @@ export function StickyCtaBarMobile({ dict }: { dict: Dsticky }) {
           className="pointer-events-auto h-[54px] w-[54px] overflow-hidden rounded-full shadow-lg transition-transform hover:scale-110"
         >
           <Image
-            src="/assets/icons/wechat.png"
+            src="/assets/icons/wechat.webp"
             alt="WeChat"
             width={54}
             height={54}

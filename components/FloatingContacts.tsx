@@ -15,7 +15,7 @@ export default function FloatingContacts() {
         className="h-14 w-14 overflow-hidden rounded-full shadow-lg transition-transform hover:scale-110"
       >
         <Image
-          src="/assets/icons/whatsapp.png"
+          src="/assets/icons/whatsapp.webp"
           alt="WhatsApp"
           width={56}
           height={56}
@@ -31,7 +31,7 @@ export default function FloatingContacts() {
         className="h-14 w-14 overflow-hidden rounded-full shadow-lg transition-transform hover:scale-110"
       >
         <Image
-          src="/assets/icons/wechat.png"
+          src="/assets/icons/wechat.webp"
           alt="WeChat"
           width={56}
           height={56}

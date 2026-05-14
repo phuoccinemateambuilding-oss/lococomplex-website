@@ -38,7 +38,30 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["@phosphor-icons/react", "framer-motion"],
   },
   async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }];
+    return [
+      // Security headers for all routes
+      { source: "/:path*", headers: securityHeaders },
+      // Long-term cache for static image assets (immutable fingerprinted or versioned)
+      {
+        source: "/assets/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      // Long-term cache for Next.js static chunks (hashed filenames)
+      {
+        source: "/_next/static/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+    ];
   },
 };
 
