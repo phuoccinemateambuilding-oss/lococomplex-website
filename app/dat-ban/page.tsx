@@ -50,10 +50,10 @@ export default function DatBanPage() {
       <LandingShell stickyDict={d.sticky} footerText={d.footer} locale={locale}>
         <LandingHero dict={d.hero} locale={locale} />
         <LandingAbout />
+        <LandingMenuTeaser />
         <LazyMount minHeight="600px" id="gallery-lazy">
           <LandingGallery dict={d.gallery} />
         </LazyMount>
-        <LandingMenuTeaser />
         <LandingReservationForm dict={d.form} locale={locale} />
         <LazyMount minHeight="500px" id="social-lazy">
           <SocialProof dict={d.social} />

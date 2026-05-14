@@ -28,8 +28,9 @@ export function LandingMenuTeaser() {
               srcSet={buildSrcSet("/assets/loco/menu/menu-01.webp", 858)}
               sizes="(max-width: 768px) 90vw, 480px"
               alt="Thực đơn LOCO Complex — make impossible"
-              loading="lazy"
-              decoding="async"
+              loading="eager"
+              fetchPriority="high"
+              decoding="sync"
               className="absolute inset-0 h-full w-full object-contain"
             />
           </div>

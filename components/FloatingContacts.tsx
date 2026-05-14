@@ -20,6 +20,7 @@ export default function FloatingContacts() {
           width={56}
           height={56}
           className="h-full w-full object-cover"
+          unoptimized
         />
       </a>
 
@@ -35,6 +36,7 @@ export default function FloatingContacts() {
           width={56}
           height={56}
           className="h-full w-full object-cover"
+          unoptimized
         />
       </a>
 
@@ -52,6 +54,7 @@ export default function FloatingContacts() {
           width={28}
           height={28}
           className="object-contain"
+          unoptimized
         />
       </a>
 
@@ -68,6 +71,7 @@ export default function FloatingContacts() {
           width={28}
           height={28}
           className="relative z-10 object-contain"
+          unoptimized
         />
       </a>
     </div>

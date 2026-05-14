@@ -55,6 +55,7 @@ export function StickyCtaBarMobile({ dict }: { dict: Dsticky }) {
             width={54}
             height={54}
             className="h-full w-full object-cover"
+            unoptimized
           />
         </a>
         <a
@@ -69,6 +70,7 @@ export function StickyCtaBarMobile({ dict }: { dict: Dsticky }) {
             width={54}
             height={54}
             className="h-full w-full object-cover"
+            unoptimized
           />
         </a>
       </div>
@@ -85,6 +87,7 @@ export function StickyCtaBarMobile({ dict }: { dict: Dsticky }) {
             width={22}
             height={22}
             className="object-contain"
+            unoptimized
           />
           {dict.call}
         </a>
@@ -101,6 +104,7 @@ export function StickyCtaBarMobile({ dict }: { dict: Dsticky }) {
             width={22}
             height={22}
             className="object-contain"
+            unoptimized
           />
           {dict.zalo}
         </a>
