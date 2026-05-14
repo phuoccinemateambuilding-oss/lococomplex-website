@@ -87,19 +87,18 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
               </span>
             </FadeSlideUp>
 
-            <FadeSlideUp delay={0.2}>
-              <h1 className="font-[family-name:var(--font-bebas-neue)] text-[6.5rem] leading-[0.8] text-white md:text-[14rem] md:drop-shadow-[0_0_60px_rgba(226,58,44,0.3)]">
-                <span className="sr-only">
-                  {locale === "vi"
-                    ? "Đặt bàn LOCO Complex — Khu giải trí NEWTRO Quận 1, Sài Gòn. Xem Menu LOCO signature, đọc Review LOCO Complex thực khách, ghé Địa chỉ LOCO tại 11 Nam Quốc Cang. Mở cửa 22:00 – 05:00, sức chứa 300 khách."
-                    : "Book LOCO Complex — NEWTRO Entertainment Complex in District 1, Saigon. Browse LOCO Menu signature, read LOCO Complex Reviews from real guests, visit LOCO Address at 11 Nam Quoc Cang. Open 10:00 PM – 5:00 AM daily, 300-guest capacity."}
-                </span>
-                <span aria-hidden="true">{dict.heading}</span>
-              </h1>
-              <span className="block font-[family-name:var(--font-caveat)] text-5xl text-hot-pink md:text-6xl mt-1">
-                {dict.subheading}
+            {/* H1 không wrap FadeSlideUp để tránh animation delay ảnh hưởng LCP */}
+            <h1 className="font-[family-name:var(--font-bebas-neue)] text-[6.5rem] leading-[0.8] text-white md:text-[14rem] md:drop-shadow-[0_0_60px_rgba(226,58,44,0.3)]">
+              <span className="sr-only">
+                {locale === "vi"
+                  ? "Đặt bàn LOCO Complex — Khu giải trí NEWTRO Quận 1, Sài Gòn. Xem Menu LOCO signature, đọc Review LOCO Complex thực khách, ghé Địa chỉ LOCO tại 11 Nam Quốc Cang. Mở cửa 22:00 – 05:00, sức chứa 300 khách."
+                  : "Book LOCO Complex — NEWTRO Entertainment Complex in District 1, Saigon. Browse LOCO Menu signature, read LOCO Complex Reviews from real guests, visit LOCO Address at 11 Nam Quoc Cang. Open 10:00 PM – 5:00 AM daily, 300-guest capacity."}
               </span>
-            </FadeSlideUp>
+              <span aria-hidden="true">{dict.heading}</span>
+            </h1>
+            <span className="block font-[family-name:var(--font-caveat)] text-5xl text-hot-pink md:text-6xl mt-1">
+              {dict.subheading}
+            </span>
 
             <FadeSlideUp delay={0.35}>
               <p className="text-base md:text-lg text-white/70 max-w-[48ch] leading-relaxed">
