@@ -3,7 +3,7 @@
 import { useState, useId } from "react";
 import { Warning } from "@phosphor-icons/react/dist/ssr";
 import { site } from "@/lib/site";
-import { track } from "@/lib/gtag";
+import { track, reportFormConversion } from "@/lib/gtag";
 import { FormSuccessModal } from "./FormSuccessModal";
 
 interface BookingFormProps {
@@ -59,10 +59,7 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
       const ok = res.ok && data.ok;
       setStatus(ok ? "success" : "error");
       if (ok) {
-        track("form_success", {
-          cta_location: "booking_form",
-          guests: Number(values.party) || 0,
-        });
+        await reportFormConversion(values.phone, values.name, Number(values.party) || 0);
       } else {
         track("form_error", { cta_location: "booking_form" });
       }

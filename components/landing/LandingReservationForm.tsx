@@ -18,7 +18,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { BRAND } from "@/lib/brand";
 import { buildCalendarUrl } from "@/lib/calendarLink";
 import { ZaloIcon } from "./ZaloIcon";
-import { track } from "@/lib/gtag";
+import { track, reportFormConversion } from "@/lib/gtag";
 import { FormSuccessModal } from "../FormSuccessModal";
 
 type Status = "idle" | "submitting" | "success" | "error";
@@ -155,11 +155,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
       }
       setSubmitted(payload);
       setStatus("success");
-      track("form_success", {
-        cta_location: "landing_form",
-        branch: "quan1",
-        guests: Number(payload.party) || 0,
-      });
+      await reportFormConversion(payload.phone, payload.name, Number(payload.party) || 0);
     } catch {
       setStatus("error");
       track("form_error", { cta_location: "landing_form" });
