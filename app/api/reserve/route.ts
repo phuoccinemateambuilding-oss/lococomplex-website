@@ -128,7 +128,7 @@ async function appendToSheet(d: Payload) {
   });
 }
 
-async function sendTelegram(d: Payload) {
+async function sendTelegram(d: Payload, bookingId: string) {
   const TOKEN = process.env.TELEGRAM_BOT_TOKEN;
   const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
   if (!TOKEN || !CHAT_ID) return;
@@ -149,6 +149,7 @@ async function sendTelegram(d: Payload) {
     `👥 *Số khách:* ${tg(d.party || "")}`,
     `🎯 *Hạng bàn:* ${tg(d.tier || "—")}`,
     `💬 *Ghi chú:* ${tg(d.note || "—")}`,
+    `🆔 *Booking ID:* \`${tg(bookingId)}\``,
     ``,
     `_Liên hệ lại khách trong 10 phút_`,
   ].join("\n");
@@ -162,7 +163,8 @@ async function sendTelegram(d: Payload) {
       parse_mode: "MarkdownV2",
       reply_markup: {
         inline_keyboard: [[
-          { text: "💬 Zalo khách", url: `https://zalo.me/${phoneDigits}` },
+          { text: "📤 Gửi Group", callback_data: `fwd:${bookingId}` },
+          { text: "📋 Sao chép SĐT", copy_text: { text: phoneDigits } },
         ]],
       },
     }),
@@ -184,10 +186,12 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, reason: "missing" }, { status: 400 });
     }
 
+    const bookingId = `BK${Math.floor(1000 + Math.random() * 9000)}`;
+
     const [mailResult, sheetResult, tgResult] = await Promise.allSettled([
       sendMail(d),
       appendToSheet(d),
-      sendTelegram(d),
+      sendTelegram(d, bookingId),
     ]);
 
     if (mailResult.status === "rejected") {
@@ -201,7 +205,7 @@ export async function POST(req: Request) {
       console.error("[/api/reserve] telegram failed (non-blocking)", tgResult.reason);
     }
 
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true, bookingId });
   } catch (err) {
     console.error("[/api/reserve]", err);
     return NextResponse.json({ ok: false, error: String(err) }, { status: 500 });
