@@ -2,11 +2,11 @@ import type { NextConfig } from "next";
 
 const csp = [
   "default-src 'self' https: data: blob:",
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://www.google.com https://googleads.g.doubleclick.net https://*.g.doubleclick.net https://va.vercel-scripts.com https://vercel.live",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://www.google.com https://www.googleadservices.com https://*.googleadservices.com https://googleads.g.doubleclick.net https://*.g.doubleclick.net https://va.vercel-scripts.com https://vercel.live",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com data:",
   "img-src 'self' data: blob: https:",
-  "connect-src 'self' https://www.google-analytics.com https://*.analytics.google.com https://*.google-analytics.com https://*.googletagmanager.com https://www.google.com https://googleads.g.doubleclick.net https://*.g.doubleclick.net https://stats.g.doubleclick.net https://vitals.vercel-insights.com https://va.vercel-scripts.com https://vercel.live",
+  "connect-src 'self' https://www.google-analytics.com https://*.analytics.google.com https://*.google-analytics.com https://*.googletagmanager.com https://www.google.com https://www.googleadservices.com https://*.googleadservices.com https://googleads.g.doubleclick.net https://*.g.doubleclick.net https://stats.g.doubleclick.net https://vitals.vercel-insights.com https://va.vercel-scripts.com https://vercel.live",
   "frame-src 'self' https://www.googletagmanager.com https://td.doubleclick.net https://www.google.com https://bid.g.doubleclick.net https://www.google.com/maps/",
   "object-src 'none'",
   "base-uri 'self'",
