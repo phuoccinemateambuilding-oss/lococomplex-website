@@ -179,13 +179,13 @@ export function FormSuccessModal({
               </motion.div>
 
               <motion.a
-                href="tel:+84866433754"
+                href="tel:+84332073354"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
                 className="font-display-vn text-2xl sm:text-3xl text-electric-blue tracking-wider mb-7 hover:scale-105 transition-transform"
               >
-                0866 433 754
+                0332 073 354
               </motion.a>
 
               <motion.div
@@ -195,7 +195,7 @@ export function FormSuccessModal({
                 className="flex flex-col sm:flex-row gap-3 w-full"
               >
                 <a
-                  href="tel:+84866433754"
+                  href="tel:+84332073354"
                   className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full bg-loco-red text-ink font-display-vn text-[13px] tracking-[0.25em] uppercase hover:opacity-90 transition-opacity min-h-[48px]"
                 >
                   <Phone size={18} weight="fill" />

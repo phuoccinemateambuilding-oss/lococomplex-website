@@ -9,7 +9,7 @@ import { JsonLd } from "@/components/JsonLd";
 export const metadata: Metadata = {
   title: "LOCO Complex — Entertainment & Music Venue · District 1, Saigon",
   description:
-    "LOCO Complex — NEWTRO-style entertainment complex at 11 Nam Quoc Cang, District 1, Saigon. 2-floor club: Heatroom (EDM, Top 40, House) + Hip-hop. Dining by BITES. Open 10:00 PM – 5:00 AM. Book a table: 0866 433 754.",
+    "LOCO Complex — NEWTRO-style entertainment complex at 11 Nam Quoc Cang, District 1, Saigon. 2-floor club: Heatroom (EDM, Top 40, House) + Hip-hop. Dining by BITES. Open 10:00 PM – 5:00 AM. Book a table: 0332 073 354.",
   keywords: [
     "LOCO Complex",
     "LOCO Heatroom",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     type: "website",
     title: "LOCO Complex — Entertainment & Music Venue · District 1, Saigon",
     description:
-      "NEWTRO-style entertainment complex at 11 Nam Quoc Cang. 2-floor club (Heatroom · Hip-hop) + BITES F&B. Book: 0866 433 754.",
+      "NEWTRO-style entertainment complex at 11 Nam Quoc Cang. 2-floor club (Heatroom · Hip-hop) + BITES F&B. Book: 0332 073 354.",
     siteName: "LOCO Complex",
     locale: "en_US",
     alternateLocale: "vi_VN",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "LOCO Complex — District 1 Saigon",
-    description: "NEWTRO entertainment · 2-floor club · BITES F&B · Book 0866 433 754",
+    description: "NEWTRO entertainment · 2-floor club · BITES F&B · Book 0332 073 354",
     images: ["/og.jpg"],
   },
 };
