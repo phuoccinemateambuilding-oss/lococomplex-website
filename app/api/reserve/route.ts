@@ -19,6 +19,26 @@ type Payload = {
 
 const VENUE_NAME = process.env.VENUE_NAME || "LOCO Complex";
 
+function isAfterHoursVN(now = new Date()): boolean {
+  const vnMs = now.getTime() + 7 * 60 * 60 * 1000;
+  const hourVN = new Date(vnMs).getUTCHours();
+  return hourVN >= 23 || hourVN < 6;
+}
+
+function vnHHMM(now = new Date()): string {
+  const vnMs = now.getTime() + 7 * 60 * 60 * 1000;
+  const d = new Date(vnMs);
+  const hh = String(d.getUTCHours()).padStart(2, "0");
+  const mm = String(d.getUTCMinutes()).padStart(2, "0");
+  return `${hh}:${mm}`;
+}
+
+function formatPhoneVNGrouped(raw: string | undefined): string {
+  const digits = String(raw || "").replace(/\D/g, "");
+  if (digits.length === 10 || digits.length === 11) return `${digits.slice(0, 4)} ${digits.slice(4, 7)} ${digits.slice(7)}`;
+  return digits;
+}
+
 const esc = (s: string | undefined) =>
   String(s || "").replace(/[<>&]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;" }[c] as string));
 
@@ -128,7 +148,7 @@ async function appendToSheet(d: Payload) {
   });
 }
 
-async function sendTelegram(d: Payload, bookingId: string) {
+async function sendTelegram(d: Payload, bookingId: string, isNight: boolean) {
   const TOKEN = process.env.TELEGRAM_BOT_TOKEN;
   const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
   if (!TOKEN || !CHAT_ID) return;
@@ -139,7 +159,7 @@ async function sendTelegram(d: Payload, bookingId: string) {
 
   const phoneDigits = String(d.phone || "").replace(/\D/g, "");
 
-  const text = [
+  const lines = [
     `🔔 *Đặt bàn mới ${tg(VENUE_NAME)}*`,
     `_${tg(timestamp)}_`,
     ``,
@@ -152,18 +172,69 @@ async function sendTelegram(d: Payload, bookingId: string) {
     `🆔 *Booking ID:* \`${tg(bookingId)}\``,
     ``,
     `_Liên hệ lại khách trong 10 phút_`,
-  ].join("\n");
+  ];
+  if (isNight) {
+    lines.push(``, `🌙 _Đã tự gửi sang Group quản lý lúc ${tg(vnHHMM())}_`);
+  }
+
+  const inlineKeyboard = isNight
+    ? [[{ text: "📋 Sao chép SĐT", copy_text: { text: phoneDigits } }]]
+    : [[
+        { text: "📤 Gửi Group", callback_data: `fwd:${bookingId}` },
+        { text: "📋 Sao chép SĐT", copy_text: { text: phoneDigits } },
+      ]];
 
   const res = await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       chat_id: CHAT_ID,
+      text: lines.join("\n"),
+      parse_mode: "MarkdownV2",
+      reply_markup: { inline_keyboard: inlineKeyboard },
+    }),
+  });
+
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`Telegram ${res.status}: ${body}`);
+  }
+}
+
+async function sendTelegramToGroup(d: Payload, bookingId: string) {
+  const TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+  const GROUP_ID = process.env.TELEGRAM_GROUP_ID;
+  if (!TOKEN || !GROUP_ID) return;
+
+  const timestamp = new Date().toLocaleString("vi-VN", { timeZone: "Asia/Ho_Chi_Minh" });
+  const tg = (s: string) =>
+    String(s || "").replace(/[_*[\]()~`>#+=\-|{}.!]/g, "\\$&");
+  const phoneDigits = String(d.phone || "").replace(/\D/g, "");
+  const phoneGrouped = formatPhoneVNGrouped(d.phone);
+
+  const text = [
+    `🌙 *\\[TỰ ĐỘNG BAN ĐÊM\\] Đặt bàn mới ${tg(VENUE_NAME)}*`,
+    ``,
+    `👤 *Tên:* ${tg(d.name || "")}`,
+    `📞 *SĐT:* ${tg(phoneGrouped)}`,
+    `📅 *Ngày:* ${tg(d.date || "")} ${tg(d.time || "")}`,
+    `👥 *Số khách:* ${tg(d.party || "")}`,
+    `🎯 *Hạng bàn:* ${tg(d.tier || "—")}`,
+    `💬 *Ghi chú:* ${tg(d.note || "—")}`,
+    `🆔 *Booking ID:* \`${tg(bookingId)}\``,
+    ``,
+    `⏱ _Tin gửi lúc ${tg(timestamp)}_`,
+  ].join("\n");
+
+  const res = await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      chat_id: GROUP_ID,
       text,
       parse_mode: "MarkdownV2",
       reply_markup: {
         inline_keyboard: [[
-          { text: "📤 Gửi Group", callback_data: `fwd:${bookingId}` },
           { text: "📋 Sao chép SĐT", copy_text: { text: phoneDigits } },
         ]],
       },
@@ -172,7 +243,7 @@ async function sendTelegram(d: Payload, bookingId: string) {
 
   if (!res.ok) {
     const body = await res.text();
-    throw new Error(`Telegram ${res.status}: ${body}`);
+    throw new Error(`Telegram group ${res.status}: ${body}`);
   }
 }
 
@@ -188,10 +259,13 @@ export async function POST(req: Request) {
 
     const bookingId = `BK${Math.floor(1000 + Math.random() * 9000)}`;
 
-    const [mailResult, sheetResult, tgResult] = await Promise.allSettled([
+    const isNight = isAfterHoursVN();
+
+    const [mailResult, sheetResult, tgResult, tgGroupResult] = await Promise.allSettled([
       sendMail(d),
       appendToSheet(d),
-      sendTelegram(d, bookingId),
+      sendTelegram(d, bookingId, isNight),
+      isNight ? sendTelegramToGroup(d, bookingId) : Promise.resolve(),
     ]);
 
     if (mailResult.status === "rejected") {
@@ -203,6 +277,9 @@ export async function POST(req: Request) {
     }
     if (tgResult.status === "rejected") {
       console.error("[/api/reserve] telegram failed (non-blocking)", tgResult.reason);
+    }
+    if (tgGroupResult.status === "rejected") {
+      console.error("[/api/reserve] telegram group (after-hours) failed (non-blocking)", tgGroupResult.reason);
     }
 
     return NextResponse.json({ ok: true, bookingId });
