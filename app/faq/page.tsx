@@ -7,7 +7,7 @@ import FloatingContacts from "@/components/FloatingContacts";
 
 const title = "Câu hỏi thường gặp — LOCO Complex | Giờ mở cửa, giá, đặt bàn";
 const description =
-  "10 câu hỏi thường gặp về LOCO Complex: giờ mở cửa 22:00 – 05:00, địa chỉ 11 Nam Quốc Cang Quận 1, giá bàn VIP, dress code, đặt bàn, sự kiện riêng. Hotline 0332 073 354.";
+  "10 câu hỏi thường gặp về LOCO Complex: giờ mở cửa 22:00 – 05:00, địa chỉ 11 Nam Quốc Cang Quận 1, giá bàn VIP, dress code, đặt bàn, sự kiện riêng. Hotline 0338 411 908.";
 
 export const metadata: Metadata = {
   title,

@@ -11,9 +11,9 @@ import { site } from "@/lib/site";
 import { spaceImages, galleryImages } from "@/lib/images";
 
 export const metadata: Metadata = {
-  title: "Contact & Reserve — LOCO Complex · 0332 073 354",
+  title: "Contact & Reserve — LOCO Complex · 0338 411 908",
   description:
-    "Reserve a table at LOCO Complex via form, hotline 0332 073 354, or Zalo. 11 Nam Quoc Cang, Pham Ngu Lao Ward, District 1, HCMC. Open 10:00 PM – 5:00 AM.",
+    "Reserve a table at LOCO Complex via form, hotline 0338 411 908, or Zalo. 11 Nam Quoc Cang, Pham Ngu Lao Ward, District 1, HCMC. Open 10:00 PM – 5:00 AM.",
   keywords: [
     "book LOCO Complex",
     "LOCO Complex hotline",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Contact & Reserve — LOCO Complex",
-    description: "Hotline 0332 073 354 · Zalo · Reservation form. 11 Nam Quoc Cang, D.1.",
+    description: "Hotline 0338 411 908 · Zalo · Reservation form. 11 Nam Quoc Cang, D.1.",
     url: "/en/contact",
     locale: "en_US",
     type: "website",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Contact LOCO Complex",
-    description: "Reserve · Hotline 0332 073 354 · Zalo",
+    description: "Reserve · Hotline 0338 411 908 · Zalo",
     images: ["/og.jpg"],
   },
 };
