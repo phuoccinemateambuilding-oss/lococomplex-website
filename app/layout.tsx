@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Be_Vietnam_Pro, Bebas_Neue, Caveat, Space_Mono } from "next/font/google";
 import "./globals.css";
 import { site, SITE_URL } from "@/lib/site";
@@ -128,6 +128,14 @@ export const metadata: Metadata = {
   category: "Entertainment",
   applicationName: "LOCO Complex",
   formatDetection: { telephone: true, email: false, address: true },
+};
+
+/* Khoá zoom: không zoom in/out kể cả khi focus/gõ input (đồng bộ pattern Nightclub.com.vn) */
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
