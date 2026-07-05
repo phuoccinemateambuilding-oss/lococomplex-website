@@ -20,6 +20,8 @@ import { buildCalendarUrl } from "@/lib/calendarLink";
 import { ZaloIcon } from "./ZaloIcon";
 import { track, reportFormConversion } from "@/lib/gtag";
 import { FormSuccessModal } from "../FormSuccessModal";
+import { CountryCodeSelect } from "../CountryCodeSelect";
+import { DEFAULT_COUNTRY, formatIntlPhone } from "@/lib/countryCodes";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -96,6 +98,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
   const [status, setStatus] = useState<Status>("idle");
   const [values, setValues] = useState({
     name: "",
+    country: DEFAULT_COUNTRY,
     phone: "",
     date: "",
     time: "",
@@ -114,9 +117,11 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
+    const country = String(fd.get("dial_country") || DEFAULT_COUNTRY);
     const payload = {
       name: String(fd.get("name") || "").trim(),
-      phone: String(fd.get("phone") || "").trim(),
+      country,
+      phone: formatIntlPhone(country, String(fd.get("phone") || "")),
       date: String(fd.get("date") || ""),
       time: String(fd.get("time") || ""),
       party: String(fd.get("party") || ""),
@@ -164,7 +169,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
 
   function resetForm() {
     setStatus("idle");
-    setValues({ name: "", phone: "", date: "", time: "", party: "", note: "", bot_field: "" });
+    setValues({ name: "", country: DEFAULT_COUNTRY, phone: "", date: "", time: "", party: "", note: "", bot_field: "" });
     setMissingFields([]);
     setSubmitted(null);
     setModalDismissed(false);
@@ -341,20 +346,34 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                     </Field>
 
                     {/* Phone */}
-                    <Field label={dict.fieldPhone} required icon={<Phone size={18} weight="fill" />}>
-                      <input
-                        id={`${formId}-phone`}
-                        name="phone"
-                        type="tel"
-                        inputMode="tel"
-                        autoComplete="tel"
-                        required
-                        pattern="[0-9+\s]{9,}"
-                        value={values.phone}
-                        onChange={set("phone")}
-                        className={inputClsIcon}
-                        placeholder="091 4271 564"
-                      />
+                    <Field label={dict.fieldPhone} required>
+                      <div className="flex gap-2">
+                        <CountryCodeSelect
+                          name="dial_country"
+                          value={values.country}
+                          onChange={set("country")}
+                          ariaLabel={locale === "vi" ? "Mã quốc gia" : "Country code"}
+                          className="w-[112px] shrink-0 min-h-[48px] appearance-none rounded-2xl border-2 border-white/20 bg-midnight/70 px-3 py-3.5 text-[16px] font-normal text-white text-center focus:border-loco-red focus:outline-none focus:ring-2 focus:ring-loco-red/40 hover:border-white/35 transition [color-scheme:dark]"
+                        />
+                        <div className="relative flex-1 min-w-0">
+                          <span className="absolute left-3.5 top-3.5 text-loco-yellow pointer-events-none z-10 drop-shadow-[0_0_4px_rgba(245,195,48,0.35)]">
+                            <Phone size={18} weight="fill" />
+                          </span>
+                          <input
+                            id={`${formId}-phone`}
+                            name="phone"
+                            type="tel"
+                            inputMode="tel"
+                            autoComplete="tel"
+                            required
+                            pattern="[0-9+\s]{9,}"
+                            value={values.phone}
+                            onChange={set("phone")}
+                            className={inputClsIcon}
+                            placeholder="091 4271 564"
+                          />
+                        </div>
+                      </div>
                     </Field>
 
                     {/* Date + Time */}

@@ -5,6 +5,8 @@ import { Warning } from "@phosphor-icons/react/dist/ssr";
 import { site } from "@/lib/site";
 import { track, reportFormConversion } from "@/lib/gtag";
 import { FormSuccessModal } from "./FormSuccessModal";
+import { CountryCodeSelect } from "./CountryCodeSelect";
+import { DEFAULT_COUNTRY, formatIntlPhone } from "@/lib/countryCodes";
 
 interface BookingFormProps {
   locale?: "vi" | "en";
@@ -32,6 +34,7 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
   const [status, setStatus] = useState<Status>("idle");
   const [values, setValues] = useState({
     name: "",
+    country: DEFAULT_COUNTRY,
     phone: "",
     date: "",
     time: "",
@@ -49,17 +52,18 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
     if (status === "submitting") return;
     setStatus("submitting");
     track("form_submit", { cta_location: "booking_form" });
+    const fullPhone = formatIntlPhone(values.country, values.phone);
     try {
       const res = await fetch("/api/reserve", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values, locale }),
+        body: JSON.stringify({ ...values, phone: fullPhone, locale }),
       });
       const data = await res.json().catch(() => ({ ok: false }));
       const ok = res.ok && data.ok;
       setStatus(ok ? "success" : "error");
       if (ok) {
-        await reportFormConversion(values.phone, values.name, Number(values.party) || 0);
+        await reportFormConversion(fullPhone, values.name, Number(values.party) || 0);
       } else {
         track("form_error", { cta_location: "booking_form" });
       }
@@ -74,7 +78,7 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
 
   function handleClose() {
     setStatus("idle");
-    setValues({ name: "", phone: "", date: "", time: "", party: "2", note: "", bot_field: "" });
+    setValues({ name: "", country: DEFAULT_COUNTRY, phone: "", date: "", time: "", party: "2", note: "", bot_field: "" });
   }
 
   return (
@@ -107,17 +111,25 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
 
       <div>
         <label htmlFor={`${fid}-phone`} className="block text-sm font-normal text-ink mb-1.5">{t.formPhone} *</label>
-        <input
-          id={`${fid}-phone`}
-          type="tel"
-          required
-          autoComplete="tel"
-          inputMode="tel"
-          pattern="[0-9+\s]{9,}"
-          value={values.phone}
-          onChange={set("phone")}
-          className={inputClass}
-        />
+        <div className="flex gap-2">
+          <CountryCodeSelect
+            value={values.country}
+            onChange={set("country")}
+            ariaLabel={locale === "vi" ? "Mã quốc gia" : "Country code"}
+            className="w-[110px] shrink-0 px-2 py-3 rounded-xl border-2 border-ink/10 bg-white focus:border-loco-red focus:outline-none transition-colors text-base min-h-[48px] text-center"
+          />
+          <input
+            id={`${fid}-phone`}
+            type="tel"
+            required
+            autoComplete="tel"
+            inputMode="tel"
+            pattern="[0-9+\s]{9,}"
+            value={values.phone}
+            onChange={set("phone")}
+            className={`${inputClass} flex-1 min-w-0`}
+          />
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
