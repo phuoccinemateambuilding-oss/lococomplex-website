@@ -115,7 +115,6 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
               </button>
               <a
                 href={`tel:${BRAND.phoneTel}`}
-                onClick={() => track("tel_click", { cta_location: "hero" })}
                 className="inline-flex h-14 items-center gap-2 rounded-full border border-white/30 bg-ink/40 px-6 font-[family-name:var(--font-space-mono)] text-sm font-bold text-white/80 backdrop-blur transition hover:border-white/60 hover:text-white"
               >
                 <Phone weight="fill" className="h-4 w-4" />

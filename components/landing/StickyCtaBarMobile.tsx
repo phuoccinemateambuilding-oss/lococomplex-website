@@ -78,7 +78,6 @@ export function StickyCtaBarMobile({ dict }: { dict: Dsticky }) {
       <div className="grid grid-cols-3 gap-1 border-t border-loco-red/30 bg-midnight-deep/95 p-2 backdrop-blur-md">
         <a
           href={`tel:${BRAND.phoneTel}`}
-          onClick={() => track("tel_click", { cta_location: "sticky_mobile" })}
           className="flex flex-col items-center justify-center gap-1 rounded-xl bg-loco-red/15 py-2 text-[11px] font-bold uppercase tracking-wider text-loco-red"
         >
           <Image
@@ -95,7 +94,6 @@ export function StickyCtaBarMobile({ dict }: { dict: Dsticky }) {
           href={BRAND.zaloUrl}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => track("zalo_click", { cta_location: "sticky_mobile" })}
           className="flex flex-col items-center justify-center gap-1 rounded-xl bg-[#0068FF] py-2 text-[11px] font-bold uppercase tracking-wider text-white"
         >
           <Image

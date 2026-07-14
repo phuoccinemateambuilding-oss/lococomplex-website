@@ -520,7 +520,6 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
               <div className="flex flex-col items-center gap-3">
                 <a
                   href={`tel:${BRAND.phoneTel}`}
-                  onClick={() => track("tel_click", { cta_location: "landing_trust_aside" })}
                   className="inline-flex items-center gap-2 rounded-full border border-loco-red/60 px-6 py-3 font-[family-name:var(--font-space-mono)] text-sm font-bold text-loco-red transition hover:bg-loco-red/10"
                 >
                   <Phone weight="fill" className="h-4 w-4" />
@@ -530,7 +529,6 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                   href={BRAND.zaloUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => track("zalo_click", { cta_location: "landing_trust_aside" })}
                   className="inline-flex items-center gap-2 rounded-full bg-[#0068FF] px-6 py-3 text-sm font-bold uppercase tracking-wider text-white shadow-[0_8px_30px_-5px_rgba(0,104,255,0.5)] transition hover:-translate-y-0.5 hover:bg-[#0068FF]/85"
                 >
                   <ZaloIcon size={16} />

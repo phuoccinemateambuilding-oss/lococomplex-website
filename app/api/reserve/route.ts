@@ -270,16 +270,26 @@ export async function POST(req: Request) {
 
     if (mailResult.status === "rejected") {
       console.error("[/api/reserve] mail failed", mailResult.reason);
-      return NextResponse.json({ ok: false, reason: "mail" }, { status: 500 });
     }
     if (sheetResult.status === "rejected") {
-      console.error("[/api/reserve] sheet append failed (mail OK)", sheetResult.reason);
+      console.error("[/api/reserve] sheet append failed", sheetResult.reason);
     }
     if (tgResult.status === "rejected") {
-      console.error("[/api/reserve] telegram failed (non-blocking)", tgResult.reason);
+      console.error("[/api/reserve] telegram failed", tgResult.reason);
     }
     if (tgGroupResult.status === "rejected") {
       console.error("[/api/reserve] telegram group (after-hours) failed (non-blocking)", tgGroupResult.reason);
+    }
+
+    // anySucceeded pattern: chỉ báo fail khi CẢ 3 kênh chính (mail + sheet + telegram) đều rejected.
+    // tgGroupResult (after-hours forward) luôn non-blocking, không tính vào điều kiện fail.
+    const allCoreFailed =
+      mailResult.status === "rejected" &&
+      sheetResult.status === "rejected" &&
+      tgResult.status === "rejected";
+
+    if (allCoreFailed) {
+      return NextResponse.json({ ok: false, reason: "all_channels_failed" }, { status: 500 });
     }
 
     return NextResponse.json({ ok: true, bookingId });
