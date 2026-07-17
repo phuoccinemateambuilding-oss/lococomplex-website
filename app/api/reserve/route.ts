@@ -22,7 +22,7 @@ const VENUE_NAME = process.env.VENUE_NAME || "LOCO Complex";
 function isAfterHoursVN(now = new Date()): boolean {
   const vnMs = now.getTime() + 7 * 60 * 60 * 1000;
   const hourVN = new Date(vnMs).getUTCHours();
-  return hourVN >= 23 || hourVN < 6;
+  return hourVN >= 0 && hourVN < 3;
 }
 
 function vnHHMM(now = new Date()): string {
