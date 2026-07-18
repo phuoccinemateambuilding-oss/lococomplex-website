@@ -181,6 +181,7 @@ async function sendTelegram(d: Payload, bookingId: string, isNight: boolean) {
     ? [[{ text: "📋 Sao chép SĐT", copy_text: { text: phoneDigits } }]]
     : [[
         { text: "📤 Gửi Group", callback_data: `fwd:${bookingId}` },
+        { text: "📤 Gửi Ngọc", callback_data: `fwd2:${bookingId}` },
         { text: "📋 Sao chép SĐT", copy_text: { text: phoneDigits } },
       ]];
 
