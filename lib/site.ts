@@ -13,7 +13,7 @@ export const site = {
   phoneE164: "+84914271564",
   phoneTel: "tel:0914271564",
   zaloUrl: "https://zalo.me/0866433754",
-  whatsappUrl: "https://api.whatsapp.com/qr/XB73SS6FX5VJJ1",
+  whatsappUrl: "https://wa.me/84866433754",
   wechatUrl: "weixin://dl/chat?Thegioibooking",
   address: {
     vi: "11 Đường Nam Quốc Cang, P. Phạm Ngũ Lão, Quận 1, TP.HCM",
