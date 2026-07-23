@@ -248,6 +248,45 @@ async function sendTelegramToGroup(d: Payload, bookingId: string) {
   }
 }
 
+
+// Đổ đơn vào Nightclub CRM ngay khi tạo (chưa gán đầu mối — bấm "Gửi ..." trên card
+// Telegram mới gán). Fire-and-forget: CRM lỗi KHÔNG được chặn flow đặt bàn của khách.
+async function sendCrm(d: Payload, bookingId: string) {
+  const KEY = process.env.CRM_API_KEY;
+  if (!KEY) return;
+  try {
+    const dateRaw = String(d.date || "").trim();
+    let iso = /^\d{4}-\d{2}-\d{2}$/.test(dateRaw) ? dateRaw : "";
+    const dmy = dateRaw.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})$/);
+    if (!iso && dmy) iso = `${dmy[3]}-${dmy[2].padStart(2, "0")}-${dmy[1].padStart(2, "0")}`;
+    if (!iso) iso = new Intl.DateTimeFormat("sv-SE", { timeZone: "Asia/Ho_Chi_Minh" }).format(new Date());
+    const timeRaw = String(d.time || "").trim();
+    const hm = timeRaw.match(/^(\d{1,2}):(\d{2})/);
+    const time = hm ? `${hm[1].padStart(2, "0")}:${hm[2]}` : "21:00";
+    const guests = parseInt(String(d.party ?? "").replace(/\D/g, ""), 10) || 1;
+    await fetch("https://nightclub-crm.vercel.app/api/bookings", {
+      method: "POST",
+      headers: { "x-api-key": KEY, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        bk_code: bookingId,
+        venue: "loco",
+        customer_name: d.name || null,
+        phone: d.phone || null,
+        channel: "phone",
+        locale: d.locale === "en" ? "en" : "vi",
+        guest_count: guests,
+        arrival_at: `${iso}T${time}`,
+        status: "confirmed",
+        source: "web",
+        notes: [d.tier, d.note].filter(Boolean).join(" · ") || null,
+      }),
+      signal: AbortSignal.timeout(8000),
+    });
+  } catch (err) {
+    console.error("[crm] push booking fail:", err);
+  }
+}
+
 export async function POST(req: Request) {
   try {
     const d = (await req.json()) as Payload;
@@ -267,6 +306,7 @@ export async function POST(req: Request) {
       appendToSheet(d),
       sendTelegram(d, bookingId, isNight),
       isNight ? sendTelegramToGroup(d, bookingId) : Promise.resolve(),
+      sendCrm(d, bookingId),
     ]);
 
     if (mailResult.status === "rejected") {
