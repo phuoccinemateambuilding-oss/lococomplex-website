@@ -19,10 +19,9 @@ type Payload = {
 
 const VENUE_NAME = process.env.VENUE_NAME || "LOCO Complex";
 
-function isAfterHoursVN(now = new Date()): boolean {
-  const vnMs = now.getTime() + 7 * 60 * 60 * 1000;
-  const hourVN = new Date(vnMs).getUTCHours();
-  return hourVN >= 0 && hourVN < 3;
+function isAfterHoursVN(): boolean {
+  // Tự động gửi thẳng vào group Quản lý booking ban đêm ĐÃ TẮT (sếp yêu cầu 2026-07-24).
+  return false;
 }
 
 function vnHHMM(now = new Date()): string {
