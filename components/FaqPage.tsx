@@ -63,7 +63,7 @@ const faqEn: Qa[] = [
   },
   {
     q: "How do I reserve a table at LOCO Complex?",
-    a: "You can reserve via hotline +84 332 073 354, official Zalo at zalo.me/0332073354, or the reservation form on our website. Reservation is complimentary, confirmed within 10 minutes.",
+    a: "You can reserve via hotline +84 914 271 564, official Zalo at zalo.me/0332073354, or the reservation form on our website. Reservation is complimentary, confirmed within 10 minutes.",
   },
   {
     q: "How much do VIP tables cost at LOCO Complex?",
@@ -83,7 +83,7 @@ const faqEn: Qa[] = [
   },
   {
     q: "Can I book LOCO Complex for a private event?",
-    a: "Yes. LOCO Complex accepts private parties, birthday celebrations, corporate events, and anniversaries. Contact hotline +84 332 073 354 for space, decoration, and custom menu consultation.",
+    a: "Yes. LOCO Complex accepts private parties, birthday celebrations, corporate events, and anniversaries. Contact hotline +84 914 271 564 for space, decoration, and custom menu consultation.",
   },
   {
     q: "What is LOCO Heatroom?",
@@ -108,7 +108,7 @@ export function FaqPage({ locale }: { locale: Locale }) {
     body:
       locale === "vi"
         ? "10 câu hỏi phổ biến về LOCO Complex — từ giờ mở cửa, giá bàn VIP, dress code đến đặt sự kiện riêng. Liên hệ 091 4271 564 nếu cần thêm."
-        : "Top 10 common questions about LOCO Complex — from opening hours, VIP pricing, dress code to private event booking. Call +84 332 073 354 for more.",
+        : "Top 10 common questions about LOCO Complex — from opening hours, VIP pricing, dress code to private event booking. Call +84 914 271 564 for more.",
     stillQ: locale === "vi" ? "Vẫn còn thắc mắc?" : "Still have questions?",
     stillBody:
       locale === "vi"
