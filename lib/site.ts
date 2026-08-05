@@ -10,9 +10,9 @@ export const site = {
   shortName: "LOCO",
   tagline: "make impossible",
   phone: "091 4271 564",
-  phoneE164: "+84914271564",
-  phoneTel: "tel:0914271564",
-  zaloUrl: "https://zalo.me/0866433754",
+  phoneE164: "+84332073354",
+  phoneTel: "tel:0332073354",
+  zaloUrl: "https://zalo.me/0332073354",
   whatsappUrl: "https://wa.me/84909660291",
   wechatUrl: "weixin://dl/chat?Thegioibooking",
   address: {
