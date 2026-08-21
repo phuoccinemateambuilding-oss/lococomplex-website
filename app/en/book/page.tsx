@@ -19,7 +19,7 @@ const ReservationJsonLd = dynamic(() => import("@/components/landing/Reservation
 export const metadata: Metadata = {
   title: "Book LOCO Complex — NEWTRO Entertainment Complex · 11 Nam Quoc Cang, District 1",
   description:
-    "Book LOCO Complex online — NEWTRO-style entertainment complex at 11 Nam Quoc Cang, District 1, Saigon. 2-floor club: Heatroom (EDM, Top 40, House) + Hip-hop. Open 10:00 PM – 5:00 AM. Hotline 0332 073 354.",
+    "Book LOCO Complex online — NEWTRO-style entertainment complex at 11 Nam Quoc Cang, District 1, Saigon. 2-floor club: Heatroom (EDM, Top 40, House) + Hip-hop. Open 10:00 PM – 5:00 AM. Hotline 0905 806 704.",
   alternates: {
     canonical: "/en/book",
     languages: {
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Book LOCO Complex — NEWTRO Entertainment Complex · District 1, Saigon",
     description:
-      "Book LOCO Complex — 2-floor club Heatroom + Hip-hop at 11 Nam Quoc Cang, D.1. Open 10:00 PM – 5:00 AM. Hotline 0332 073 354.",
+      "Book LOCO Complex — 2-floor club Heatroom + Hip-hop at 11 Nam Quoc Cang, D.1. Open 10:00 PM – 5:00 AM. Hotline 0905 806 704.",
     url: "/en/book",
   },
 };

@@ -20,7 +20,7 @@ const ReservationJsonLd = dynamic(() => import("@/components/landing/Reservation
 export const metadata: Metadata = {
   title: "Đặt bàn LOCO Complex — Khu Giải Trí NEWTRO · 11 Nam Quốc Cang, Quận 1",
   description:
-    "Đặt bàn LOCO Complex online — khu phức hợp giải trí NEWTRO tại 11 Nam Quốc Cang, Quận 1, Sài Gòn. 2 tầng club: Heatroom (EDM, Top 40, House) + Hip-hop. Mở cửa 22:00 – 05:00. Hotline 0332 073 354.",
+    "Đặt bàn LOCO Complex online — khu phức hợp giải trí NEWTRO tại 11 Nam Quốc Cang, Quận 1, Sài Gòn. 2 tầng club: Heatroom (EDM, Top 40, House) + Hip-hop. Mở cửa 22:00 – 05:00. Hotline 0905 806 704.",
   alternates: {
     canonical: "/dat-ban",
     languages: {
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Đặt bàn LOCO Complex — Khu Giải Trí NEWTRO · Quận 1, Sài Gòn",
     description:
-      "Đặt bàn LOCO Complex — 2 tầng club Heatroom + Hip-hop tại 11 Nam Quốc Cang, Q.1. Mở cửa 22:00 – 05:00. Hotline 0332 073 354.",
+      "Đặt bàn LOCO Complex — 2 tầng club Heatroom + Hip-hop tại 11 Nam Quốc Cang, Q.1. Mở cửa 22:00 – 05:00. Hotline 0905 806 704.",
     url: "/dat-ban",
   },
 };

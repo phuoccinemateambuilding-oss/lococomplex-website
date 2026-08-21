@@ -12,9 +12,9 @@ import { spaceImages, galleryImages } from "@/lib/images";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
-  title: "Liên hệ & Đặt bàn — LOCO Complex · 0332 073 354",
+  title: "Liên hệ & Đặt bàn — LOCO Complex · 0905 806 704",
   description:
-    "Đặt bàn LOCO Complex qua form, hotline 0332 073 354 hoặc Zalo. Địa chỉ: 11 Nam Quốc Cang, Phạm Ngũ Lão, Quận 1, TP.HCM. Mở cửa 22:00 – 05:00.",
+    "Đặt bàn LOCO Complex qua form, hotline 0905 806 704 hoặc Zalo. Địa chỉ: 11 Nam Quốc Cang, Phạm Ngũ Lão, Quận 1, TP.HCM. Mở cửa 22:00 – 05:00.",
   keywords: [
     "đặt bàn LOCO Complex",
     "hotline LOCO",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Liên hệ & Đặt bàn — LOCO Complex",
-    description: "Hotline 0332 073 354 · Zalo · Form đặt bàn. 11 Nam Quốc Cang, Q.1.",
+    description: "Hotline 0905 806 704 · Zalo · Form đặt bàn. 11 Nam Quốc Cang, Q.1.",
     url: "/lien-he",
     locale: "vi_VN",
     type: "website",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Liên hệ LOCO Complex",
-    description: "Đặt bàn · Hotline 0332 073 354 · Zalo",
+    description: "Đặt bàn · Hotline 0905 806 704 · Zalo",
     images: ["/og.jpg"],
   },
 };
