@@ -20,7 +20,7 @@ const faqVi: Qa[] = [
   },
   {
     q: "Làm thế nào để đặt bàn tại LOCO Complex?",
-    a: "Bạn có thể đặt bàn qua hotline 0905 806 704, Zalo chính thức tại zalo.me/0905806704, hoặc form đặt bàn trên website. Đặt bàn miễn phí, xác nhận trong 10 phút.",
+    a: "Bạn có thể đặt bàn qua hotline 0905 806 518, Zalo chính thức tại zalo.me/0905806518, hoặc form đặt bàn trên website. Đặt bàn miễn phí, xác nhận trong 10 phút.",
   },
   {
     q: "Giá bàn VIP tại LOCO Complex là bao nhiêu?",
@@ -40,7 +40,7 @@ const faqVi: Qa[] = [
   },
   {
     q: "LOCO Complex có thể đặt tổ chức sự kiện riêng không?",
-    a: "Có. LOCO Complex nhận private party, sinh nhật, corporate event, tiệc kỷ niệm. Liên hệ hotline 0905 806 704 để được tư vấn không gian, trang trí và thực đơn theo yêu cầu.",
+    a: "Có. LOCO Complex nhận private party, sinh nhật, corporate event, tiệc kỷ niệm. Liên hệ hotline 0905 806 518 để được tư vấn không gian, trang trí và thực đơn theo yêu cầu.",
   },
   {
     q: "LOCO Heatroom là gì?",
@@ -63,7 +63,7 @@ const faqEn: Qa[] = [
   },
   {
     q: "How do I reserve a table at LOCO Complex?",
-    a: "You can reserve via hotline +84 905 806 704, official Zalo at zalo.me/0905806704, or the reservation form on our website. Reservation is complimentary, confirmed within 10 minutes.",
+    a: "You can reserve via hotline +84 905 806 518, official Zalo at zalo.me/0905806518, or the reservation form on our website. Reservation is complimentary, confirmed within 10 minutes.",
   },
   {
     q: "How much do VIP tables cost at LOCO Complex?",
@@ -83,7 +83,7 @@ const faqEn: Qa[] = [
   },
   {
     q: "Can I book LOCO Complex for a private event?",
-    a: "Yes. LOCO Complex accepts private parties, birthday celebrations, corporate events, and anniversaries. Contact hotline +84 905 806 704 for space, decoration, and custom menu consultation.",
+    a: "Yes. LOCO Complex accepts private parties, birthday celebrations, corporate events, and anniversaries. Contact hotline +84 905 806 518 for space, decoration, and custom menu consultation.",
   },
   {
     q: "What is LOCO Heatroom?",
@@ -107,8 +107,8 @@ export function FaqPage({ locale }: { locale: Locale }) {
         : "What you should know about LOCO Complex",
     body:
       locale === "vi"
-        ? "10 câu hỏi phổ biến về LOCO Complex — từ giờ mở cửa, giá bàn VIP, dress code đến đặt sự kiện riêng. Liên hệ 0905 806 704 nếu cần thêm."
-        : "Top 10 common questions about LOCO Complex — from opening hours, VIP pricing, dress code to private event booking. Call +84 905 806 704 for more.",
+        ? "10 câu hỏi phổ biến về LOCO Complex — từ giờ mở cửa, giá bàn VIP, dress code đến đặt sự kiện riêng. Liên hệ 0905 806 518 nếu cần thêm."
+        : "Top 10 common questions about LOCO Complex — from opening hours, VIP pricing, dress code to private event booking. Call +84 905 806 518 for more.",
     stillQ: locale === "vi" ? "Vẫn còn thắc mắc?" : "Still have questions?",
     stillBody:
       locale === "vi"

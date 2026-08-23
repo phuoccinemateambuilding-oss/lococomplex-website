@@ -370,7 +370,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                             value={values.phone}
                             onChange={set("phone")}
                             className={inputClsIcon}
-                            placeholder="0905 806 704"
+                            placeholder="0905 806 518"
                           />
                         </div>
                       </div>
