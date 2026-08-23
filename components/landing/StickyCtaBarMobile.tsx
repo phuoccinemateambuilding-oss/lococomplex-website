@@ -10,7 +10,6 @@ type Dsticky = {
   zalo: string;
   book: string;
   whatsapp: string;
-  wechat: string;
 };
 
 function track(event: string, params: Record<string, unknown> = {}) {
@@ -39,7 +38,7 @@ export function StickyCtaBarMobile({ dict }: { dict: Dsticky }) {
       }`}
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
-      {/* WhatsApp + WeChat floating above sticky bar — transparent container, only buttons have bg */}
+      {/* WhatsApp floating above sticky bar — transparent container, only button has bg */}
       <div className="pointer-events-none flex flex-col items-end gap-3 px-5 pb-3">
         <a
           href={BRAND.whatsappUrl}
@@ -52,21 +51,6 @@ export function StickyCtaBarMobile({ dict }: { dict: Dsticky }) {
           <Image
             src="/assets/icons/whatsapp.webp"
             alt="WhatsApp"
-            width={54}
-            height={54}
-            className="h-full w-full object-cover"
-            unoptimized
-          />
-        </a>
-        <a
-          href={BRAND.wechatUrl}
-          onClick={() => track("wechat_click", { cta_location: "sticky_mobile" })}
-          aria-label={dict.wechat}
-          className="pointer-events-auto h-[54px] w-[54px] overflow-hidden rounded-full shadow-lg transition-transform hover:scale-110"
-        >
-          <Image
-            src="/assets/icons/wechat.webp"
-            alt="WeChat"
             width={54}
             height={54}
             className="h-full w-full object-cover"

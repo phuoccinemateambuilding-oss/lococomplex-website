@@ -24,22 +24,6 @@ export default function FloatingContacts() {
         />
       </a>
 
-      {/* WeChat button */}
-      <a
-        href={site.wechatUrl}
-        aria-label="Chat WeChat"
-        className="h-14 w-14 overflow-hidden rounded-full shadow-lg transition-transform hover:scale-110"
-      >
-        <Image
-          src="/assets/icons/wechat.webp"
-          alt="WeChat"
-          width={56}
-          height={56}
-          className="h-full w-full object-cover"
-          unoptimized
-        />
-      </a>
-
       {/* Zalo button */}
       <a
         href={site.zaloUrl}

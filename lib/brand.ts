@@ -8,7 +8,6 @@ export const BRAND = {
   phoneTel: site.phoneE164,
   zaloUrl: site.zaloUrl,
   whatsappUrl: site.whatsappUrl,
-  wechatUrl: site.wechatUrl,
   address: site.address,
   addressShort: "11 Nam Quốc Cang, Q.1",
   hours: site.hours,

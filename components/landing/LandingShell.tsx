@@ -6,7 +6,7 @@ import { StickyCtaBarMobile } from "./StickyCtaBarMobile";
 import FloatingContacts from "@/components/FloatingContacts";
 import { routeMap, type Locale } from "@/lib/i18n";
 
-type Dsticky = { call: string; zalo: string; book: string; whatsapp: string; wechat: string };
+type Dsticky = { call: string; zalo: string; book: string; whatsapp: string };
 
 export function LandingShell({
   stickyDict,
