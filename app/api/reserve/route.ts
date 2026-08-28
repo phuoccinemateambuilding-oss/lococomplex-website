@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { google } from "googleapis";
+import { cookies } from "next/headers";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -250,6 +251,33 @@ async function sendTelegramToGroup(d: Payload, bookingId: string) {
 
 // Đổ đơn vào Nightclub CRM ngay khi tạo (chưa gán đầu mối — bấm "Gửi ..." trên card
 // Telegram mới gán). Fire-and-forget: CRM lỗi KHÔNG được chặn flow đặt bàn của khách.
+
+// Nguồn khách (2026-08-24) — component TrafficSource ghi cookie khi khách vào site;
+// đọc ở đây gửi kèm sang CRM để cuối tháng thống kê tỷ lệ nguồn khách.
+async function readTrafficCookie(): Promise<{
+  traffic_source?: string | null;
+  traffic_detail?: string | null;
+}> {
+  try {
+    const c = await cookies();
+    const dec = (v: string) => {
+      try {
+        return decodeURIComponent(v);
+      } catch {
+        return v;
+      }
+    };
+    const src = c.get("nc_src")?.value || "";
+    const detail = c.get("nc_srcd")?.value || "";
+    return {
+      traffic_source: src ? dec(src) : null,
+      traffic_detail: detail ? dec(detail).slice(0, 400) : null,
+    };
+  } catch {
+    return {};
+  }
+}
+
 async function sendCrm(d: Payload, bookingId: string) {
   const KEY = process.env.CRM_API_KEY;
   if (!KEY) return;
@@ -277,6 +305,7 @@ async function sendCrm(d: Payload, bookingId: string) {
         arrival_at: `${iso}T${time}`,
         status: "confirmed",
         source: "web",
+        ...(await readTrafficCookie()),
         notes: [d.tier, d.note].filter(Boolean).join(" · ") || null,
       }),
       signal: AbortSignal.timeout(8000),

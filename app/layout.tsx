@@ -5,7 +5,9 @@ import { site, SITE_URL } from "@/lib/site";
 import { Analytics as GoogleAnalytics } from "@/components/Analytics";
 import { TelClickTracker } from "@/components/TelClickTracker";
 import { ZaloClickTracker } from "@/components/ZaloClickTracker";
+import { ZaloNguonBeacon } from "@/components/ZaloNguonBeacon";
 import { DeferredVercelInsights } from "@/components/DeferredVercelInsights";
+import { TrafficSource } from "./TrafficSource";
 
 const beVietnamPro = Be_Vietnam_Pro({
   variable: "--font-be-vietnam-pro",
@@ -158,9 +160,11 @@ export default function RootLayout({
         />
       </head>
       <body className={`${beVietnamPro.className} min-h-[100dvh] flex flex-col`}>
+        <TrafficSource />
         {children}
         <TelClickTracker />
         <ZaloClickTracker />
+        <ZaloNguonBeacon />
         <DeferredVercelInsights />
       </body>
     </html>
