@@ -6,7 +6,7 @@ const csp = [
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com data:",
   "img-src 'self' data: blob: https:",
-  "connect-src 'self' https://www.google-analytics.com https://*.analytics.google.com https://*.google-analytics.com https://*.googletagmanager.com https://www.google.com https://www.google.com.vn https://www.googleadservices.com https://*.googleadservices.com https://googleads.g.doubleclick.net https://*.g.doubleclick.net https://stats.g.doubleclick.net https://vitals.vercel-insights.com https://va.vercel-scripts.com https://vercel.live https://*.doubleclick.net",
+  "connect-src 'self' https://omni-inbox-psi.vercel.app https://www.google-analytics.com https://*.analytics.google.com https://*.google-analytics.com https://*.googletagmanager.com https://www.google.com https://www.google.com.vn https://www.googleadservices.com https://*.googleadservices.com https://googleads.g.doubleclick.net https://*.g.doubleclick.net https://stats.g.doubleclick.net https://vitals.vercel-insights.com https://va.vercel-scripts.com https://vercel.live https://*.doubleclick.net",
   "frame-src 'self' https://www.googletagmanager.com https://td.doubleclick.net https://www.google.com https://bid.g.doubleclick.net https://www.google.com/maps/",
   "object-src 'none'",
   "base-uri 'self'",
