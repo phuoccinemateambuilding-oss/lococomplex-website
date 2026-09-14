@@ -17,6 +17,8 @@ export const routeMap: Record<string, Record<Locale, string>> = {
   home: { vi: "/", en: "/en" },
   gallery: { vi: "/hinh-anh", en: "/en/gallery" },
   menu: { vi: "/menu", en: "/en/menu" },
+  // Menu lật (flipbook) — trang phụ của luồng đặt bàn, thay cho /thuc-don cũ.
+  menuBook: { vi: "/dat-ban/menu", en: "/en/book/menu" },
   contact: { vi: "/lien-he", en: "/en/contact" },
   faq: { vi: "/faq", en: "/en/faq" },
   book: { vi: "/dat-ban", en: "/en/book" },

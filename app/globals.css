@@ -111,3 +111,72 @@ select:-webkit-autofill {
     animation: none !important;
   }
 }
+
+/* ============================================================
+   MENU FLIPBOOK (/dat-ban/menu) — trải nghiệm lật sách fullscreen
+   Paste vào file CSS toàn cục của venue (vd app/<venue>.css hoặc globals.css).
+   Chỉ cần chỉnh 8 biến --mf-* dưới cho khớp bộ nhận diện venue.
+   ============================================================ */
+.mf-root{
+  /* ── TOKEN THEO VENUE — map sang màu brand ── */
+  --mf-ink:#F5F0EB;            /* chữ/icon trên nền tối (thường = màu kem/sáng của brand) */
+  --mf-gold-lt:#F5C330;        /* CTA "Đặt bàn" + mũi tên: gradient sáng */
+  --mf-gold-dk:#D9A81E;        /* CTA + mũi tên: gradient đậm */
+  --mf-cta-ink:#0f0f15;        /* màu chữ trên nút vàng (nền tối của brand) */
+  --mf-accent:245,195,48;      /* RGB viền/hover mờ — lấy tông accent brand */
+  --mf-bg-1:#191926;           /* nền radial: tâm trên */
+  --mf-bg-2:#0f0f15;           /* nền radial: giữa (= màu nền chủ đạo brand) */
+  --mf-bg-3:#050508;           /* nền radial: rìa dưới (tối nhất) */
+  --mf-page-bg:#0f0f15;        /* nền sau ảnh trang lúc đang tải */
+
+  position:fixed;inset:0;display:flex;flex-direction:column;
+  background:radial-gradient(120% 90% at 50% 0%,var(--mf-bg-1) 0%,var(--mf-bg-2) 45%,var(--mf-bg-3) 100%);
+  color:var(--mf-ink);overflow:hidden;z-index:1}
+
+.mf-topbar{flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px 16px;border-bottom:1px solid rgba(var(--mf-accent),.14);
+  background:rgba(5,5,8,.62);backdrop-filter:blur(10px)}
+.mf-title{font-weight:800;font-size:clamp(.82rem,2.6vw,1.05rem);letter-spacing:.02em;
+  color:var(--mf-ink);text-align:center;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mf-back,.mf-dl{display:inline-flex;align-items:center;gap:6px;flex:none;
+  font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
+  padding:8px 12px;border-radius:999px;transition:.2s}
+.mf-back{color:var(--mf-ink);border:1px solid rgba(var(--mf-accent),.28)}
+.mf-back:hover{background:rgba(var(--mf-accent),.12)}
+.mf-dl{color:var(--mf-cta-ink);background:linear-gradient(135deg,var(--mf-gold-lt),var(--mf-gold-dk));box-shadow:0 8px 20px -8px rgba(245,195,48,.55)}
+.mf-dl:hover{filter:brightness(1.05)}
+/* mobile: ẩn chữ nút "Quay lại" (mũi tên đủ hiểu), GIỮ chữ "Đặt bàn" */
+@media (max-width:560px){.mf-back span{display:none}.mf-back{padding:9px}}
+
+.mf-stage{flex:1;position:relative;display:flex;align-items:center;justify-content:center;
+  padding:16px;min-height:0;touch-action:none}
+.mf-zoom{width:100%;height:100%;display:flex;align-items:center;justify-content:center;will-change:transform}
+.mf-book{margin:0 auto;filter:drop-shadow(0 30px 60px rgba(0,0,0,.6))}
+.mf-page{width:100%;height:100%;background:var(--mf-page-bg);overflow:hidden}
+.mf-page img{width:100%;height:100%;display:block;object-fit:cover;-webkit-user-select:none;user-select:none;pointer-events:none}
+
+.mf-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:5;
+  width:46px;height:46px;border-radius:999px;display:grid;place-items:center;
+  background:rgba(5,5,8,.65);border:1px solid rgba(var(--mf-accent),.3);color:var(--mf-ink);
+  backdrop-filter:blur(6px);transition:.2s;cursor:pointer}
+.mf-nav:hover{background:rgba(var(--mf-accent),.18)}
+.mf-nav:disabled{opacity:.3;cursor:default}
+.mf-nav-l{left:12px}.mf-nav-r{right:12px}
+@media (max-width:900px){.mf-nav{display:none}}
+
+.mf-controls{flex:none;display:flex;align-items:center;justify-content:center;gap:22px;
+  padding:12px;border-top:1px solid rgba(var(--mf-accent),.14);background:rgba(5,5,8,.62);backdrop-filter:blur(10px)}
+.mf-arrow{width:46px;height:46px;border-radius:999px;display:grid;place-items:center;flex:none;
+  color:var(--mf-cta-ink);background:linear-gradient(135deg,var(--mf-gold-lt),var(--mf-gold-dk));
+  border:1.5px solid rgba(255,242,200,.5);cursor:pointer;
+  box-shadow:0 6px 16px -6px rgba(245,195,48,.55),0 0 0 0 rgba(var(--mf-accent),.45);
+  transition:transform .16s ease,filter .2s ease;animation:mfBeat 2.4s ease-in-out infinite}
+.mf-arrow:hover:not(:disabled){transform:scale(1.07);filter:brightness(1.06)}
+.mf-arrow:active:not(:disabled){transform:scale(.93)}
+.mf-arrow:disabled{opacity:.26;cursor:default;animation:none;box-shadow:none;
+  background:rgba(var(--mf-accent),.12);color:var(--mf-ink);border-color:rgba(var(--mf-accent),.25)}
+@keyframes mfBeat{0%,100%{box-shadow:0 6px 16px -6px rgba(245,195,48,.55),0 0 0 0 rgba(var(--mf-accent),.4)}
+  50%{box-shadow:0 8px 20px -6px rgba(245,195,48,.7),0 0 0 6px rgba(var(--mf-accent),0)}}
+@media (prefers-reduced-motion:reduce){.mf-arrow{animation:none}}
+.mf-page-ind{min-width:118px;text-align:center;font-weight:700;font-size:.92rem;letter-spacing:.03em;
+  font-variant-numeric:tabular-nums;color:var(--mf-ink)}

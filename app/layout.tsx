@@ -74,9 +74,7 @@ export const metadata: Metadata = {
       "x-default": "/",
     },
   },
-  verification: {
-    google: "XSlAVKyVYRKQoOwofc_zhBgb88NpSLayI40SzUKsyMI",
-  },
+  verification: { google: ["XSlAVKyVYRKQoOwofc_zhBgb88NpSLayI40SzUKsyMI", "P2krWKk8SYpUEDVIVQ8TlF0-NJEbD5dCAZcFlekhSnc"] },
   openGraph: {
     type: "website",
     title: "LOCO Complex — Khu Giải Trí & Âm Nhạc · Quận 1, Sài Gòn",

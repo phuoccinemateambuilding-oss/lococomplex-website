@@ -278,9 +278,9 @@ async function readTrafficCookie(): Promise<{
   }
 }
 
-async function sendCrm(d: Payload, bookingId: string) {
+async function sendCrm(d: Payload, bookingId: string): Promise<string | null> {
   const KEY = process.env.CRM_API_KEY;
-  if (!KEY) return;
+  if (!KEY) return null;
   try {
     const dateRaw = String(d.date || "").trim();
     let iso = /^\d{4}-\d{2}-\d{2}$/.test(dateRaw) ? dateRaw : "";
@@ -291,7 +291,7 @@ async function sendCrm(d: Payload, bookingId: string) {
     const hm = timeRaw.match(/^(\d{1,2}):(\d{2})/);
     const time = hm ? `${hm[1].padStart(2, "0")}:${hm[2]}` : "21:00";
     const guests = parseInt(String(d.party ?? "").replace(/\D/g, ""), 10) || 1;
-    await fetch("https://nightclub-crm.vercel.app/api/bookings", {
+    const res = await fetch("https://nightclub-crm.vercel.app/api/bookings", {
       method: "POST",
       headers: { "x-api-key": KEY, "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -310,8 +310,16 @@ async function sendCrm(d: Payload, bookingId: string) {
       }),
       signal: AbortSignal.timeout(8000),
     });
+    // CRM có thể cấp MÃ KHÁC khi mã ngẫu nhiên trùng mã một đơn cũ (11/09/2026).
+    // Phải trả mã THẬT về cho card Telegram + Sheet, nếu không nút "Gửi đầu mối" bấm
+    // trên card sẽ ghi trúng đơn khác — ca BK1169 đè lên đơn BK4590 ngày 15/08.
+    const out = (await res.json().catch(() => ({}))) as {
+      booking?: { bk_code?: string };
+    };
+    return out?.booking?.bk_code || bookingId;
   } catch (err) {
     console.error("[crm] push booking fail:", err);
+    return null;
   }
 }
 
@@ -329,12 +337,16 @@ export async function POST(req: Request) {
 
     const isNight = isAfterHoursVN();
 
+    // CRM TRƯỚC rồi mới dựng card (11/09/2026): mã ngẫu nhiên có thể trùng mã một
+    // đơn cũ, khi đó CRM cấp mã mới. Card + Sheet phải mang mã THẬT, nếu không nút
+    // "Gửi đầu mối" trên card sẽ ghi trúng đơn khác (sự cố BK1169 / BK4590).
+    const bk = (await sendCrm(d, bookingId)) || bookingId;
+
     const [mailResult, sheetResult, tgResult, tgGroupResult] = await Promise.allSettled([
       sendMail(d),
       appendToSheet(d),
-      sendTelegram(d, bookingId, isNight),
-      isNight ? sendTelegramToGroup(d, bookingId) : Promise.resolve(),
-      sendCrm(d, bookingId),
+      sendTelegram(d, bk, isNight),
+      isNight ? sendTelegramToGroup(d, bk) : Promise.resolve(),
     ]);
 
     if (mailResult.status === "rejected") {
@@ -361,7 +373,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, reason: "all_channels_failed" }, { status: 500 });
     }
 
-    return NextResponse.json({ ok: true, bookingId });
+    return NextResponse.json({ ok: true, bookingId: bk });
   } catch (err) {
     console.error("[/api/reserve]", err);
     return NextResponse.json({ ok: false, error: String(err) }, { status: 500 });

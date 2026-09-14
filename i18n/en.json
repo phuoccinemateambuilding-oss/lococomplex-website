@@ -102,7 +102,35 @@
     "bitesDesc": "Diverse menu served all night long.",
     "vip": "VIP Tables",
     "vipDesc": "From 3.5 – 30 million VND depending on location and party size. Excludes 10% VAT and 10% service charge.",
-    "vipCta": "Book VIP"
+    "vipCta": "Book VIP",
+    "sectionsEyebrow": "Full menu",
+    "sectionsHeading": "5 pages of the LOCO Heatroom menu",
+    "sectionsIntro": "The complete LOCO Complex list fits in five pages: sparkling & cognac, the core spirits, whisky & soft drinks, signature cocktails with snacks, and the Special Menu group combos. Tap any page to zoom, or flip through the whole book.",
+    "flipCta": "Flip through the full menu",
+    "zoomHint": "Tap a page to zoom in",
+    "note": "Menu prices exclude tax and service charge. Availability can change nightly — call the hotline to confirm before you book.",
+    "pages": [
+      {
+        "title": "Sparkling · Champagne · Cognac",
+        "desc": "The opening page covers Cantina sparkling wines (Luce Prosecco, Dante Metodo, Perla Moscato) plus Calvet Celebration Rosé and Martini Rosé, then Moët & Chandon Impérial, Dom Pérignon, PJ Belle Époque and Ace of Spades. It closes with the Hennessy VS – VSOP – XO cognac range, listed both by the bottle and as 2 / 3 / 6 / 12-bottle sets for larger groups."
+      },
+      {
+        "title": "Vodka · Gin · Tequila",
+        "desc": "The core spirits at LOCO Heatroom: vodka from Bankai Caramel, Crème de Chocoro, Belvedere, Beluga Noble, Absolut Elyx 1L and Grey Goose; gin from Bombay Sapphire, Caorunn, Hendrick's and Monkey 47 Dry; tequila from Jose Cuervo, 1800 (Coconut / Blanco / Cristalino / Milenio), Jiang Jasmine, Patrón Silver – Añejo, Clase Azul Reposado and Don Julio 1942."
+      },
+      {
+        "title": "Liquer · Whisky · Soft drinks",
+        "desc": "Jägermeister and Tinner Bros liqueurs (Black Spiced, Wild Cherry) in 1 – 3 bottle sets; whisky ranging from Hankey Bannister, Chivas Regal 12, Jack Daniel's, Monkey Shoulder, Glenlivet 12, Glenfiddich 12 and Ballantine's 17 up to Balvenie 12 DoubleWood, Chivas 18 and Macallan 12 – 15 – 18 Double Cask. The page ends with soft drinks, soda, tonic, Redbull and still water for mixing."
+      },
+      {
+        "title": "Cocktails · Snacks",
+        "desc": "Eight signature cocktails mixed by the LOCO bartenders — The Green Of The World, Loco Yefiras, Loco Heightz, Tropical Heatroom, Aperr Midnight, Night Tour, Dr UNKEN Moon and Heatroome Funny — all at one menu price. Snacks follow: steamed sausage, Doritos chips, Cheetos, chicken nuggets, Napoli cheese pizza and a fruit plate."
+      },
+      {
+        "title": "Special Menu — group sets",
+        "desc": "The deal page for groups, bundling 2 – 6 servings across liqueur, gin, vodka, whisky, cognac, tequila and champagne — Jägermeister, Hendrick's, Grey Goose, Macallan 12 – 15 – 18 Double Cask, Hennessy XO / VSOP, 1800 Coconut, Clase Azul Reposado, Moët & Chandon, Dom Pérignon and Ace of Spades. Reserve ahead to hold a set on peak nights."
+      }
+    ]
   },
   "datban": {
     "metaTitle": "Book a Table at LOCO Complex — Reserve Now · District 1, Saigon",

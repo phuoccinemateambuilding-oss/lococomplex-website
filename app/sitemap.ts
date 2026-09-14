@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
 
 const GALLERY_COUNT = 33;
-const MENU_COUNT = 11;
+const MENU_COUNT = 5;
 
 const galleryImages = Array.from(
   { length: GALLERY_COUNT },
@@ -11,7 +11,7 @@ const galleryImages = Array.from(
 
 const menuImages = Array.from(
   { length: MENU_COUNT },
-  (_, i) => `${SITE_URL}/assets/loco/menu/menu-${String(i + 1).padStart(2, "0")}.webp`
+  (_, i) => `${SITE_URL}/assets/loco/menu-book/loco-menu-${String(i + 1).padStart(2, "0")}.webp`
 );
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -26,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/lien-he`, changeFrequency: "monthly", priority: 0.9 },
     { url: `${base}/faq`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/dat-ban`, changeFrequency: "monthly", priority: 1.0, images: [`${base}/og.jpg`] },
+    { url: `${base}/dat-ban/menu`, changeFrequency: "monthly", priority: 0.85, images: menuImages },
     { url: `${base}/chinh-sach-bao-mat`, changeFrequency: "yearly", priority: 0.3 },
     { url: `${base}/dieu-khoan`, changeFrequency: "yearly", priority: 0.3 },
     // EN
@@ -35,6 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/en/contact`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/en/faq`, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/en/book`, changeFrequency: "monthly", priority: 0.9, images: [`${base}/og.jpg`] },
+    { url: `${base}/en/book/menu`, changeFrequency: "monthly", priority: 0.75, images: menuImages },
     { url: `${base}/en/privacy`, changeFrequency: "yearly", priority: 0.3 },
     { url: `${base}/en/terms`, changeFrequency: "yearly", priority: 0.3 },
   ];

@@ -258,7 +258,11 @@ function MusicSection({ t }: { t: any }) {
 
 function MenuTeaser({ locale, t }: HomePageProps) {
   const menuHref = routeMap.menu[locale];
-  const preview = menuImages.slice(0, 4);
+  const pageWord = locale === "vi" ? "trang" : "page";
+  const preview = menuImages.slice(0, 4).map((m) => ({
+    src: m.src,
+    alt: `${locale === "vi" ? "Thực đơn" : "Menu"} LOCO Complex — ${pageWord} ${m.no}`,
+  }));
 
   return (
     <section className="relative py-16 md:py-24 overflow-hidden">

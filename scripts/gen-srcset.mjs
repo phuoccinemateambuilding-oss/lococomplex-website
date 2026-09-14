@@ -17,6 +17,8 @@ const TARGETS = [
   { dir: join(ROOT, "gallery"), pattern: /^gallery-\d+\.(jpg|webp|jpeg|png)$/i },
   { dir: join(ROOT, "space"),   pattern: /^(space-\d+|hero-main)\.(jpg|webp|jpeg|png)$/i },
   { dir: join(ROOT, "menu"),    pattern: /^menu-\d+\.(jpg|webp|jpeg|png)$/i },
+  // Menu lật /dat-ban/menu — chạy lại sau mỗi lần render-menu.sh (script đó xoá sạch thư mục).
+  { dir: join(ROOT, "menu-book"), pattern: /^loco-menu-\d+\.(jpg|webp|jpeg|png)$/i },
 ];
 
 const SIZES = [400, 800, 1280];

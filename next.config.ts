@@ -37,6 +37,12 @@ const nextConfig: NextConfig = {
     optimizeCss: true,
     optimizePackageImports: ["@phosphor-icons/react", "framer-motion"],
   },
+  async redirects() {
+    return [
+      // Menu lật chuyển từ /thuc-don sang /dat-ban/menu (2026-09-04) — giữ link cũ khỏi 404.
+      { source: "/thuc-don", destination: "/dat-ban/menu", permanent: true },
+    ];
+  },
   async headers() {
     return [
       // Security headers for all routes

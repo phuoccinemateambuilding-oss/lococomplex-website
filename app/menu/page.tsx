@@ -7,41 +7,43 @@ import Reveal from "@/components/Reveal";
 import MusicTag from "@/components/MusicTag";
 import StickerTag from "@/components/StickerTag";
 import GeometricShape from "@/components/GeometricShape";
-import { site } from "@/lib/site";
 import { routeMap } from "@/lib/i18n";
-import { menuImages, spaceImages, galleryImages } from "@/lib/images";
+import { menuPageSrc, spaceImages, galleryImages } from "@/lib/images";
 import Link from "next/link";
 import { BreadcrumbJsonLd } from "@/components/BreadcrumbJsonLd";
+import { MenuJsonLd } from "@/components/MenuJsonLd";
+import { MenuPagesSection } from "@/components/MenuPagesSection";
 
 export const metadata: Metadata = {
-  title: "Menu & Âm Nhạc — LOCO Complex Quận 1",
+  // title.absolute: layout gốc đã nối "| LOCO Complex" — để title thường sẽ lặp tên brand 2 lần.
+  title: { absolute: "Menu LOCO Complex — Thực đơn & Bảng giá Quận 1" },
   description:
-    "Menu BITES F&B + thể loại nhạc Top 40, EDM, House (Heatroom) và Hip-hop (Floor 1) tại LOCO Complex — 11 Nam Quốc Cang, Quận 1, Sài Gòn.",
+    "Thực đơn LOCO Complex: cocktail signature, snack, whisky, vodka, gin, tequila, sparkling và Special Menu combo — 11 Nam Quốc Cang, Quận 1, Sài Gòn.",
   keywords: [
     "menu LOCO Complex",
-    "BITES menu",
-    "thể loại nhạc LOCO",
-    "club EDM Quận 1",
-    "Hip-hop club Sài Gòn",
-    "LOCO Heatroom music",
+    "thực đơn LOCO Complex",
+    "bảng giá LOCO Complex",
+    "menu LOCO Heatroom",
+    "menu club Quận 1",
+    "cocktail LOCO Complex",
   ],
   alternates: {
     canonical: "/menu",
     languages: { vi: "/menu", en: "/en/menu", "x-default": "/menu" },
   },
   openGraph: {
-    title: "Menu & Âm Nhạc — LOCO Complex",
-    description: "Menu BITES + Top 40 / EDM / House / Hip-hop tại LOCO Complex Quận 1.",
+    title: "Menu LOCO Complex — Thực đơn & Bảng giá Quận 1",
+    description: "Cocktail signature, snack, whisky, sparkling và Special Menu combo tại LOCO Complex, Quận 1.",
     url: "/menu",
     locale: "vi_VN",
     type: "website",
-    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "LOCO Complex menu & music" }],
+    images: [{ url: "/assets/loco/menu-book/loco-menu-01.webp", width: 1200, height: 1820, alt: "Thực đơn LOCO Complex — trang 1 / 5" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Menu & Âm Nhạc LOCO Complex",
-    description: "BITES F&B · Top 40 · EDM · House · Hip-hop",
-    images: ["/og.jpg"],
+    title: "Menu LOCO Complex — Thực đơn & Bảng giá",
+    description: "Cocktail signature · Snack · Whisky · Sparkling · Special Menu combo",
+    images: ["/assets/loco/menu-book/loco-menu-01.webp"],
   },
 };
 
@@ -57,6 +59,7 @@ export default function MenuPage() {
           { name: "Menu", path: "/menu" },
         ]}
       />
+      <MenuJsonLd locale="vi" pages={t.menuPage.pages} />
       <Navbar locale={locale} t={t.nav} currentPath="/menu" />
       <main className="flex-1 pt-20">
         {/* Hero — cinematic with venue photo */}
@@ -174,10 +177,18 @@ export default function MenuPage() {
               </Reveal>
               <Reveal delay={0.15}>
                 <div className="grid grid-cols-2 gap-3">
-                  {menuImages.slice(0, 4).map((img) => (
-                    <div key={img.src} className="aspect-square overflow-hidden rounded-2xl">
+                  {[1, 2, 3, 4].map((no) => (
+                    <div key={no} className="aspect-square overflow-hidden rounded-2xl bg-ink">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={img.src} alt={img.alt} loading="lazy" className="w-full h-full object-cover" />
+                      <img
+                        src={menuPageSrc(no).replace(".webp", "-400.webp")}
+                        srcSet={`${menuPageSrc(no).replace(".webp", "-400.webp")} 400w, ${menuPageSrc(no).replace(".webp", "-800.webp")} 800w`}
+                        sizes="(max-width: 768px) 42vw, 220px"
+                        alt={`Thực đơn LOCO Complex — trang ${no}`}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-cover object-top"
+                      />
                     </div>
                   ))}
                 </div>
@@ -186,34 +197,7 @@ export default function MenuPage() {
           </div>
         </section>
 
-        {/* Full Menu Gallery */}
-        <section className="bg-ink py-24 md:py-32">
-          <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-            <Reveal>
-              <p className="font-[family-name:var(--font-space-mono)] text-xs uppercase tracking-[0.25em] text-loco-yellow mb-4">
-                {locale === "vi" ? "Thực đơn đầy đủ" : "Full Menu"}
-              </p>
-              <h2 className="font-bold text-4xl md:text-6xl tracking-tight text-white mb-12">
-                {t.menuPage.heading}
-              </h2>
-            </Reveal>
-            <Reveal>
-              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                {menuImages.map((img, i) => (
-                  <div key={img.src} className="overflow-hidden rounded-2xl ring-1 ring-white/10 transition-transform hover:scale-[1.02]">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={img.src}
-                      alt={img.alt}
-                      loading={i < 3 ? "eager" : "lazy"}
-                      className="w-full h-auto object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-        </section>
+        <MenuPagesSection locale="vi" dict={t.menuPage} />
       </main>
       <Footer locale={locale} t={{ footer: t.footer, nav: t.nav }} />
       <FloatingContacts />

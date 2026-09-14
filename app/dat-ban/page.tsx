@@ -50,9 +50,9 @@ export default function DatBanPage() {
       <LandingShell stickyDict={d.sticky} footerText={d.footer} locale={locale}>
         <LandingHero dict={d.hero} locale={locale} />
         <LandingAbout />
-        <LazyMount minHeight="960px" id="menu-lazy" rootMargin="100px">
-          <LandingMenuTeaser />
-        </LazyMount>
+        {/* Không bọc LazyMount: section chỉ còn tiêu đề + text + nút, và link nội bộ
+            sang /dat-ban/menu phải nằm sẵn trong HTML để Google bò tới trang menu. */}
+        <LandingMenuTeaser />
         <LazyMount minHeight="600px" id="gallery-lazy">
           <LandingGallery dict={d.gallery} />
         </LazyMount>
