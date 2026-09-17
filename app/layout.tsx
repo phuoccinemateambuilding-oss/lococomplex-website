@@ -8,6 +8,8 @@ import { ZaloClickTracker } from "@/components/ZaloClickTracker";
 import { ZaloNguonBeacon } from "@/components/ZaloNguonBeacon";
 import { DeferredVercelInsights } from "@/components/DeferredVercelInsights";
 import { TrafficSource } from "./TrafficSource";
+import { DOMAIN_GUARD_SCRIPT } from "@/lib/domain-guard-script";
+import { DomainGuard } from "@/components/DomainGuard";
 
 const beVietnamPro = Be_Vietnam_Pro({
   variable: "--font-be-vietnam-pro",
@@ -149,6 +151,8 @@ export default function RootLayout({
       className={`${beVietnamPro.variable} ${bebasNeue.variable} ${caveat.variable} ${spaceMono.variable} antialiased`}
     >
       <head>
+        {/* Chống sao chép: chạy trước khi đọc <body> — trang bị chép sang tên miền khác thì chuyển khách về site thật */}
+        <script dangerouslySetInnerHTML={{ __html: DOMAIN_GUARD_SCRIPT }} />
         <GoogleAnalytics />
         <link
           rel="preload"
@@ -164,6 +168,7 @@ export default function RootLayout({
         <ZaloClickTracker />
         <ZaloNguonBeacon />
         <DeferredVercelInsights />
+        <DomainGuard />
       </body>
     </html>
   );

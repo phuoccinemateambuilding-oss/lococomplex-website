@@ -4,6 +4,7 @@ import { useState, useId } from "react";
 import { Warning } from "@phosphor-icons/react/dist/ssr";
 import { site } from "@/lib/site";
 import { track, reportFormConversion } from "@/lib/gtag";
+import { isOfficialHost, officialOrigin } from "@/lib/official-host";
 import { FormSuccessModal } from "./FormSuccessModal";
 import { CountryCodeSelect } from "./CountryCodeSelect";
 import { DEFAULT_COUNTRY, formatIntlPhone } from "@/lib/countryCodes";
@@ -53,11 +54,24 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
     setStatus("submitting");
     track("form_submit", { cta_location: "booking_form" });
     const fullPhone = formatIntlPhone(values.country, values.phone);
+    const payload = { ...values, phone: fullPhone, locale };
     try {
+      if (!isOfficialHost(window.location.hostname)) {
+        // Form đang chạy trên website sao chép → gửi đơn thẳng về tên miền chính thay vì máy chủ bản chép.
+        // no-cors + text/plain để trình duyệt cho gửi sang tên miền khác (không đọc được phản hồi).
+        await fetch(`${officialOrigin()}/api/reserve`, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=UTF-8" },
+          body: JSON.stringify({ ...payload, site: window.location.hostname }),
+        });
+        setStatus("success");
+        return;
+      }
       const res = await fetch("/api/reserve", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values, phone: fullPhone, locale }),
+        body: JSON.stringify(payload),
       });
       const data = await res.json().catch(() => ({ ok: false }));
       const ok = res.ok && data.ok;

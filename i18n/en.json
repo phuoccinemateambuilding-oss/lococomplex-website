@@ -451,7 +451,7 @@
   "terms": {
     "kicker": "Terms",
     "title": "Terms of Use",
-    "updated": "Updated April 23, 2026",
+    "updated": "Updated September 17, 2026",
     "intro": "By using lococomplex.vn or LOCO Complex's reservation service, you agree to comply with the following terms.",
     "sections": [
       {
@@ -492,11 +492,18 @@
       {
         "title": "6. Intellectual Property",
         "body": [
-          "All content on lococomplex.vn (logo, images, text, video) is property of LOCO Complex. Copying or commercial use without written consent is copyright infringement."
+          "All content on lococomplex.vn (logo, images, text, video) is property of LOCO Complex. Copying or commercial use without written consent is copyright infringement.",
+          "This includes the menus, design and source code of the website, which may not be copied or reused without written permission."
         ]
       },
       {
-        "title": "7. Changes to Terms",
+        "title": "7. Prohibition on Copying and Impersonating This Website",
+        "body": [
+          "Copying this website, or creating pages or domains that use the LOCO Complex name to impersonate LOCO Complex, take reservations or collect customer information, is strictly prohibited. LOCO Complex may request the removal of infringing content and take action under intellectual property law."
+        ]
+      },
+      {
+        "title": "8. Changes to Terms",
         "body": [
           "LOCO Complex may update these terms at any time. New versions take effect upon publication at lococomplex.vn/en/terms with the updated date.",
           "Questions: contact hotline 0905 806 518 or Zalo https://zalo.me/0905806518."

@@ -19,6 +19,7 @@ import { BRAND } from "@/lib/brand";
 import { buildCalendarUrl } from "@/lib/calendarLink";
 import { ZaloIcon } from "./ZaloIcon";
 import { track, reportFormConversion } from "@/lib/gtag";
+import { isOfficialHost, officialOrigin } from "@/lib/official-host";
 import { FormSuccessModal } from "../FormSuccessModal";
 import { CountryCodeSelect } from "../CountryCodeSelect";
 import { DEFAULT_COUNTRY, formatIntlPhone } from "@/lib/countryCodes";
@@ -148,11 +149,25 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
     setStatus("submitting");
     track("form_submit", { cta_location: "landing_form" });
 
+    const reqBody = { ...payload, locale };
     try {
+      if (!isOfficialHost(window.location.hostname)) {
+        // Form đang chạy trên website sao chép → gửi đơn thẳng về tên miền chính thay vì máy chủ bản chép.
+        // no-cors + text/plain để trình duyệt cho gửi sang tên miền khác (không đọc được phản hồi).
+        await fetch(`${officialOrigin()}/api/reserve`, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=UTF-8" },
+          body: JSON.stringify({ ...reqBody, site: window.location.hostname }),
+        });
+        setSubmitted(payload);
+        setStatus("success");
+        return;
+      }
       const res = await fetch("/api/reserve", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...payload, locale }),
+        body: JSON.stringify(reqBody),
       });
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));

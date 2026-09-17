@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { google } from "googleapis";
 import { cookies } from "next/headers";
+import { isOfficialHost } from "@/lib/official-host";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -16,6 +17,7 @@ type Payload = {
   note?: string;
   locale?: string;
   bot_field?: string;
+  site?: string; // tên miền nơi khách điền form — chỉ có khi form chạy trên bản sao chép
 };
 
 const VENUE_NAME = process.env.VENUE_NAME || "LOCO Complex";
@@ -331,6 +333,12 @@ export async function POST(req: Request) {
 
     if (!d.name || !d.phone) {
       return NextResponse.json({ ok: false, reason: "missing" }, { status: 400 });
+    }
+
+    // Đơn tự chuyển về từ website sao chép → ghi vào ghi chú để mail/Telegram/Sheet/CRM đều thấy
+    const site = String(d.site || "").toLowerCase().slice(0, 100);
+    if (site && !isOfficialHost(site)) {
+      d.note = `⚠️ Đơn gửi từ trang sao chép ${site}${d.note ? ` — ${d.note}` : ""}`;
     }
 
     const bookingId = `BK${Math.floor(1000 + Math.random() * 9000)}`;

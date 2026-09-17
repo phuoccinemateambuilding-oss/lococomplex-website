@@ -451,7 +451,7 @@
   "terms": {
     "kicker": "Điều khoản",
     "title": "Điều khoản sử dụng",
-    "updated": "Cập nhật ngày 23/04/2026",
+    "updated": "Cập nhật ngày 17/09/2026",
     "intro": "Khi sử dụng website lococomplex.vn hoặc dịch vụ đặt bàn của LOCO Complex, bạn đồng ý tuân thủ các điều khoản dưới đây.",
     "sections": [
       {
@@ -492,11 +492,18 @@
       {
         "title": "6. Sở hữu trí tuệ",
         "body": [
-          "Toàn bộ nội dung trên lococomplex.vn (logo, hình ảnh, văn bản, video) thuộc sở hữu của LOCO Complex. Việc sao chép, sử dụng cho mục đích thương mại mà không có sự đồng ý bằng văn bản là vi phạm bản quyền."
+          "Toàn bộ nội dung trên lococomplex.vn (logo, hình ảnh, văn bản, video) thuộc sở hữu của LOCO Complex. Việc sao chép, sử dụng cho mục đích thương mại mà không có sự đồng ý bằng văn bản là vi phạm bản quyền.",
+          "Quyền sở hữu này bao gồm cả thực đơn, thiết kế giao diện và mã nguồn của website. Không được sao chép, sử dụng lại khi chưa có sự đồng ý bằng văn bản."
         ]
       },
       {
-        "title": "7. Thay đổi điều khoản",
+        "title": "7. Cấm sao chép và mạo danh website",
+        "body": [
+          "Nghiêm cấm sao chép website, dựng trang hoặc tên miền mang tên LOCO Complex để mạo danh LOCO Complex, nhận đặt bàn hay thu thập thông tin khách hàng. LOCO Complex có quyền yêu cầu gỡ bỏ nội dung vi phạm và xử lý theo quy định pháp luật về sở hữu trí tuệ."
+        ]
+      },
+      {
+        "title": "8. Thay đổi điều khoản",
         "body": [
           "LOCO Complex có quyền điều chỉnh điều khoản này bất kỳ lúc nào. Phiên bản mới sẽ có hiệu lực ngay khi đăng tải tại lococomplex.vn/dieu-khoan với ngày cập nhật.",
           "Mọi thắc mắc liên hệ hotline 0905 806 518 hoặc Zalo https://zalo.me/0905806518."
