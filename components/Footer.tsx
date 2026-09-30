@@ -126,17 +126,6 @@ export default function Footer({ locale, t }: FooterProps) {
             <Link href={routeMap.terms[locale]} className="hover:text-white transition-colors">
               {locale === "vi" ? "Điều khoản sử dụng" : "Terms of Use"}
             </Link>
-            {/* Liên kết về trang venue trên nền tảng đặt bàn — KHÔNG nofollow */}
-            <a
-              href="https://nightclub.com.vn/loco-complex"
-              target="_blank"
-              rel="noopener"
-              className="hover:text-white transition-colors"
-            >
-              {locale === "vi"
-                ? "Đặt bàn LOCO Complex trên Nightclub.com.vn"
-                : "Book LOCO Complex on Nightclub.com.vn"}
-            </a>
             <p>&copy; {year} {site.name}</p>
           </div>
         </div>

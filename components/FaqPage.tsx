@@ -7,7 +7,8 @@ import { site } from "@/lib/site";
 import { type Locale } from "@/lib/i18n";
 import { Plus } from "@phosphor-icons/react/dist/ssr";
 
-type Qa = { q: string; a: string };
+// link: liên kết hiện ngay sau câu trả lời (dofollow — KHÔNG thêm nofollow)
+type Qa = { q: string; a: string; link?: { href: string; label: string } };
 
 const faqVi: Qa[] = [
   {
@@ -49,6 +50,14 @@ const faqVi: Qa[] = [
   {
     q: "Khách hàng cần bao nhiêu tuổi để vào LOCO Complex?",
     a: "LOCO Complex phục vụ khách từ 18 tuổi trở lên. Đây là quy định bắt buộc tại toàn bộ không gian entertainment complex.",
+  },
+  {
+    q: "Có thể đặt bàn LOCO Complex online ở đâu?",
+    a: "Ngoài hotline và Zalo, bạn có thể đặt bàn trực tuyến trên nền tảng Nightclub.com.vn — trang dành riêng cho LOCO Complex.",
+    link: {
+      href: "https://nightclub.com.vn/loco-complex",
+      label: "Đặt bàn LOCO Complex trên Nightclub.com.vn →",
+    },
   },
 ];
 
@@ -92,6 +101,14 @@ const faqEn: Qa[] = [
   {
     q: "What is the minimum age to enter LOCO Complex?",
     a: "LOCO Complex is for guests aged 18 and over. This applies to the entire entertainment complex.",
+  },
+  {
+    q: "Where can I book LOCO Complex online?",
+    a: "Besides the hotline and Zalo, you can book online on Nightclub.com.vn — the dedicated page for LOCO Complex.",
+    link: {
+      href: "https://nightclub.com.vn/en/loco-complex",
+      label: "Book LOCO Complex on Nightclub.com.vn →",
+    },
   },
 ];
 
@@ -158,11 +175,22 @@ export function FaqPage({ locale }: { locale: Locale }) {
                         <Plus size={20} weight="bold" />
                       </span>
                     </button>
-                    {openIdx === i && (
-                      <div className="px-6 pb-6">
-                        <p className="text-white/60 text-sm md:text-base leading-relaxed">{item.a}</p>
-                      </div>
-                    )}
+                    {/* Câu trả lời luôn có trong HTML máy chủ, câu đóng chỉ ẩn bằng `hidden` — render
+                        `openIdx === i && …` thì Google chỉ thấy câu đang mở, JSON-LD khai câu không có trên trang. */}
+                    <div hidden={openIdx !== i} className="px-6 pb-6">
+                      <p className="text-white/60 text-sm md:text-base leading-relaxed">{item.a}</p>
+                      {item.link && (
+                        <a
+                          href={item.link.href}
+                          target="_blank"
+                          rel="noopener"
+                          onClick={(e) => e.stopPropagation()}
+                          className="mt-3 inline-block text-sm md:text-base text-[#F5C330] underline underline-offset-4 hover:text-white transition-colors"
+                        >
+                          {item.link.label}
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </Reveal>
               ))}
