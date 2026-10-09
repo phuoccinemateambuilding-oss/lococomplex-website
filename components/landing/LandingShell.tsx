@@ -21,7 +21,7 @@ export function LandingShell({
 }) {
   return (
     <>
-      <main className="relative bg-midnight-deep pb-20 md:pb-0">{children}</main>
+      <main className="relative bg-midnight-deep pb-[calc(9.5rem+env(safe-area-inset-bottom))] md:pb-0">{children}</main>
       <footer className="relative z-10 border-t border-white/10 bg-midnight-deep px-5 py-8 pb-24 text-center md:px-10 md:py-12">
         <p className="mx-auto max-w-[700px] text-xs leading-relaxed text-white/50 md:text-sm">
           {footerText}

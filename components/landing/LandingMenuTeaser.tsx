@@ -16,7 +16,7 @@ export function LandingMenuTeaser() {
           </h2>
           <div className="gold-divider max-w-[100px] mx-auto mt-4" />
           <p className="mt-5 text-white/70 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
-            Bộ thực đơn LOCO Heatroom gồm cocktail signature pha riêng, snack ăn chơi và các set combo dành cho nhóm bạn — giá niêm yết công khai theo từng hạng mục, lật xem trước khi đặt bàn.
+            Bộ thực đơn LOCO Heatroom gồm đồ uống signature, snack ăn chơi và set cho nhóm — giá niêm yết công khai theo từng hạng mục, lật xem trước khi đặt bàn.
           </p>
 
           <div className="mt-8">

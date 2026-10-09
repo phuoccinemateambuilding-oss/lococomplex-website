@@ -487,7 +487,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                     <button
                       type="submit"
                       disabled={status === "submitting"}
-                      className="group mt-2 flex h-16 w-full items-center justify-center gap-2 rounded-full bg-loco-red text-base font-bold uppercase tracking-wider text-white shadow-[0_12px_45px_-10px_rgba(226,58,44,0.65)] transition-all hover:-translate-y-0.5 hover:bg-loco-red/90 hover:shadow-[0_18px_55px_-10px_rgba(226,58,44,0.75)] disabled:translate-y-0 disabled:opacity-60 disabled:shadow-none md:text-lg"
+                      className="group mt-2 flex h-16 w-full scroll-mb-[calc(10rem+env(safe-area-inset-bottom))] md:scroll-mb-0 items-center justify-center gap-2 rounded-full bg-loco-red text-base font-bold uppercase tracking-wider text-white shadow-[0_12px_45px_-10px_rgba(226,58,44,0.65)] transition-all hover:-translate-y-0.5 hover:bg-loco-red/90 hover:shadow-[0_18px_55px_-10px_rgba(226,58,44,0.75)] disabled:translate-y-0 disabled:opacity-60 disabled:shadow-none md:text-lg"
                     >
                       {status === "submitting" ? (
                         <>
