@@ -2,6 +2,14 @@ import { SITE_URL, site } from "@/lib/site";
 
 type Locale = "vi" | "en";
 
+// Kênh chính chủ CHỈ đưa vào sameAs của JSON-LD, để Google nối web với đúng thực thể quán khi người ta tìm tên quán.
+// Cố ý tách khỏi site.social (object đó còn render link ở Footer): kênh chính chủ có SĐT riêng của quán,
+// hiện link cho khách bấm sang đó là mất khách của đường dây đặt bàn. KHÔNG điền các link này vào site.social.
+const ENTITY_SAME_AS = [
+  "https://www.instagram.com/lococomplex",
+  "https://www.youtube.com/channel/UC2a2I5BkP3-gPtZ01lftQwA",
+];
+
 const desc = {
   vi: "LOCO Complex — khu phức hợp giải trí phong cách NEWTRO tại 11 Nam Quốc Cang, Quận 1, Sài Gòn. 2 tầng club: Heatroom (EDM, Top 40, House) + Hip-hop. F&B by BITES. Mở cửa 22:00 – 05:00.",
   en: "LOCO Complex — NEWTRO-style entertainment complex at 11 Nam Quoc Cang, District 1, Saigon. 2-floor club: Heatroom (EDM, Top 40, House) + Hip-hop. Dining by BITES. Open 10:00 PM – 5:00 AM.",
@@ -18,7 +26,9 @@ const postalAddress = {
 
 export function JsonLd({ locale }: { locale: Locale }) {
   const urlSelf = locale === "vi" ? SITE_URL : `${SITE_URL}/en`;
-  const same = Object.values(site.social).filter((u) => u && u !== "#");
+  const same = Array.from(
+    new Set([...Object.values(site.social).filter((u) => u && u !== "#"), ...ENTITY_SAME_AS]),
+  );
 
   const graph: Record<string, unknown>[] = [
     {
