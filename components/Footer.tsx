@@ -31,6 +31,8 @@ export default function Footer({ locale, t }: FooterProps) {
     { label: t.nav.menu, href: routeMap.menu[locale] },
     { label: t.nav.contact, href: routeMap.contact[locale] },
     { label: t.nav.faq ?? (locale === "vi" ? "FAQ" : "FAQ"), href: routeMap.faq[locale] },
+    // 19/10/2026 — link nội bộ sitewide tới landing đặt bàn: thiếu nó Google không index /dat-ban
+    { label: locale === "vi" ? "Đặt bàn nhanh" : "Book a table", href: routeMap.book[locale] },
   ];
 
   return (
