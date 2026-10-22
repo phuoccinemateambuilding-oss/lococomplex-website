@@ -9,6 +9,7 @@ import { site } from "@/lib/site";
 import { routeMap, type Locale } from "@/lib/i18n";
 import { galleryImages, spaceImages, menuImages } from "@/lib/images";
 import ClickableGallery from "@/components/ClickableGallery";
+import CamNang from "@/components/CamNang";
 
 interface HomePageProps {
   locale: Locale;
@@ -397,6 +398,7 @@ export default function HomePage({ locale, t }: HomePageProps) {
       <MenuTeaser locale={locale} t={t} />
       <GallerySection locale={locale} t={t} />
       <ContactCTASection locale={locale} t={t} />
+      <CamNang locale={locale} />
     </>
   );
 }
