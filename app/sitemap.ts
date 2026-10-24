@@ -20,7 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Giờ ghi ngày nội dung thật; sửa nội dung trang nào thì cập nhật đúng dòng đó.
   const routes: (MetadataRoute.Sitemap[number] & { changed: string })[] = [
     // VI (default)
-    { url: `${base}/`, changeFrequency: "weekly", priority: 1.0, images: [`${base}/og.jpg`], changed: "2026-09-15" },
+    { url: `${base}/`, changeFrequency: "weekly", priority: 1.0, images: [`${base}/og.jpg`], changed: "2026-10-23" },
     { url: `${base}/hinh-anh`, changeFrequency: "weekly", priority: 0.8, images: galleryImages, changed: "2026-04-24" },
     { url: `${base}/menu`, changeFrequency: "monthly", priority: 0.7, images: menuImages, changed: "2026-09-15" },
     { url: `${base}/lien-he`, changeFrequency: "monthly", priority: 0.9, changed: "2026-08-23" },
@@ -30,7 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/chinh-sach-bao-mat`, changeFrequency: "yearly", priority: 0.3, changed: "2026-08-23" },
     { url: `${base}/dieu-khoan`, changeFrequency: "yearly", priority: 0.3, changed: "2026-09-17" },
     // EN
-    { url: `${base}/en`, changeFrequency: "weekly", priority: 0.9, images: [`${base}/og.jpg`], changed: "2026-09-15" },
+    { url: `${base}/en`, changeFrequency: "weekly", priority: 0.9, images: [`${base}/og.jpg`], changed: "2026-10-23" },
     { url: `${base}/en/gallery`, changeFrequency: "weekly", priority: 0.7, images: galleryImages, changed: "2026-04-24" },
     { url: `${base}/en/menu`, changeFrequency: "monthly", priority: 0.6, images: menuImages, changed: "2026-09-15" },
     { url: `${base}/en/contact`, changeFrequency: "monthly", priority: 0.8, changed: "2026-08-23" },
