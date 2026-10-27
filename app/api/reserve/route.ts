@@ -3,6 +3,7 @@ import nodemailer from "nodemailer";
 import { google } from "googleapis";
 import { cookies } from "next/headers";
 import { isOfficialHost } from "@/lib/official-host";
+import { cardKeyboard, cardText, chayKho, coKhoaKy, kyVe } from "@/lib/reserve-card";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -18,6 +19,7 @@ type Payload = {
   locale?: string;
   bot_field?: string;
   site?: string; // tên miền nơi khách điền form — chỉ có khi form chạy trên bản sao chép
+  flow?: number; // 2 = form có bước soát số trên màn cảm ơn (28/10/2026) → card Telegram gửi SAU bước đó
 };
 
 const VENUE_NAME = process.env.VENUE_NAME || "LOCO Complex";
@@ -91,12 +93,12 @@ async function sendMail(d: Payload) {
   });
 }
 
-async function appendToSheet(d: Payload) {
+async function appendToSheet(d: Payload): Promise<number | null> {
   const SHEET_ID = process.env.GOOGLE_SHEET_ID;
   const SA_EMAIL = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
   const SA_KEY = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY?.replace(/\\n/g, "\n");
 
-  if (!SHEET_ID || !SA_EMAIL || !SA_KEY) return;
+  if (!SHEET_ID || !SA_EMAIL || !SA_KEY) return null;
 
   const now = new Date();
   const vnFormatter = new Intl.DateTimeFormat("vi-VN", {
@@ -128,7 +130,7 @@ async function appendToSheet(d: Payload) {
   });
   const sheets = google.sheets({ version: "v4", auth });
 
-  await sheets.spreadsheets.values.append({
+  const ghi = await sheets.spreadsheets.values.append({
     spreadsheetId: SHEET_ID,
     range: "Booking!B:K",
     valueInputOption: "USER_ENTERED",
@@ -148,53 +150,25 @@ async function appendToSheet(d: Payload) {
       ]],
     },
   });
+  // Số dòng vừa ghi (append trả "Booking!B123:K123") → vé sửa số ghi lại SĐT mới đúng dòng này
+  const dong = ghi.data.updates?.updatedRange?.match(/![A-Z]+(\d+)/);
+  return dong ? Number(dong[1]) : null;
 }
 
-async function sendTelegram(d: Payload, bookingId: string, isNight: boolean) {
+async function sendTelegram(d: Payload, bookingId: string, isNight: boolean, timestamp: string): Promise<number | null> {
   const TOKEN = process.env.TELEGRAM_BOT_TOKEN;
   const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
-  if (!TOKEN || !CHAT_ID) return;
+  if (!TOKEN || !CHAT_ID) return null;
 
-  const timestamp = new Date().toLocaleString("vi-VN", { timeZone: "Asia/Ho_Chi_Minh" });
-  const tg = (s: string) =>
-    String(s || "").replace(/[_*[\]()~`>#+=\-|{}.!]/g, "\\$&");
-
-  const phoneDigits = String(d.phone || "").replace(/\D/g, "");
-
-  const lines = [
-    `🔔 *Đặt bàn mới ${tg(VENUE_NAME)}*`,
-    `_${tg(timestamp)}_`,
-    ``,
-    `👤 *Tên:* ${tg(d.name || "")}`,
-    `📞 *SĐT:* \`${tg(d.phone || "")}\``,
-    `📅 *Ngày:* ${tg(d.date || "")} ${tg(d.time || "")}`,
-    `👥 *Số khách:* ${tg(d.party || "")}`,
-    `🎯 *Hạng bàn:* ${tg(d.tier || "—")}`,
-    `💬 *Ghi chú:* ${tg(d.note || "—")}`,
-    `🆔 *Booking ID:* \`${tg(bookingId)}\``,
-    ``,
-    `_Liên hệ lại khách trong 10 phút_`,
-  ];
-  if (isNight) {
-    lines.push(``, `🌙 _Đã tự gửi sang Group quản lý lúc ${tg(vnHHMM())}_`);
-  }
-
-  const inlineKeyboard = isNight
-    ? [[{ text: "📋 Sao chép SĐT", copy_text: { text: phoneDigits } }]]
-    : [[
-        { text: "📤 Gửi Group", callback_data: `fwd:${bookingId}` },
-        { text: "📤 Gửi Ngọc", callback_data: `fwd2:${bookingId}` },
-        { text: "📋 Sao chép SĐT", copy_text: { text: phoneDigits } },
-      ]];
-
+  // Chữ card + bộ nút nằm ở lib/reserve-card (28/10/2026) để route hoan-tat / sua-so dựng lại card Y HỆT.
   const res = await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       chat_id: CHAT_ID,
-      text: lines.join("\n"),
+      text: cardText(VENUE_NAME, d, bookingId, timestamp, isNight, vnHHMM()),
       parse_mode: "MarkdownV2",
-      reply_markup: { inline_keyboard: inlineKeyboard },
+      reply_markup: { inline_keyboard: cardKeyboard(d.phone, bookingId, isNight) },
     }),
   });
 
@@ -202,6 +176,9 @@ async function sendTelegram(d: Payload, bookingId: string, isNight: boolean) {
     const body = await res.text();
     throw new Error(`Telegram ${res.status}: ${body}`);
   }
+  // message_id của card → vé sửa số dùng để sửa đúng card này nếu khách đổi số
+  const out = (await res.json().catch(() => ({}))) as { result?: { message_id?: number } };
+  return out?.result?.message_id ?? null;
 }
 
 async function sendTelegramToGroup(d: Payload, bookingId: string) {
@@ -344,6 +321,22 @@ export async function POST(req: Request) {
     const bookingId = `BK${Math.floor(1000 + Math.random() * 9000)}`;
 
     const isNight = isAfterHoursVN();
+    const timestamp = new Date().toLocaleString("vi-VN", {
+      timeZone: "Asia/Ho_Chi_Minh",
+    });
+
+    // Bản duyệt local (RESERVE_DRY_RUN=1): không gửi đi đâu, chỉ trả mã + vé để duyệt màn cảm ơn.
+    if (chayKho()) {
+      const ve = kyVe({ v: 1, bk: bookingId, loc: d.locale || "vi", ts: timestamp, m: null, r: null, iat: Date.now(), dry: 1, cho: 1,
+        name: d.name, phone: d.phone, date: d.date, time: d.time, party: d.party, tier: d.tier, note: d.note });
+      return NextResponse.json({ ok: true, bookingId, suaToken: ve });
+    }
+
+    // Card Telegram GIỮ LẠI tới khi khách xong bước soát số trên màn cảm ơn (sếp chốt 28/10/2026: card phải là
+    // thông tin cuối cùng — bot tự gửi đầu mối ban đêm xử lý card ngay lúc card xuất hiện). Chỉ giữ khi trình duyệt
+    // là bản form mới (flow 2) và ký được vé; tab mở từ trước khi deploy không bao giờ gọi hoan-tat → gửi ngay như cũ.
+    // Mail + Sheet + CRM vẫn ghi ngay, nên đơn không mất kể cả khi bước hoàn tất không tới.
+    const giuCard = d.flow === 2 && !isNight && coKhoaKy();
 
     // CRM TRƯỚC rồi mới dựng card (11/09/2026): mã ngẫu nhiên có thể trùng mã một
     // đơn cũ, khi đó CRM cấp mã mới. Card + Sheet phải mang mã THẬT, nếu không nút
@@ -353,7 +346,7 @@ export async function POST(req: Request) {
     const [mailResult, sheetResult, tgResult, tgGroupResult] = await Promise.allSettled([
       sendMail(d),
       appendToSheet(d),
-      sendTelegram(d, bk, isNight),
+      giuCard ? Promise.resolve(null) : sendTelegram(d, bk, isNight, timestamp),
       isNight ? sendTelegramToGroup(d, bk) : Promise.resolve(),
     ]);
 
@@ -378,10 +371,26 @@ export async function POST(req: Request) {
       tgResult.status === "rejected";
 
     if (allCoreFailed) {
+      // Card đang GIỮ chờ popup: khách sắp thấy báo lỗi, không popup nào gọi hoan-tat → gửi card ngay kẻo mất (28/10/2026)
+      // (khi giữ card thì tgResult = fulfilled nên nhánh này thực tế không tới — giữ cho chắc nếu điều kiện đổi sau này)
+      if (giuCard) await sendTelegram(d, bk, isNight, timestamp).catch((e) => console.error("[/api/reserve] gửi card bù lỗi", e));
       return NextResponse.json({ ok: false, reason: "all_channels_failed" }, { status: 500 });
     }
 
-    return NextResponse.json({ ok: true, bookingId: bk });
+    // Vé sửa số (28/10/2026): màn cảm ơn hiện lại số khách vừa gõ, gõ nhầm thì sửa ngay —
+    // vé mang message_id card + dòng Sheet để API sửa số cập nhật đúng chỗ. Đơn ban đêm đã tự
+    // gửi group quản lý thì không cấp vé (card đó không còn nút để sửa đồng bộ).
+    const suaToken = isNight
+      ? null
+      : kyVe({
+          v: 1, bk, loc: d.locale || "vi", ts: timestamp, iat: Date.now(),
+          ...(giuCard ? { cho: 1 as const } : {}),
+          m: tgResult.status === "fulfilled" ? tgResult.value : null,
+          r: sheetResult.status === "fulfilled" ? sheetResult.value : null,
+          name: d.name, phone: d.phone, date: d.date, time: d.time, party: d.party, tier: d.tier, note: d.note,
+        });
+
+    return NextResponse.json({ ok: true, bookingId: bk, suaToken });
   } catch (err) {
     console.error("[/api/reserve]", err);
     return NextResponse.json({ ok: false, error: String(err) }, { status: 500 });

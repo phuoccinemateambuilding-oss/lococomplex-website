@@ -12,6 +12,8 @@ export function ZaloClickTracker() {
         'a[href*="zalo.me"], a[href*="zaloapp.com"]'
       ) as HTMLAnchorElement | null;
       if (!anchor) return;
+      // Nút trên màn cảm ơn sau khi đặt bàn: khách đã tính 1 chuyển đổi form, không đếm thêm.
+      if (anchor.closest("[data-khong-chuyen-doi]")) return;
 
       const href = anchor.getAttribute("href") || "";
       const ctaLocation =

@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useId } from "react";
+import { useState, useId, useRef } from "react";
+import dynamic from "next/dynamic";
 import { Warning } from "@phosphor-icons/react/dist/ssr";
 import { site } from "@/lib/site";
 import { track, reportFormConversion } from "@/lib/gtag";
@@ -8,6 +9,15 @@ import { isOfficialHost, officialOrigin } from "@/lib/official-host";
 import { FormSuccessModal } from "./FormSuccessModal";
 import { CountryCodeSelect } from "./CountryCodeSelect";
 import { DEFAULT_COUNTRY, formatIntlPhone } from "@/lib/countryCodes";
+import { kiemTraSo, thongBaoLoiSo } from "@/lib/phone-check";
+import { suKien, useOSoDienThoai } from "@/lib/o-so-dien-thoai";
+import type { DonVuaDat } from "./XacNhanDatBan";
+
+// Màn "Còn 1 bước cuối" (28/10/2026) — chỉ tải sau khi gửi form
+const XacNhanDatBan = dynamic(
+  () => import("./XacNhanDatBan").then((m) => ({ default: m.XacNhanDatBan })),
+  { ssr: false },
+);
 
 interface BookingFormProps {
   locale?: "vi" | "en";
@@ -43,6 +53,10 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
     note: "",
     bot_field: "",
   });
+  // Ô số tự chia nhóm + kiểm đầu số (28/10/2026); don = đơn vừa gửi → màn "Còn 1 bước cuối"
+  const so = useOSoDienThoai(values.country);
+  const oSoRef = useRef<HTMLInputElement>(null);
+  const [don, setDon] = useState<DonVuaDat | null>(null);
 
   const set = (field: keyof typeof values) => (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -51,9 +65,17 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (status === "submitting") return;
+    const fullPhone = formatIntlPhone(values.country, so.value);
+    // Chặn số sai ngay trên form (28/10/2026): độ dài, đầu số di động VN, số "cho có"
+    const loiSo = kiemTraSo(fullPhone);
+    if (loiSo) {
+      so.setLoi(loiSo);
+      oSoRef.current?.focus();
+      suKien("form_phone_invalid", { loi: loiSo });
+      return;
+    }
     setStatus("submitting");
     track("form_submit", { cta_location: "booking_form" });
-    const fullPhone = formatIntlPhone(values.country, values.phone);
     const payload = { ...values, phone: fullPhone, locale };
     try {
       if (!isOfficialHost(window.location.hostname)) {
@@ -65,16 +87,23 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
           headers: { "Content-Type": "text/plain;charset=UTF-8" },
           body: JSON.stringify({ ...payload, site: window.location.hostname }),
         });
+        setDon(null);
         setStatus("success");
         return;
       }
       const res = await fetch("/api/reserve", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        // flow 2: màn cảm ơn có bước soát số → máy chủ giữ card Telegram tới khi khách xong bước đó
+        body: JSON.stringify({ ...payload, flow: 2 }),
       });
-      const data = await res.json().catch(() => ({ ok: false }));
+      const data = (await res.json().catch(() => ({ ok: false }))) as { ok?: boolean; bookingId?: string; suaToken?: string | null };
       const ok = res.ok && data.ok;
+      setDon(
+        ok && data.bookingId
+          ? { bk: String(data.bookingId), phone: fullPhone, token: data.suaToken || null, name: values.name, date: values.date, time: values.time, party: values.party }
+          : null,
+      );
       setStatus(ok ? "success" : "error");
       if (ok) {
         await reportFormConversion(fullPhone, values.name, Number(values.party) || 0);
@@ -93,6 +122,8 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
   function handleClose() {
     setStatus("idle");
     setValues({ name: "", country: DEFAULT_COUNTRY, phone: "", date: "", time: "", party: "2", note: "", bot_field: "" });
+    so.reset();
+    setDon(null);
   }
 
   return (
@@ -128,22 +159,40 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
         <div className="flex gap-2">
           <CountryCodeSelect
             value={values.country}
-            onChange={set("country")}
+            onChange={(e) => {
+              set("country")(e);
+              so.doiMaNuoc(e.target.value);
+            }}
             ariaLabel={locale === "vi" ? "Mã quốc gia" : "Country code"}
             className="w-[110px] shrink-0 px-2 py-3 rounded-xl border-2 border-ink/10 bg-white focus:border-loco-red focus:outline-none transition-colors text-base min-h-[48px] text-center"
           />
           <input
+            ref={oSoRef}
             id={`${fid}-phone`}
+            name="phone"
             type="tel"
             required
             autoComplete="tel"
             inputMode="tel"
             pattern="[0-9+\s]{9,}"
-            value={values.phone}
-            onChange={set("phone")}
+            value={so.value}
+            onChange={so.onChange}
+            onBlur={so.onBlur}
+            aria-invalid={so.loi ? true : undefined}
+            aria-describedby={so.loi ? "phone-error" : undefined}
             className={`${inputClass} flex-1 min-w-0`}
           />
         </div>
+        {so.loi && (
+          <p id="phone-error" role="alert" className="mt-1.5 text-[12.5px] font-semibold leading-snug text-loco-red">
+            {thongBaoLoiSo(so.loi, locale)}
+          </p>
+        )}
+        <p className="mt-1.5 text-[12px] font-medium leading-snug text-ink">
+          {locale === "en"
+            ? "💬 Your confirmation is sent via Zalo/WhatsApp — please use a number with Zalo or WhatsApp."
+            : "💬 Xác nhận đặt bàn gửi qua Zalo/WhatsApp — hãy dùng số có Zalo hoặc WhatsApp."}
+        </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -229,12 +278,26 @@ export default function BookingForm({ locale = "vi", t }: BookingFormProps) {
           : t.formSubmit}
       </button>
     </form>
-    <FormSuccessModal
-      open={status === "success"}
-      onClose={handleClose}
-      locale={locale}
-      intent="booking"
-    />
+    {status === "success" && don ? (
+      // Màn "Còn 1 bước cuối" (28/10/2026): soát / sửa số Zalo-WhatsApp, card Telegram gửi sau bước này
+      <XacNhanDatBan
+        don={don}
+        locale={locale}
+        onClose={handleClose}
+        api="/api/reserve"
+        venue="LOCO Complex"
+        zaloUrl="https://zalo.me/0905806518"
+        whatsappUrl="https://wa.me/84905806518"
+        accent="#D63427"
+      />
+    ) : (
+      <FormSuccessModal
+        open={status === "success"}
+        onClose={handleClose}
+        locale={locale}
+        intent="booking"
+      />
+    )}
     </>
   );
 }

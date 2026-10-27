@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useId, useEffect } from "react";
+import { useState, useId, useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
 import {
   CheckCircle,
   Warning,
@@ -23,6 +24,15 @@ import { isOfficialHost, officialOrigin } from "@/lib/official-host";
 import { FormSuccessModal } from "../FormSuccessModal";
 import { CountryCodeSelect } from "../CountryCodeSelect";
 import { DEFAULT_COUNTRY, formatIntlPhone } from "@/lib/countryCodes";
+import { kiemTraSo, thongBaoLoiSo } from "@/lib/phone-check";
+import { suKien, useOSoDienThoai } from "@/lib/o-so-dien-thoai";
+import type { DonVuaDat } from "../XacNhanDatBan";
+
+// Màn "Còn 1 bước cuối" (28/10/2026) — chỉ tải sau khi gửi form
+const XacNhanDatBan = dynamic(
+  () => import("../XacNhanDatBan").then((m) => ({ default: m.XacNhanDatBan })),
+  { ssr: false },
+);
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -110,6 +120,10 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
   const [submitted, setSubmitted] = useState<typeof values | null>(null);
   const [missingFields, setMissingFields] = useState<string[]>([]);
   const [modalDismissed, setModalDismissed] = useState(false);
+  // Ô số tự chia nhóm + kiểm đầu số (28/10/2026); don = đơn vừa gửi → màn "Còn 1 bước cuối"
+  const so = useOSoDienThoai(values.country);
+  const oSoRef = useRef<HTMLInputElement>(null);
+  const [don, setDon] = useState<DonVuaDat | null>(null);
 
   const set = (k: keyof typeof values) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
     setValues((v) => ({ ...v, [k]: e.target.value }));
@@ -145,6 +159,16 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
     }
     setMissingFields([]);
 
+    // Chặn số sai ngay trên form (28/10/2026): độ dài, đầu số di động VN, số "cho có"
+    const loiSo = kiemTraSo(payload.phone);
+    if (loiSo) {
+      so.setLoi(loiSo);
+      setStatus("idle"); // bỏ khung lỗi cũ (thiếu trường) — lỗi số hiện ngay dưới ô số
+      oSoRef.current?.focus();
+      suKien("form_phone_invalid", { loi: loiSo });
+      return;
+    }
+
     setValues((v) => ({ ...v, ...payload }));
     setStatus("submitting");
     track("form_submit", { cta_location: "landing_form" });
@@ -160,6 +184,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
           headers: { "Content-Type": "text/plain;charset=UTF-8" },
           body: JSON.stringify({ ...reqBody, site: window.location.hostname }),
         });
+        setDon(null);
         setSubmitted(payload);
         setStatus("success");
         return;
@@ -167,12 +192,19 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
       const res = await fetch("/api/reserve", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(reqBody),
+        // flow 2: màn cảm ơn có bước soát số → máy chủ giữ card Telegram tới khi khách xong bước đó
+        body: JSON.stringify({ ...reqBody, flow: 2 }),
       });
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
         throw new Error(body.reason || String(res.status));
       }
+      const data = (await res.json().catch(() => ({}))) as { bookingId?: string; suaToken?: string | null };
+      setDon(
+        data.bookingId
+          ? { bk: String(data.bookingId), phone: payload.phone, token: data.suaToken || null, name: payload.name, date: payload.date, time: payload.time, party: payload.party }
+          : null,
+      );
       setSubmitted(payload);
       setStatus("success");
       await reportFormConversion(payload.phone, payload.name, Number(payload.party) || 0);
@@ -188,6 +220,8 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
     setMissingFields([]);
     setSubmitted(null);
     setModalDismissed(false);
+    so.reset();
+    setDon(null);
   }
 
   const calendarUrl = submitted
@@ -366,7 +400,10 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                         <CountryCodeSelect
                           name="dial_country"
                           value={values.country}
-                          onChange={set("country")}
+                          onChange={(e) => {
+                            set("country")(e);
+                            so.doiMaNuoc(e.target.value);
+                          }}
                           ariaLabel={locale === "vi" ? "Mã quốc gia" : "Country code"}
                           className="w-[112px] shrink-0 min-h-[48px] appearance-none rounded-2xl border-2 border-white/20 bg-midnight/70 px-3 py-3.5 text-[16px] font-normal text-white text-center focus:border-loco-red focus:outline-none focus:ring-2 focus:ring-loco-red/40 hover:border-white/35 transition [color-scheme:dark]"
                         />
@@ -375,6 +412,7 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                             <Phone size={18} weight="fill" />
                           </span>
                           <input
+                            ref={oSoRef}
                             id={`${formId}-phone`}
                             name="phone"
                             type="tel"
@@ -382,13 +420,26 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
                             autoComplete="tel"
                             required
                             pattern="[0-9+\s]{9,}"
-                            value={values.phone}
-                            onChange={set("phone")}
+                            value={so.value}
+                            onChange={so.onChange}
+                            onBlur={so.onBlur}
+                            aria-invalid={so.loi ? true : undefined}
+                            aria-describedby={so.loi ? "phone-error" : undefined}
                             className={inputClsIcon}
                             placeholder="0905 806 518"
                           />
                         </div>
                       </div>
+                      {so.loi && (
+                        <p id="phone-error" role="alert" className="mt-1.5 text-[12.5px] font-semibold leading-snug text-red-400">
+                          {thongBaoLoiSo(so.loi, locale)}
+                        </p>
+                      )}
+                      <p className="mt-1.5 text-[12px] font-medium leading-snug text-white">
+                        {locale === "en"
+                          ? "💬 Your confirmation is sent via Zalo/WhatsApp — please use a number with Zalo or WhatsApp."
+                          : "💬 Xác nhận đặt bàn gửi qua Zalo/WhatsApp — hãy dùng số có Zalo hoặc WhatsApp."}
+                      </p>
                     </Field>
 
                     {/* Date + Time */}
@@ -555,12 +606,29 @@ export function LandingReservationForm({ dict, locale }: { dict: Dform; locale: 
         </div>
       </div>
     </section>
-    <FormSuccessModal
-      open={status === "success" && !modalDismissed}
-      onClose={() => setModalDismissed(true)}
-      locale={locale}
-      intent="booking"
-    />
+    {status === "success" && !modalDismissed && don ? (
+      // Màn "Còn 1 bước cuối" (28/10/2026): soát / sửa số Zalo-WhatsApp, card Telegram gửi sau bước này
+      <XacNhanDatBan
+        don={don}
+        locale={locale}
+        onClose={() => {
+          setModalDismissed(true);
+          setDon(null);
+        }}
+        api="/api/reserve"
+        venue="LOCO Complex"
+        zaloUrl="https://zalo.me/0905806518"
+        whatsappUrl="https://wa.me/84905806518"
+        accent="#D63427"
+      />
+    ) : (
+      <FormSuccessModal
+        open={status === "success" && !modalDismissed}
+        onClose={() => setModalDismissed(true)}
+        locale={locale}
+        intent="booking"
+      />
+    )}
     </>
   );
 }
