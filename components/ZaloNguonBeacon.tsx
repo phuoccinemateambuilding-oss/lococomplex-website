@@ -3,44 +3,19 @@
 import { useEffect } from "react";
 
 /**
- * Ghi dấu "khách bấm nút Zalo / WhatsApp từ web này" → Omni Inbox gắn nguồn cho hội thoại.
+ * Ghi dấu "khách bấm nút liên hệ trên web này" (Zalo · WhatsApp · Gọi · Messenger) → Omni Inbox biết
+ * khách nhắn tới từ web nào, đến web qua kênh nào (Google Ads, tìm kiếm, Fanpage…). Hiện trên Omni +
+ * báo vào topic Telegram của khách.
  *
- * ⚠️ TÁCH HOÀN TOÀN khỏi các tracker conversion (Tel/Zalo/Form) — file này KHÔNG import gtag,
- * KHÔNG chặn điều hướng. sendBeacon là bắn-rồi-quên: endpoint sập hay CSP chặn cũng không ảnh
- * hưởng gì tới khách lẫn đo chuyển đổi. Danh tính venue = header Origin trình duyệt tự đóng dấu.
+ * ⚠️ TÁCH HOÀN TOÀN khỏi các tracker chuyển đổi Google — file này KHÔNG import gtag, KHÔNG chặn điều
+ * hướng. sendBeacon bắn-rồi-quên về CHÍNH web này (/api/nguon-click), máy chủ web chuyển lên Omni.
+ * Từ 28/10/2026 không gửi thẳng địa chỉ Omni nữa: địa chỉ cũ chết 16/10 làm mất nguồn khách 12 ngày.
  *
- * Từ 2026-08-29 beacon mang thêm NGUỒN KHÁCH do TrafficSource ghi trong cookie (nc_src):
- * Omni không chỉ biết "bấm Zalo từ khu13saigon.com" mà biết luôn "khách đó tới web từ Google Ads".
- * Nhờ vậy đơn chốt trong chat Zalo vẫn quy được về đúng kênh marketing thay vì nhãn chung "Chat Zalo".
- *
- * Riêng WHATSAPP có thêm TIN MỒI (24/08): link wa.me chưa có ?text= thì tự gắn câu soạn sẵn
- * "Hi! I'd like to book a table at <venue>." — tin ĐẦU của khách tự khai venue (số WhatsApp dùng
- * chung nhiều venue nên đây là attribution chắc chắn nhất; khách xoá tin mồi thì còn beacon).
+ * Nút WhatsApp chưa có câu soạn sẵn thì gắn "Hi! I'd like to book a table at <TEN>." — tin đầu của
+ * khách tự khai quán (số WhatsApp dùng chung nhiều quán). TEN phải trùng tên quán trong Omni
+ * (Omni Inbox/web/src/lib/web-quan.ts); để trống thì dùng câu chung.
  */
-const OMNI_CLICK_URL = "https://omni-inbox-psi.vercel.app/api/zalo-click";
-
-/** hostname (bỏ www.) → tên venue cho tin mồi WhatsApp. Không có trong map → câu chung. */
-const TEN_VENUE: Record<string, string> = {
-  "empireclub.com.vn": "Empire Club",
-  "khu13saigon.com": "Khu 13",
-  "papisaigon.com": "PAPI Club Saigon",
-  "districtk.com.vn": "District K",
-  "lococomplex.com.vn": "LOCO Complex",
-  "zionskyloungesaigon.com": "Zion Sky Lounge",
-  "thewannsaigon.com.vn": "The Wann",
-  "neighborhoodsaigon.com": "Neighborhood Saigon",
-  "draveclub.com.vn": "D-Rave Club",
-  "palmora.com.vn": "Palmora",
-  "karaokektv.com.vn": "Karaoke KTV",
-  "b40saigon.com": "B40 Saigon",
-  "cineclubsaigon.com": "Cine Club Saigon",
-  "weekndsaigon.com": "Weeknd Saigon",
-  "fetticlubsaigon.com": "Fetti Social Club",
-  "canalisclub.com.vn": "Canalis Club",
-  "ktvtrungson.com": "KTV Trung Son",
-  "empire-club-website.vercel.app": "Empire Club",
-  "fetti-socialclub.vercel.app": "Fetti Social Club",
-};
+const TEN = "LOCO";
 
 /** Dấu nguồn khách do TrafficSource ghi lúc khách vào web (cookie 90 ngày). */
 function docCookie(ten: string): string {
@@ -56,28 +31,34 @@ export function ZaloNguonBeacon() {
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       const a = (e.target as HTMLElement | null)?.closest?.(
-        'a[href*="zalo.me"], a[href*="wa.me"], a[href*="api.whatsapp.com"]',
+        'a[href*="zalo.me"], a[href*="wa.me"], a[href*="whatsapp.com"], a[href^="tel:"], a[href*="m.me"], a[href*="messenger.com"]',
       ) as HTMLAnchorElement | null;
       if (!a) return;
       try {
-        const laWa = /wa\.me|api\.whatsapp\.com/.test(a.href);
-        const so = laWa
-          ? (a.href.match(/wa\.me\/(\d+)/)?.[1] ?? a.href.match(/phone=(\d+)/)?.[1] ?? "")
-          : (a.href.match(/zalo\.me\/(\d[\d.\s-]*)/)?.[1] ?? "").replace(/\D/g, "");
-        if (laWa && !/[?&]text=/.test(a.href)) {
-          // Gắn tin mồi TRƯỚC khi trình duyệt đi theo link (đổi href trong click handler là
-          // hợp lệ — điều hướng dùng href tại thời điểm hành động mặc định chạy).
-          const ten = TEN_VENUE[location.hostname.replace(/^www\./, "")];
-          const moi = ten ? `Hi! I'd like to book a table at ${ten}.` : "Hi! I'd like to book a table.";
-          a.href += (a.href.includes("?") ? "&" : "?") + "text=" + encodeURIComponent(moi);
+        const href = a.href;
+        const k = /\/\/(www\.)?wa\.me\/|api\.whatsapp\.com/.test(href) ? "wa"
+          : /^tel:/i.test(href) ? "tel"
+          : /\/\/(www\.)?m\.me\/|messenger\.com/.test(href) ? "mess"
+          : /zalo\.me/.test(href) ? "zalo" : "";
+        if (!k) return;
+        const so = k === "wa" ? (href.match(/wa\.me\/(\d+)/)?.[1] ?? href.match(/phone=(\d+)/)?.[1] ?? "")
+          : k === "tel" ? href.replace(/^tel:/i, "").replace(/\D/g, "")
+          : k === "zalo" ? (href.match(/zalo\.me\/(\d[\d.\s-]*)/)?.[1] ?? "").replace(/\D/g, "")
+          : "";
+        if (k === "wa" && !/[?&]text=/.test(href)) {
+          // Gắn tin mồi TRƯỚC khi trình duyệt đi theo link (đổi href trong click handler là hợp lệ —
+          // điều hướng dùng href tại thời điểm hành động mặc định chạy).
+          const moi = TEN ? `Hi! I'd like to book a table at ${TEN}.` : "Hi! I'd like to book a table.";
+          a.href += (href.includes("?") ? "&" : "?") + "text=" + encodeURIComponent(moi);
         }
         navigator.sendBeacon?.(
-          OMNI_CLICK_URL,
+          "/api/nguon-click",
           JSON.stringify({
             p: location.pathname,
             z: so,
-            k: laWa ? "wa" : "zalo",
-            s: docCookie("nc_src") || undefined, // nguồn: google_ads | tiktok | facebook...
+            k,
+            s: docCookie("nc_src") || undefined, // nguồn gần nhất: google_ads | google_organic | facebook…
+            s1: docCookie("nc_src1") || undefined, // nguồn lần đầu vào web
             d: docCookie("nc_srcd").slice(0, 300) || undefined, // dấu vết thô để đối soát
           }),
         );
