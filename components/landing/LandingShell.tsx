@@ -2,9 +2,13 @@
 
 import type { ReactNode } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { StickyCtaBarMobile } from "./StickyCtaBarMobile";
 import FloatingContacts from "@/components/FloatingContacts";
 import { routeMap, type Locale } from "@/lib/i18n";
+
+// Form đặt bàn nhanh 5 ô — tải sau khi trang hiện xong; bấm "Đặt bàn" trước khi tải xong thì nút tự cuộn tới #form
+const QuickBookDialog = dynamic(() => import("./QuickBookDialog"), { ssr: false });
 
 type Dsticky = { call: string; zalo: string; book: string; whatsapp: string };
 
@@ -38,6 +42,7 @@ export function LandingShell({
       </footer>
       <StickyCtaBarMobile dict={stickyDict} />
       <FloatingContacts />
+      <QuickBookDialog locale={locale} />
     </>
   );
 }

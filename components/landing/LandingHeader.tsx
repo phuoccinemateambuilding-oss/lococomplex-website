@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { List, X, Phone } from "@phosphor-icons/react/dist/ssr";
 import { Wordmark } from "@/components/Wordmark";
 import { BRAND } from "@/lib/brand";
+import { openQuickBook } from "@/lib/quick-book";
 
 type Dnav = {
   home: string;
@@ -52,6 +53,12 @@ export function LandingHeader({ dict }: { dict: Dnav }) {
     requestAnimationFrame(() => scrollTo(hash));
   };
 
+  // Nút "Đặt bàn" → form nhanh 5 ô tại chỗ; form nhanh chưa tải xong thì cuộn tới #form như cũ
+  const handleBook = (source: string) => {
+    setMenuOpen(false);
+    if (!openQuickBook(source)) requestAnimationFrame(() => scrollTo("form"));
+  };
+
   return (
     <>
       <header
@@ -94,7 +101,7 @@ export function LandingHeader({ dict }: { dict: Dnav }) {
             </a>
             <button
               type="button"
-              onClick={() => handleNav("form")}
+              onClick={() => handleBook("header")}
               className="hidden h-11 items-center gap-1.5 rounded-full bg-loco-red px-5 text-sm font-bold uppercase tracking-wider text-white transition hover:bg-loco-red/85 sm:inline-flex"
             >
               {dict.form}
@@ -164,7 +171,7 @@ export function LandingHeader({ dict }: { dict: Dnav }) {
           </a>
           <button
             type="button"
-            onClick={() => handleNav("form")}
+            onClick={() => handleBook("drawer")}
             className="flex h-14 w-full items-center justify-center rounded-full bg-loco-red text-sm font-bold uppercase tracking-wider text-white transition hover:bg-loco-red/85"
           >
             {dict.form}

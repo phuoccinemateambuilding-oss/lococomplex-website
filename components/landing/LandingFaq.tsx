@@ -27,7 +27,7 @@ export function LandingFaq({ dict }: { dict: Dfaq }) {
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.06 }}
+              transition={{ duration: 0.4, delay: Math.min(i * 0.06, 0.15) }}
               className="group rounded-2xl border border-white/10 bg-midnight/50 backdrop-blur-sm open:border-loco-red/30 open:bg-midnight/80"
             >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4">

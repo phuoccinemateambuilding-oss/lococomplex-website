@@ -1,12 +1,14 @@
 "use client";
 
-import { Phone, ArrowDown, MapPin, Clock } from "@phosphor-icons/react/dist/ssr";
+import { Phone, ArrowDown, MapPin, Clock, Star, ShieldCheck, CalendarCheck } from "@phosphor-icons/react/dist/ssr";
 import { FloatingImage } from "@/components/HeroAnimated";
 import GeometricShape from "@/components/GeometricShape";
 import StickerTag from "@/components/StickerTag";
 import { BRAND } from "@/lib/brand";
 import { track } from "@/lib/gtag";
-import { thumbSrc } from "@/lib/srcset";
+import { buildSrcSet, thumbSrc } from "@/lib/srcset";
+import { openQuickBook } from "@/lib/quick-book";
+import { ZaloIcon } from "./ZaloIcon";
 
 type Dhero = {
   eyebrow: string;
@@ -20,6 +22,9 @@ type Dhero = {
   ctaBook: string;
   ctaCall: string;
   ctaGallery: string;
+  ctaZalo: string;
+  promise: string;
+  rating: string;
   trust: string;
   hoursLabel: string;
   addressLabel: string;
@@ -38,6 +43,8 @@ const BG_GRID = [
 const FLOAT_TOP_RIGHT = "/assets/loco/space/space-06.jpg";
 const FLOAT_BOTTOM_LEFT = "/assets/loco/gallery/gallery-31.jpg";
 const FLOAT_BOTTOM_RIGHT = "/assets/loco/gallery/gallery-30.jpg";
+// Ảnh quán thật cho màn hình đầu điện thoại (sàn Heatroom dưới đèn vòng — không chai, không nhãn hãng). Bản 400w ~10KB.
+const MOBILE_PHOTO = "/assets/loco/gallery/gallery-31.jpg";
 
 function scrollTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -77,64 +84,91 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-ink/40" />
 
-      <div className="relative mx-auto max-w-[1400px] px-6 md:px-10 flex flex-col justify-center min-h-[100dvh] py-28 md:py-32">
+      <div className="relative mx-auto max-w-[1400px] px-6 md:px-10 flex flex-col justify-start md:justify-center min-h-[100dvh] pt-20 pb-16 md:py-32">
         <div className="grid md:grid-cols-[1.1fr_1fr] gap-10 items-center">
           {/* LEFT — text content — NO animation wrappers to avoid LCP delay */}
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-4 md:gap-5">
             <span className="font-[family-name:var(--font-space-mono)] text-xs uppercase tracking-[0.25em] text-baby-blue">
               {dict.eyebrow}
             </span>
 
-            <h1 className="font-[family-name:var(--font-bebas-neue)] text-[6.5rem] leading-[0.8] text-white md:text-[14rem] md:drop-shadow-[0_0_60px_rgba(226,58,44,0.3)]">
-              <span className="sr-only">
-                {locale === "vi"
-                  ? "Đặt bàn LOCO Complex — Khu giải trí NEWTRO Quận 1, Sài Gòn. Xem Menu LOCO signature, đọc Review LOCO Complex thực khách, ghé Địa chỉ LOCO tại 11 Nam Quốc Cang. Mở cửa 22:00 – 05:00, sức chứa 300 khách."
-                  : "Book LOCO Complex — NEWTRO Entertainment Complex in District 1, Saigon. Browse LOCO Menu signature, read LOCO Complex Reviews from real guests, visit LOCO Address at 11 Nam Quoc Cang. Open 10:00 PM – 5:00 AM daily, 300-guest capacity."}
+            {/* Wordmark + ảnh quán thật (mobile) — đề xuất #2 ads-ops 28/10/2026: màn hình đầu điện thoại phải có ảnh quán */}
+            <div className="relative flex flex-col gap-4 md:gap-5">
+              <h1 className="font-[family-name:var(--font-bebas-neue)] text-[6.5rem] leading-[0.8] text-white md:text-[14rem] md:drop-shadow-[0_0_60px_rgba(226,58,44,0.3)]">
+                <span className="sr-only">
+                  {locale === "vi"
+                    ? "Đặt bàn LOCO Complex — Khu giải trí NEWTRO Quận 1, Sài Gòn. Xem Menu LOCO signature, đọc Review LOCO Complex thực khách, ghé Địa chỉ LOCO tại 11 Nam Quốc Cang. Mở cửa 22:00 – 05:00, sức chứa 300 khách."
+                    : "Book LOCO Complex — NEWTRO Entertainment Complex in District 1, Saigon. Browse LOCO Menu signature, read LOCO Complex Reviews from real guests, visit LOCO Address at 11 Nam Quoc Cang. Open 10:00 PM – 5:00 AM daily, 300-guest capacity."}
+                </span>
+                <span aria-hidden="true">{dict.heading}</span>
+              </h1>
+              <span className="block font-[family-name:var(--font-caveat)] text-5xl text-hot-pink md:text-6xl mt-1">
+                {dict.subheading}
               </span>
-              <span aria-hidden="true">{dict.heading}</span>
-            </h1>
-            <span className="block font-[family-name:var(--font-caveat)] text-5xl text-hot-pink md:text-6xl mt-1">
-              {dict.subheading}
-            </span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={thumbSrc(MOBILE_PHOTO, 800)}
+                srcSet={buildSrcSet(MOBILE_PHOTO)}
+                sizes="168px"
+                alt={dict.wordmarkAlt}
+                width="400"
+                height="400"
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
+                className="absolute -top-2 right-0 aspect-square w-[min(40vw,calc(100vw-232px))] max-w-[168px] rotate-[4deg] rounded-2xl object-cover shadow-xl ring-4 ring-white/10 md:hidden"
+              />
+            </div>
 
-            <p className="text-base md:text-lg text-white/70 max-w-[48ch] leading-relaxed">
-              {dict.desc}
+            {/* Điểm Google Maps thật của quán (LOCO HEATROOM, đọc 29/10/2026) — số tĩnh, đổi điểm thì sửa i18n */}
+            <p className="flex items-center gap-2 text-sm text-white/85">
+              <Star weight="fill" className="h-4 w-4 shrink-0 text-loco-yellow" aria-hidden="true" />
+              <span>{dict.rating}</span>
             </p>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-3 mt-2">
-              <button
-                type="button"
-                onClick={() => {
-                  scrollTo("form");
-                  track("cta_click", { cta_name: "hero_book", cta_location: "hero" });
-                }}
-                className="inline-flex h-14 items-center gap-2 rounded-full bg-loco-red px-8 text-sm font-bold uppercase tracking-wider text-white shadow-[0_8px_40px_-5px_rgba(226,58,44,0.5)] transition-all hover:-translate-y-1 hover:shadow-[0_16px_50px_-5px_rgba(226,58,44,0.6)]"
-              >
-                {dict.ctaBook}
-              </button>
-              <a
-                href={`tel:${BRAND.phoneTel}`}
-                className="inline-flex h-14 items-center gap-2 rounded-full border border-white/30 bg-ink/40 px-6 font-[family-name:var(--font-space-mono)] text-sm font-bold text-white/80 backdrop-blur transition hover:border-white/60 hover:text-white"
-              >
-                <Phone weight="fill" className="h-4 w-4" />
-                {dict.ctaCall}
-              </a>
-              <button
-                type="button"
-                onClick={() => {
-                  scrollTo("gallery");
-                  track("cta_click", { cta_name: "hero_gallery", cta_location: "hero" });
-                }}
-                className="inline-flex h-14 items-center gap-2 rounded-full px-5 text-sm font-bold uppercase tracking-wider text-white/60 underline-offset-4 transition hover:text-white hover:underline"
-              >
-                {dict.ctaGallery}
-                <ArrowDown className="h-4 w-4" />
-              </button>
+            {/* CTAs — Đặt bàn mở form nhanh 5 ô tại chỗ; Gọi + Zalo thấy ngay màn hình đầu */}
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-start">
+              <div className="flex flex-col gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (!openQuickBook("hero")) scrollTo("form");
+                    track("cta_click", { cta_name: "hero_book", cta_location: "hero" });
+                  }}
+                  className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-full bg-loco-red px-8 text-sm font-bold uppercase tracking-wider text-white shadow-[0_8px_40px_-5px_rgba(226,58,44,0.5)] transition-all hover:-translate-y-1 hover:shadow-[0_16px_50px_-5px_rgba(226,58,44,0.6)] sm:w-auto"
+                >
+                  <CalendarCheck weight="fill" className="h-5 w-5" />
+                  {dict.ctaBook}
+                </button>
+                <p className="flex items-center justify-center gap-1.5 text-[13px] font-semibold text-loco-yellow sm:justify-start">
+                  <ShieldCheck weight="fill" className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  {dict.promise}
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-3 sm:flex">
+                <a
+                  href={`tel:${BRAND.phoneTel}`}
+                  data-cta-location="hero"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full border-2 border-loco-red/70 bg-loco-red/10 px-6 font-[family-name:var(--font-space-mono)] text-sm font-bold text-white backdrop-blur transition hover:border-loco-red hover:bg-loco-red/20 sm:h-14"
+                >
+                  <Phone weight="fill" className="h-4 w-4" />
+                  {dict.ctaCall}
+                </a>
+                <a
+                  href={BRAND.zaloUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-cta-location="hero"
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#0068FF] px-6 text-sm font-bold uppercase tracking-wider text-white shadow-lg transition hover:bg-[#0068FF]/85 sm:h-14"
+                >
+                  <ZaloIcon size={18} />
+                  {dict.ctaZalo}
+                </a>
+              </div>
             </div>
 
             {/* Info cards — Hours + Address */}
-            <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-[560px]">
+            <div className="mt-1 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-[560px]">
               <div className="flex items-start gap-3 rounded-2xl border border-loco-yellow/30 bg-ink/60 px-4 py-3 backdrop-blur-sm">
                 <Clock weight="fill" className="mt-0.5 h-5 w-5 shrink-0 text-loco-yellow" />
                 <div>
@@ -158,6 +192,22 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
                 </div>
               </div>
             </div>
+
+            {/* Đoạn giới thiệu — dời xuống dưới nút liên hệ để màn hình đầu gọn (không xoá chữ) */}
+            <p className="text-base md:text-lg text-white/70 max-w-[48ch] leading-relaxed">
+              {dict.desc}
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                scrollTo("gallery");
+                track("cta_click", { cta_name: "hero_gallery", cta_location: "hero" });
+              }}
+              className="-mt-2 inline-flex h-12 items-center gap-2 self-start rounded-full text-sm font-bold uppercase tracking-wider text-white/60 underline-offset-4 transition hover:text-white hover:underline"
+            >
+              {dict.ctaGallery}
+              <ArrowDown className="h-4 w-4" />
+            </button>
 
             {/* Trust badge */}
             <div className="inline-flex items-center gap-2 self-start rounded-full border border-loco-yellow/20 bg-loco-yellow/5 px-4 py-2">

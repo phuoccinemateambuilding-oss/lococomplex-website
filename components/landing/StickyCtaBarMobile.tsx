@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { CalendarCheck } from "@phosphor-icons/react/dist/ssr";
 import { BRAND } from "@/lib/brand";
+import { openQuickBook } from "@/lib/quick-book";
 
 type Dsticky = {
   call: string;
@@ -94,7 +95,7 @@ export function StickyCtaBarMobile({ dict }: { dict: Dsticky }) {
           type="button"
           onClick={() => {
             track("cta_click", { cta_location: "sticky_mobile_book" });
-            document.getElementById("form")?.scrollIntoView({ behavior: "smooth", block: "start" });
+            if (!openQuickBook("sticky_mobile")) document.getElementById("form")?.scrollIntoView({ behavior: "smooth", block: "start" });
           }}
           className="flex flex-col items-center justify-center gap-1 rounded-xl bg-loco-red py-2 text-[11px] font-bold uppercase tracking-wider text-white"
         >
