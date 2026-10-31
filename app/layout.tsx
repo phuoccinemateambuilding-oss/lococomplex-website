@@ -51,7 +51,7 @@ const spaceMono = Space_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "LOCO Complex — Khu Giải Trí & Âm Nhạc · Quận 1, Sài Gòn",
+    default: "LOCO Complex & Heatroom | 11 Nam Quốc Cang Quận 1 | Đặt Bàn",
     template: "%s | LOCO Complex",
   },
   description:
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
   verification: { google: ["XSlAVKyVYRKQoOwofc_zhBgb88NpSLayI40SzUKsyMI", "P2krWKk8SYpUEDVIVQ8TlF0-NJEbD5dCAZcFlekhSnc"] },
   openGraph: {
     type: "website",
-    title: "LOCO Complex — Khu Giải Trí & Âm Nhạc · Quận 1, Sài Gòn",
+    title: "LOCO Complex & Heatroom | 11 Nam Quốc Cang Quận 1 | Đặt Bàn",
     description:
       "Khu phức hợp giải trí phong cách NEWTRO tại 11 Nam Quốc Cang, Quận 1. 2 tầng club: Heatroom (EDM, Top 40, House) + Hip-hop. F&B by BITES. Đặt bàn: 0905 806 518.",
     siteName: "LOCO Complex",
@@ -97,7 +97,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "LOCO Complex — Khu Giải Trí & Âm Nhạc · Quận 1, Sài Gòn",
+    title: "LOCO Complex & Heatroom | 11 Nam Quốc Cang Quận 1 | Đặt Bàn",
     description:
       "Khu phức hợp giải trí NEWTRO · 2 tầng club · F&B by BITES · Đặt bàn 0905 806 518",
     images: ["/og.jpg"],

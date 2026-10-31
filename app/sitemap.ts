@@ -20,7 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Giờ ghi ngày nội dung thật; sửa nội dung trang nào thì cập nhật đúng dòng đó.
   const routes: (MetadataRoute.Sitemap[number] & { changed: string })[] = [
     // VI (default)
-    { url: `${base}/`, changeFrequency: "weekly", priority: 1.0, images: [`${base}/og.jpg`], changed: "2026-10-23" },
+    { url: `${base}/`, changeFrequency: "weekly", priority: 1.0, images: [`${base}/og.jpg`], changed: "2026-11-01" },
     { url: `${base}/hinh-anh`, changeFrequency: "weekly", priority: 0.8, images: galleryImages, changed: "2026-04-24" },
     { url: `${base}/menu`, changeFrequency: "monthly", priority: 0.7, images: menuImages, changed: "2026-09-15" },
     { url: `${base}/lien-he`, changeFrequency: "monthly", priority: 0.9, changed: "2026-08-23" },
