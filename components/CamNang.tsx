@@ -100,6 +100,19 @@ export default function CamNang({ locale }: { locale: Locale }) {
                   </div>
                 )}
 
+                {s.ngoai && (
+                  <p className="mt-4 text-base leading-[1.75] text-ink/75 md:text-[17px]">
+                    {s.ngoai.truoc}
+                    <a
+                      href={s.ngoai.href}
+                      className="font-bold text-electric-blue underline decoration-electric-blue/40 underline-offset-4 hover:decoration-electric-blue"
+                    >
+                      {s.ngoai.nhan}
+                    </a>
+                    {s.ngoai.sau}
+                  </p>
+                )}
+
                 {s.photos && s.photos.length > 0 && (
                   <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-3">
                     {s.photos.map((n) => {

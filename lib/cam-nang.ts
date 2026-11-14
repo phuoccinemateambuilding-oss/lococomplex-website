@@ -17,6 +17,8 @@ export type CamNangSection = {
   /** chỉ số ảnh (0-based, theo CAM_NANG_PHOTOS) hiện dưới mục */
   photos?: number[];
   link?: { key: CamNangLinkKey; label: string };
+  /** 14/11/2026: một câu có link ra web khác (quán cùng địa chỉ) — chỉ dùng trong mục đường đến */
+  ngoai?: { truoc: string; nhan: string; href: string; sau: string };
   cta?: boolean;
 };
 
@@ -142,6 +144,12 @@ export const CAM_NANG_VI: CamNangCopy = {
         `LOCO Complex nằm ở ${site.address.vi}. Gõ “LOCO Complex” hoặc “11 Nam Quốc Cang” trên ứng dụng bản đồ là ra đúng vị trí; trang liên hệ của web có bản đồ nhúng để bạn mở chỉ đường.`,
         "Nam Quốc Cang là một con phố nhỏ thuộc phường Phạm Ngũ Lão, ngay trung tâm Quận 1, nên đi taxi hay xe công nghệ đều dễ tìm. Nếu đi theo nhóm, hẹn nhau trước cửa rồi vào cùng lúc để được xếp bàn một lần.",
       ],
+      ngoai: {
+        truoc: "Cùng địa chỉ 11 Nam Quốc Cang còn có ",
+        nhan: "Neighborhood Saigon",
+        href: "https://neighborhoodsaigon.com/vi",
+        sau: " — night club phong cách house party kiểu Mỹ, tiện cho nhóm muốn ghé thêm một điểm trong cùng một đêm.",
+      },
       link: { key: "contact", label: "Mở bản đồ và thông tin liên hệ" },
     },
     {
@@ -294,6 +302,12 @@ export const CAM_NANG_EN: CamNangCopy = {
         `LOCO Complex is at ${site.address.en}. Search “LOCO Complex” or “11 Nam Quoc Cang” in any map app to land on the right spot; the website's contact page has an embedded map you can open for directions.`,
         "Nam Quoc Cang is a small street in Pham Ngu Lao Ward, right in central District 1, so taxis and ride-hailing drivers find it easily. If you are coming as a group, meet outside and walk in together so you can be seated in one go.",
       ],
+      ngoai: {
+        truoc: "At the same address, 11 Nam Quoc Cang, you will also find ",
+        nhan: "Neighborhood Saigon",
+        href: "https://neighborhoodsaigon.com",
+        sau: ", an American house party–style night club, handy if your group wants a second stop on the same night.",
+      },
       link: { key: "contact", label: "Open the map and contact details" },
     },
     {
