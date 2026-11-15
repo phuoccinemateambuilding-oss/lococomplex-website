@@ -1,6 +1,6 @@
 "use client";
 
-import { Phone, ArrowDown, MapPin, Clock, Star, ShieldCheck, CalendarCheck } from "@phosphor-icons/react/dist/ssr";
+import { Phone, ArrowDown, MapPin, Clock, ShieldCheck, CalendarCheck } from "@phosphor-icons/react/dist/ssr";
 import { FloatingImage } from "@/components/HeroAnimated";
 import GeometricShape from "@/components/GeometricShape";
 import StickerTag from "@/components/StickerTag";
@@ -24,8 +24,6 @@ type Dhero = {
   ctaGallery: string;
   ctaZalo: string;
   promise: string;
-  rating: string;
-  trust: string;
   hoursLabel: string;
   addressLabel: string;
 };
@@ -120,12 +118,6 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
               />
             </div>
 
-            {/* Điểm Google Maps thật của quán (LOCO HEATROOM, đọc 29/10/2026) — số tĩnh, đổi điểm thì sửa i18n */}
-            <p className="flex items-center gap-2 text-sm text-white/85">
-              <Star weight="fill" className="h-4 w-4 shrink-0 text-loco-yellow" aria-hidden="true" />
-              <span>{dict.rating}</span>
-            </p>
-
             {/* CTAs — Đặt bàn mở form nhanh 5 ô tại chỗ; Gọi + Zalo thấy ngay màn hình đầu */}
             <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-start">
               <div className="flex flex-col gap-2">
@@ -208,14 +200,6 @@ export function LandingHero({ dict, locale }: { dict: Dhero; locale: "vi" | "en"
               {dict.ctaGallery}
               <ArrowDown className="h-4 w-4" />
             </button>
-
-            {/* Trust badge */}
-            <div className="inline-flex items-center gap-2 self-start rounded-full border border-loco-yellow/20 bg-loco-yellow/5 px-4 py-2">
-              <span className="text-base">⭐</span>
-              <span className="font-[family-name:var(--font-space-mono)] text-xs text-loco-yellow/80">
-                {dict.trust}
-              </span>
-            </div>
           </div>
 
           {/* RIGHT — floating venue photos (desktop only) */}
